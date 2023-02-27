@@ -1,0 +1,4 @@
+# ignoramos la carpeta de node_modules porque no es necesaria tenerla en el repositorio.
+# De hecho, es un problema porque depende del sistema operativo en el que se ejecute el entorno de node.
+/node_modules
+/.vscode

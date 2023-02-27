@@ -1,0 +1,26 @@
+{
+  "name": "cinematrix",
+  "version": "1.0.0",
+  "description": "Proyecto Cinematrix de GPS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelphi1618/Cinematrix.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angelphi1618/Cinematrix/issues"
+  },
+  "homepage": "https://github.com/angelphi1618/Cinematrix#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "path": "^0.12.7"
+  }
+}
