@@ -12,4 +12,5 @@ app.get('/', indexRouter);
 app.listen(port, () => {
 	console.log(`Cinematrix está escuchando el puerto ${port}`);
 	console.log(`BBDD ubicada en ${process.env.DB_HOST}`);
+	console.log(`BBDD ubicada en ${process.env.DB_HOST}`);
 });
