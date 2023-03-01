@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    
+    <title><%=title %></title>
+    
+    <!-- <link rel="stylesheet" href="/css/stilo.css" media="screen"/> -->
+    <!-- <link rel="stylesheet" href="public/css/stilo.css" media="screen"/> -->
+    <h1><%=title %></h1>
+    
+    
+</head>
+
+<body>
+    <div >
+        <form  action="/film/listMovies" method="POST">
+          <input  type="search" name="nombreBuscar" >
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+</body>
+</html>
