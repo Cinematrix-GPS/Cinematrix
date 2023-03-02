@@ -44,29 +44,56 @@ class filmDAO{
                     reject(new Error("Error de conexión a la base de datos"));
                 }
                 else{
-                    // const q = "SELECT * FROM `peliculas` WHERE nombre like '%"+keyWord+"%' OR sinopsis like '%"+keyWord+"%'";
-                    
                     const q = "SELECT img FROM `peliculas` WHERE id = ?";
-                    connection.query(q, [id],
-                        function(err, img){
-                            connection.release();
-                            if(err){
-                                console.log("ERROR:"+err.message);
-                                reject(new Error("Error de acceso a la base de datos"));
-                            }
-                            else{
-                                console.log(img);
-                                if(img.length>0) resolve(img);
-                                else resolve(false);
-                            }
+                    connection.query(q, [id], function(err, img){
+                        connection.release();
+                        if(err){
+                            console.log("ERROR:"+err.message);
+                            reject(new Error("Error de acceso a la base de datos"));
                         }
-                    );
+                        else{
+                            // console.log(img);
+                            if(img.length>0) resolve(img);
+                            else resolve(false);
+                        }
+                    });
                 }
     
             });
 
         });
     }
+
+    // getImg(id, cb){
+        
+    //     this.pool.getConnection(function(err,connection){
+    //         if(err){
+    //             cb(new Error("Error de conexión a la base de datos"));
+    //         }
+    //         else{
+    //             // const q = "SELECT * FROM `peliculas` WHERE nombre like '%"+keyWord+"%' OR sinopsis like '%"+keyWord+"%'";
+                
+    //             const q = "SELECT img FROM `peliculas` WHERE id = ?";
+    //             connection.query(q, [id],
+    //                 function(err, img){
+    //                     connection.release();
+    //                     if(err){
+    //                         console.log("ERROR:"+err.message);
+    //                         cb(new Error("Error de acceso a la base de datos"));
+    //                     }
+    //                     else{
+    //                         console.log(img);
+    //                         if(img.length>0) cb(null, img);
+    //                         else cb(false);
+    //                     }
+    //                 }
+    //             );
+    //         }
+
+    //     });
+
+        
+    // }
 
     // listaTareas(id){
     //     return new Promise((resolve, reject) => {

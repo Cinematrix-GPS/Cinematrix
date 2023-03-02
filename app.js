@@ -9,6 +9,9 @@ const connectLivereload = require("connect-livereload");
 // open livereload high port and start to watch public directory for changes
 const liveReloadServer = livereload.createServer();
 
+
+const multer = require("multer");
+const multerFactory = multer({ storage: multer.memoryStorage() });
 //Configuracion base de datos
 const config = require("./js/config");//Configuracion bbd y puerto
 const PORT = process.env.PORT || config.puerto;
