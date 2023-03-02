@@ -23,30 +23,45 @@ class filmController {
         .catch(error => {response.status(500)});
     }
 
+    getImagen(request, response){
+        console.log("controlador imagen");
+        film_Dao.getImg(request.params.id)
+        .then(img => {
+            if (imagen) {
+                console.log(img);
+                response.end(img);
+            }
+            else console.log("NO IMAGEN");
+        })
+        .catch(error => {response.status(500)});  
+                  
+        
+        
+    };
+}
 
-    // <!-- <% films.forEach(function(p) {%>
-    //     <%=p.nombre%>
-    //     <hr>
-    //   <%});%> -->
-    // getListTareas(request, response){
 
-    //     daoTareas.listaTareas(request.session.id_)
-    //     .then(tareas =>{
-    //         // tareas.array.forEach(element => {
-    //         //     console.log(element);
-    //         // });
-
-    //         response.render("principal", {
-    //                         title: "", 
-    //                         nameUser: request.session.userName, 
-    //                         mailUser: request.session.mail,
-    //                         tareas: tareas?tareas:0,
-    //                         deleteId: false 
-    //         });
-    //     })
-    //     .catch(error =>{  response.status(500);  });
+    // getImagen(request, response) {
+    
+    //     //let users =new DaoUsers(pool);
+    //     users.obtenerImagen (request.params.id, function(err, imagen) {
+    //         if(err){
+    //             response.status(500);
+    //         }
+    //         else{
+    //             if (imagen) {
+                    
+    //                 response.end(imagen);
+    //             } else {
+    //                 //ASIGNAR UNA POR DEFECTO!!
+    //                 response.status(404);
+    //                 response.end("Not found");
+    //             }
+    //         }
+            
+    //     });
     // }
 
-}
+
 
 module.exports = filmController;
