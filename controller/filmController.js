@@ -12,9 +12,22 @@ class filmController {
 
     getListByKeyWord(request, response){
         console.log("controlador pelicula");
-        film_Dao.listMovies(request.body.nombreBuscar);
+        film_Dao.listMovies(request.body.nombreBuscar)
+        .then(filmsList => {
+            response.render("index", {
+                            title: "Mostrando Resultados", 
+                            films: filmsList?filmsList:0
+                         });
+            
+        })
+        .catch(error => {response.status(500)});
     }
 
+
+    // <!-- <% films.forEach(function(p) {%>
+    //     <%=p.nombre%>
+    //     <hr>
+    //   <%});%> -->
     // getListTareas(request, response){
 
     //     daoTareas.listaTareas(request.session.id_)

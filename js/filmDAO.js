@@ -13,8 +13,23 @@ class filmDAO{
                     reject(new Error("Error de conexión a la base de datos"));
                 }
                 else{
-                    console.log("conexion con la bbdd "+keyWord);
-                    resolve(true);
+                    // const q = "SELECT * FROM `peliculas` WHERE nombre like '%"+keyWord+"%' OR sinopsis like '%"+keyWord+"%'";
+                    let word = "%" + keyWord+ "%";
+                    const q = "SELECT * FROM `peliculas` WHERE nombre like ? OR sinopsis like ?";
+                    connection.query(q, [word, word],
+                        function(err, films){
+                            connection.release();
+                            if(err){
+                                console.log("ERROR:"+err.message);
+                                reject(new Error("Error de acceso a la base de datos"));
+                            }
+                            else{
+                                // console.log(films);
+                                if(films.length>0) resolve(films);
+                                else resolve(false);
+                            }
+                        }
+                    );
                 }
     
             });

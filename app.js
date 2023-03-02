@@ -35,7 +35,8 @@ app.use("/film", filmRoutes);
 app.get("/", (request, response) => {
     response.status(200);
     response.render("index", {  
-            title: "Prototipo Cinematrix"});
+            title: "Prototipo Cinematrix",
+            films: ""});
     }
 
 );
