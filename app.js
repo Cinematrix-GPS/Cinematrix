@@ -36,7 +36,7 @@ app.get("/", (request, response) => {
     response.status(200);
     response.render("index", {  
             title: "Prototipo Cinematrix",
-            films: ""});
+            films: 0});
     }
 
 );
