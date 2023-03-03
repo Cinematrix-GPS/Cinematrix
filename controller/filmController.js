@@ -7,15 +7,15 @@ const pool = mysql.createPool(config.databaseConfig);
 const film_DAO = require('../js/filmDAO');
 
 const film_Dao = new film_DAO(pool);
-const fs = require("fs");
 
+const arv = require("../js/viewConfig");
 class filmController {
 
     getListByKeyWord(request, response){
         console.log("controlador pelicula");
         film_Dao.listMovies(request.body.nombreBuscar)
         .then(filmsList => {
-            response.render("index", {
+            response.render(arv.index, {
                             title: "Mostrando Resultados", 
                             films: filmsList?filmsList:0
                          });

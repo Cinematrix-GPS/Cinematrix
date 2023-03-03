@@ -3,10 +3,10 @@
 
 module.exports ={
     databaseConfig:  {
-         host:"localhost",
+         host:"localhost",//Aqui iria la url para acceder en remoto
          user:"root",
          password: "",
-         database:"cinematrix"
+         database:"cinematrix" //Nombre de la base de datos
      } ,
      puerto: 3000
  };

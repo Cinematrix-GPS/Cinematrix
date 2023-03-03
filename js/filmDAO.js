@@ -1,11 +1,14 @@
 "use strict"
 const { resolve } = require("path");
-
+const querys = require("../js/querys");
 class filmDAO{
     constructor(pool){
         this.pool = pool;
     }
 
+    /*
+        Busqueda global por palabra
+    */
     listMovies(keyWord){
         return new Promise((resolve, reject) => {
             this.pool.getConnection(function(err,connection){
@@ -15,8 +18,9 @@ class filmDAO{
                 else{
                     // const q = "SELECT * FROM `peliculas` WHERE nombre like '%"+keyWord+"%' OR sinopsis like '%"+keyWord+"%'";
                     let word = "%" + keyWord+ "%";
-                    const q = "SELECT * FROM `peliculas` WHERE nombre like ? OR sinopsis like ?";
-                    connection.query(q, [word, word],
+                    const q = querys.listKeyWord;
+                    
+                    connection.query(q, [word, word, word, word],
                         function(err, films){
                             connection.release();
                             if(err){
@@ -24,7 +28,7 @@ class filmDAO{
                                 reject(new Error("Error de acceso a la base de datos"));
                             }
                             else{
-                                // console.log(films);
+                                console.log(films);
                                 if(films.length>0) resolve(films);
                                 else resolve(false);
                             }
@@ -40,90 +44,23 @@ class filmDAO{
     getImg(id){
         return new Promise((resolve, reject) => {
             this.pool.getConnection(function(err,connection){
-                if(err){
-                    reject(new Error("Error de conexión a la base de datos"));
-                }
+                if(err) reject(new Error("Error de conexión a la base de datos"));
                 else{
-                    const q = "SELECT img FROM `peliculas` WHERE id = ?";
+                    const q = querys.getImg;
                     connection.query(q, [id], function(err, img){
                         connection.release();
-                        if(err){
-                            console.log("ERROR:"+err.message);
-                            reject(new Error("Error de acceso a la base de datos"));
-                        }
+                        if(err)reject(new Error("Error de acceso a la base de datos "+err.message));
                         else{
-                            // console.log(img);
                             if(img.length>0) resolve(img);
                             else resolve(false);
                         }
                     });
                 }
-    
             });
-
         });
     }
 
-    // getImg(id, cb){
-        
-    //     this.pool.getConnection(function(err,connection){
-    //         if(err){
-    //             cb(new Error("Error de conexión a la base de datos"));
-    //         }
-    //         else{
-    //             // const q = "SELECT * FROM `peliculas` WHERE nombre like '%"+keyWord+"%' OR sinopsis like '%"+keyWord+"%'";
-                
-    //             const q = "SELECT img FROM `peliculas` WHERE id = ?";
-    //             connection.query(q, [id],
-    //                 function(err, img){
-    //                     connection.release();
-    //                     if(err){
-    //                         console.log("ERROR:"+err.message);
-    //                         cb(new Error("Error de acceso a la base de datos"));
-    //                     }
-    //                     else{
-    //                         console.log(img);
-    //                         if(img.length>0) cb(null, img);
-    //                         else cb(false);
-    //                     }
-    //                 }
-    //             );
-    //         }
-
-    //     });
-
-        
-    // }
-
-    // listaTareas(id){
-    //     return new Promise((resolve, reject) => {
-    //         this.pool.getConnection(function(err,connection){
-    //             if(err){
-    //                 reject(new Error("Error de conexión a la base de datos",));
-    //             }
-    //             else{
-    //                 const valor ="SELECT id_tarea, nombre, prioridad, categoria, fechafin ,fechaini, tipo FROM back2study.tareas where id_usuario= ?";
-    //                 connection.query(valor, [id],
-    //                     function(err, taskList){
-    //                         connection.release();
-    //                         if(err){
-    //                             console.log("ERROR:"+err.message);
-    //                             reject(new Error("Error de acceso a la base de datos"));
-    //                         }
-    //                         else{
-    //                             console.log(taskList);
-    //                             if(taskList.length>0) resolve(taskList);
-    //                             else resolve(false);
-                                
-    //                         }
-    //                 });
-    //             }
     
-    //         });
-
-    //     });
-        
-    // }
 
 }
 

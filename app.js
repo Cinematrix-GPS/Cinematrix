@@ -10,11 +10,11 @@ const connectLivereload = require("connect-livereload");
 const liveReloadServer = livereload.createServer();
 
 
-const multer = require("multer");
-const multerFactory = multer({ storage: multer.memoryStorage() });
+
 //Configuracion base de datos
 const config = require("./js/config");//Configuracion bbd y puerto
 const PORT = process.env.PORT || config.puerto;
+const arv = require("./js/viewConfig");
 require('dotenv').config();
 
 //Configuracion de las vistas y usos
@@ -37,7 +37,7 @@ app.use("/film", filmRoutes);
 
 app.get("/", (request, response) => {
     response.status(200);
-    response.render("index", {  
+    response.render(arv.index, {  
             title: "Prototipo Cinematrix",
             films: 0});
     }
