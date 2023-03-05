@@ -1,48 +1,47 @@
 const express = require('express');
 const app = express();
-const path = require("path");// modulo para manejar rutas
+const path = require("path"); // módulo para manejar rutas
 
-const morgan = require("morgan");  //Para depuracion
+const morgan = require("morgan");  // Para depuración
+app.use(morgan("dev")); //Al realizar cambios en los archivos, se reinicia la aplicacion automaticamente (Para programar)
 
 const livereload = require("livereload");
 const connectLivereload = require("connect-livereload");
+
 // open livereload high port and start to watch public directory for changes
 const liveReloadServer = livereload.createServer();
 
-
-
 //Configuracion base de datos
-const config = require("./js/config");//Configuracion bbd y puerto
-const PORT = process.env.PORT || config.puerto;
-const arv = require("./js/viewConfig");
-require('dotenv').config();
 
-//Configuracion de las vistas y usos
+const views = require("./js/viewConfig");
+
+require('dotenv').config(); // Para utilizar variables de entorno desde ficheros
+const PORT = process.env.PORT || 3000;
+
+// Configuracion de las vistas y usos
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static(__dirname + '/public'));
+
 app.use(connectLivereload());
+
 //Ubicacion Archivos estaticos
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());//Devuelve middleware que solo analiza json y solo mira las solicitudes donde el encabezado Content-Type coincide con la opción de tipo.
-app.use(express.urlencoded({extended: true}));//Devuelve middleware que solo analiza cuerpos codificados en URL y solo mira las solicitudes donde el encabezado Content-Type coincide con la opción de tipo
-app.use(morgan("dev"));//Al realizar cambios en los archivos, se reinicia la aplicacion automaticamente (Para programar)
 
-app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.json());// Devuelve middleware que solo analiza json y solo mira las solicitudes donde el encabezado Content-Type coincide con la opción de tipo.
+app.use(express.urlencoded({extended: true}));//Devuelve middleware que solo analiza cuerpos codificados en URL y solo mira las solicitudes donde el encabezado Content-Type coincide con la opción de tipo
+
 liveReloadServer.watch(path.join(__dirname, "public"), path.join(__dirname, "views"));
-//Enrutamiento
+
+
+// Enrutamiento
 
 const filmRoutes = require("./routers/filmRouter");
-app.use("/film", filmRoutes);
+app.use("/films", filmRoutes);
 
 app.get("/", (request, response) => {
-    response.status(200);
-    response.render(arv.index, {  
-            title: "Prototipo Cinematrix",
-            films: 0});
-    }
-
-);
+	response.redirect('/films/search');
+});
 
 
 // ping browser on Express boot, once browser has reconnected and handshaken
@@ -65,9 +64,18 @@ app.use(function(request, response, next) {
 //Errores de servidor
 app.use(function(error, request, response, next) {
     response.status(500); 
-    response.render("error500", {
-        mensaje: error.message, 
-        pila: error.stack });
+
+	if (process.env.NODE_ENV === 'production'){
+		response.render("error500", {
+			mensaje: error.message, 
+			pila: ''
+		});
+	}else{
+		response.render("error500", {
+			mensaje: error.message, 
+			pila: error.stack });
+	}
+
 });
 
 // Punto de entrada de la aplicación

@@ -1,21 +1,21 @@
 "use strict";
 
-const express = require("express");
-
-const filmRouter = express.Router();
-const filmController = new (require("../controller/filmController"))();
+const filmRouter = require('express-promise-router')();
+const filmController = require("../controller/filmController");
 const multer = require("multer");
 const multerFactory = multer({ storage: multer.memoryStorage() });
+const views = require("../js/viewConfig");
 
+filmRouter.get('/search', async (req, res) => {
+    res.status(200);
+    res.render(views.index, {  
+            title: "Prototipo Cinematrix",
+            films: 0});
+});
 
-filmRouter.post("/listMovies",
+filmRouter.post("/list",
     multerFactory.none(),
-    filmController.getListByKeyWord
+    filmController.postListByKeyWord
 );
-
-filmRouter.get("/imagen/:id",
-      
-    filmController.getImagen
-);      
 
 module.exports = filmRouter;
