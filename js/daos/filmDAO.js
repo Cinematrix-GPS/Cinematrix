@@ -8,17 +8,16 @@ class FilmDAO extends BaseDAO {
         const q = `
             SELECT DISTINCT p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis
             FROM peliculas p
-            JOIN actores_peliculas ap
-            ON p.id=ap.id_pelicula
-            JOIN actores a
-            ON ap.id_actor=a.id
+				LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula
+				LEFT JOIN actores a ON ap.id_actor=a.id
             WHERE p.nombre like ?
             OR p.sinopsis like ?
             OR a.nombre like ?
             OR a.apellidos like ?
+			OR p.genero like ?
         `
 
-        return this.query(q, [formattedKeyWord, formattedKeyWord, formattedKeyWord, formattedKeyWord])   
+        return this.query(q, Array(5).fill(formattedKeyWord))   
     }
 }
 
