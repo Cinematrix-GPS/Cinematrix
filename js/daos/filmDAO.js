@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseDAO = require('./');
 
 class FilmDAO extends BaseDAO {
@@ -15,9 +17,9 @@ class FilmDAO extends BaseDAO {
             OR a.nombre like ?
             OR a.apellidos like ?
 			OR p.genero like ?
-        `
+        `;
 
-        return this.query(q, Array(5).fill(formattedKeyWord))   
+        return this.query(q, Array(5).fill(formattedKeyWord));   
     }
 }
 

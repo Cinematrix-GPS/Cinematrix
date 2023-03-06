@@ -30,7 +30,7 @@
           
           
           <div class="card" style="width: 18rem;">
-            <img src="/film/imagen/<%=p.id%>" class="card-img-top" >
+            <img src="data:image/jpeg;base64,<%=((new Buffer(p.img)).toString('base64'))%>" class="card-img-top" >
             <div class="card-body">
               <h5 class="card-title"><%=p.nombre%></h5>
             </div>
