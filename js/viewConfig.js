@@ -5,7 +5,7 @@ todas las vistas y nos ahorramos muchos fallos innecesarios
 */
 
 module.exports ={
-    index: "indexTable",
+    index: "index",
     vista2: "",
     vista3: ""
          
