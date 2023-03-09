@@ -5,11 +5,6 @@ const path = require("path"); // módulo para manejar rutas
 const morgan = require("morgan");  // Para depuración
 app.use(morgan("dev")); //Al realizar cambios en los archivos, se reinicia la aplicacion automaticamente (Para programar)
 
-const livereload = require("livereload");
-const connectLivereload = require("connect-livereload");
-
-// open livereload high port and start to watch public directory for changes
-const liveReloadServer = livereload.createServer();
 
 //Configuracion base de datos
 
@@ -22,7 +17,6 @@ const PORT = process.env.PORT || 3000;
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.use(connectLivereload());
 
 //Ubicacion Archivos estaticos
 app.use(express.static(path.join(__dirname, "public")));
@@ -30,8 +24,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());// Devuelve middleware que solo analiza json y solo mira las solicitudes donde el encabezado Content-Type coincide con la opción de tipo.
 app.use(express.urlencoded({extended: true}));//Devuelve middleware que solo analiza cuerpos codificados en URL y solo mira las solicitudes donde el encabezado Content-Type coincide con la opción de tipo
-
-liveReloadServer.watch(path.join(__dirname, "public"), path.join(__dirname, "views"));
 
 
 // Enrutamiento
@@ -43,14 +35,6 @@ app.get("/", (request, response) => {
 	response.redirect('/films/search');
 });
 
-
-// ping browser on Express boot, once browser has reconnected and handshaken
-liveReloadServer.server.once("connection", () => {
-    console.log("Refrescando browser");
-    setTimeout(() => {
-    liveReloadServer.refresh("/");
-    }, 100);
-});
 
 //GESTION DE ERRORES
 //Para errores de direccionamiento
