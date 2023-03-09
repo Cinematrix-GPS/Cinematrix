@@ -8,7 +8,7 @@ app.use(morgan("dev")); //Al realizar cambios en los archivos, se reinicia la ap
 
 //Configuracion base de datos
 
-const views = require("./js/viewConfig");
+const views = require("./js/configView");
 
 require('dotenv').config(); // Para utilizar variables de entorno desde ficheros
 const PORT = process.env.PORT || 3000;

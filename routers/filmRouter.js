@@ -1,10 +1,10 @@
 "use strict";
 
 const filmRouter = require('express-promise-router')();
-const filmController = require("../controller/filmController");
+const filmController = new (require("../controller/filmController"));
 const multer = require("multer");
 const multerFactory = multer({ storage: multer.memoryStorage() });
-const views = require("../js/viewConfig");
+const views = require("../js/configView");
 
 filmRouter.get('/search', async (req, res) => {
     res.status(200);
@@ -16,6 +16,11 @@ filmRouter.get('/search', async (req, res) => {
 filmRouter.post("/list",
     multerFactory.none(),
     filmController.postListByKeyWord
+);
+
+filmRouter.post("/listActor",
+    multerFactory.none(),
+    filmController.postlistActoreByFilm
 );
 
 module.exports = filmRouter;
