@@ -13,6 +13,7 @@ const views = require("../js/configView");
 class filmController {
 
 	postListByKeyWord = async (request, response) => {
+		
 		await fDAO.listFilms(request.body.nombreBuscar)
 		.then( filmList => {
 				response.render(views.index, {

@@ -4,7 +4,8 @@
   "description": "Proyecto Cinematrix de GPS",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --recursive --timeout 10000 ./pruebasTest/test",
+    
     "start": "node ./app.js"
   },
   "repository": {
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/angelphi1618/Cinematrix#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "chai": "^4.3.7",
     "connect-livereload": "^0.6.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
@@ -32,5 +34,9 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.21",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "request": "^2.88.2"
   }
 }
