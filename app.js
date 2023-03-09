@@ -13,7 +13,7 @@ const liveReloadServer = livereload.createServer();
 
 //Configuracion base de datos
 
-const views = require("./js/viewConfig");
+const views = require("./js/configView");
 
 require('dotenv').config(); // Para utilizar variables de entorno desde ficheros
 const PORT = process.env.PORT || 3000;
