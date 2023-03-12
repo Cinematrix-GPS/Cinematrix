@@ -15,7 +15,7 @@ services:
     volumes:
       - mysql-cinematrix:/var/lib/mysql
     healthcheck:
-      test: mysql -h 127.0.0.1 -u cinematrix --password=cinematrix
+      test: mysqladmin ping -h 127.0.0.1 -u cinematrix --password=cinematrix
       start_period: 1s
       interval: 2s
       timeout: 5s
