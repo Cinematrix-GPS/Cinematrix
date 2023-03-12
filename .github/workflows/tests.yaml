@@ -25,4 +25,9 @@ jobs:
       - name: Build stack
         run: docker compose up -d
       - run: cp .env.example .env
+      - name: Sleep for 120 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '120s'
+
       - run: npm test
