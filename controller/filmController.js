@@ -1,21 +1,18 @@
 "use strict";
 
-const {getPool} = require('../database/configDB');
-
-
-const FilmDAO = require('../js/daos/filmDAO');
-const fDAO = new FilmDAO(getPool());
-
-
 const views = require("../js/configView");
 
 
 class filmController {
 
+	constructor (dao){
+		this.filmDAO = dao;
+	}
+
 	postListByKeyWord = async (request, response) => {
 		
-		await fDAO.listFilms(request.body.nombreBuscar)
-		.then( filmList => {
+		await this.filmDAO.listFilms(request.body.nombreBuscar)
+		.then(filmList => {
 				response.render(views.index, {
 					title: "Mostrando resultados",
 					films: filmList
@@ -26,7 +23,7 @@ class filmController {
 		
 	
 	postlistActoreByFilm = async (request, response) => {
-			await fDAO.listActoreByFilm(request.body.nombreBuscar)
+			await this.filmDAO.listActoreByFilm(request.body.nombreBuscar)
 			.then( actorListByFilm => {
 					response.render(views.actor, {
 						title: "Mostrando resultados Actores",

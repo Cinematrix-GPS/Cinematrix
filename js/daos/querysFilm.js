@@ -17,5 +17,8 @@ module.exports ={
                 
     listActorByFilm:    `SELECT DISTINCT a.nombre, a.apellidos FROM peliculas p 
                         LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula 
-                        LEFT JOIN actores a ON ap.id_actor=a.id WHERE p.nombre like ?;`
+                        LEFT JOIN actores a ON ap.id_actor=a.id WHERE p.nombre like ?;`,
+
+	createFilm: `INSERT INTO peliculas(nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero)
+							    VALUES(?, ?, ?, ?, ?, ?, ?)`
 };
