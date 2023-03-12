@@ -22,4 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
+      - name: Build stack
+        run: docker compose up -d
+      - run: cp .env.example .env
       - run: npm test
