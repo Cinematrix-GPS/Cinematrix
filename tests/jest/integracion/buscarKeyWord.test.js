@@ -56,7 +56,7 @@ describe('Test de Integración búsqueda de película por keyword', () => {
 	});
 
 	test('Búsqueda de películas por keyWord(sinopsis) cuando la peli existe', async () => {
-		const peli = "socorro";
+		const peli = "socorroa";
 
 		await dao.listFilms(peli).then(result => {
 			expect(result).toEqual(expect.arrayContaining([
