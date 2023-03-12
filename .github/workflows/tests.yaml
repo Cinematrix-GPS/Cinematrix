@@ -4,7 +4,7 @@ on:
   push:
     branches: [ release, main ]
   pull_request:
-    branches: [ release, main ]
+    branches: [ release, main, feature-CM-1 ]
 
 jobs:
   build:
@@ -23,11 +23,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - name: Build stack
-        run: docker compose up -d
+        run: docker compose up --wait
       - run: cp .env.example .env
-      - name: Sleep for 120 seconds
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '120s'
+      - run: 
+      # - name: Sleep for 5 seconds
+      #   uses: jakejarvis/wait-action@master
+      #   with:
+      #     time: '5s'
 
       - run: npm test
