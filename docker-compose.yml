@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_DATABASE=cinematrix
+      - MYSQL_USER=cinematrix
+      - MYSQL_PASSWORD=cinematrix
+      - MYSQL_ROOT_PASSWORD=cinematrix
+    ports:
+      - '3306:3306'
+    restart: always
+    volumes:
+      - mysql-cinematrix:/var/lib/mysql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u cinematrix --password=cinematrix
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+
+volumes:
+  mysql-cinematrix:
