@@ -9,6 +9,7 @@ describe('Test de Integración búsqueda de película por keyword', () => {
 	const pool = getPool();
 	const dao = new FilmDAO(pool);
 
+	
 	// Creamos una película antes de todo
 	beforeAll(async () => {
 		await dao.query("DELETE FROM peliculas WHERE id>0;");
