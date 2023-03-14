@@ -10,28 +10,44 @@ class filmController {
 	}
 
 	postListByKeyWord = async (request, response) => {
-		
+		console.log("CONTRROLLER!!!");
 		await this.filmDAO.listFilms(request.body.nombreBuscar)
-		.then(filmList => {
+		.then(filmListByKeyWord => {
 				response.render(views.index, {
 					title: "Mostrando resultados",
-					films: filmList
+					films: filmListByKeyWord
 				});
 			}
-		); // No hay catch para que se propague la excepción y llegue al router listActoreByFilm
+		)
+		// .catch(error=>{  
+		// 	console.log("Error de acceso a la base de datos");
+		// 	response.status(500);  }); // No hay catch para que se propague la excepción y llegue al router listActoreByFilm
 	};
 		
 	
 	postlistActoreByFilm = async (request, response) => {
-			await this.filmDAO.listActoreByFilm(request.body.nombreBuscar)
-			.then( actorListByFilm => {
-					response.render(views.actor, {
-						title: "Mostrando resultados Actores",
-						films: actorListByFilm
-					});
-				}
-			)
-			.catch(error =>{  response.status(500);  });
+		await this.filmDAO.listActoreByFilm(request.body.nombreBuscar)
+		.then( actorListByFilm => {
+				response.render(views.actor, {
+					title: "Mostrando resultados Actores",
+					films: actorListByFilm
+				});
+			}
+		)
+		.catch(error =>{  response.status(500);  });
+	};
+
+	getlistFilmsStart = async (request, response) =>{
+		console.log("CONTRROLLER!!! getlistFilmsStart");
+		await this.filmDAO.listFilmsStart()
+		.then( filmsStart => {
+				
+				response.render(views.index, {
+					title: "Listado completo",
+					films: filmsStart
+				});
+			}
+		)
 	};
 
 

@@ -6,9 +6,11 @@ const morgan = require("morgan");  // Para depuración
 app.use(morgan("dev")); //Al realizar cambios en los archivos, se reinicia la aplicacion automaticamente (Para programar)
 
 
+
+
 //Configuracion base de datos
 
-const views = require("./js/configView");
+
 
 require('dotenv').config(); // Para utilizar variables de entorno desde ficheros
 const PORT = process.env.PORT || 3000;
@@ -32,7 +34,8 @@ const filmRoutes = require("./routers/filmRouter");
 app.use("/films", filmRoutes);
 
 app.get("/", (request, response) => {
-	response.redirect('/films/search');
+	response.redirect('/films/start');
+	
 });
 
 

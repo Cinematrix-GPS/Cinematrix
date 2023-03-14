@@ -20,5 +20,10 @@ module.exports ={
                         LEFT JOIN actores a ON ap.id_actor=a.id WHERE p.nombre like ?;`,
 
 	createFilm: `INSERT INTO peliculas(nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero)
-							    VALUES(?, ?, ?, ?, ?, ?, ?)`
+							    VALUES(?, ?, ?, ?, ?, ?, ?)`,
+
+    qlistFilmStar: `SELECT p.nombre, p.img
+                    FROM peliculas p`
 };
+
+// Para paginacion SELECT p.id, p.nombre, p.img FROM peliculas p LIMIT 8, 4; Donde LIMIT [Desplazamiento][numero que aparecen]

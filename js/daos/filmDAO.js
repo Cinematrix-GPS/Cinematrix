@@ -19,6 +19,10 @@ class FilmDAO extends BaseDAO {
 	async createFilm(nombre, imagen, duracion, puntuacion, fechaEstreno, sinopsis, genero){
 		return this.query(qFilms.createFilm, [nombre, imagen, duracion, puntuacion, fechaEstreno, sinopsis, genero]);
 	}
+
+    async listFilmsStart(){
+        return this.query(qFilms.qlistFilmStar);
+    }
 }
 
 module.exports = FilmDAO;

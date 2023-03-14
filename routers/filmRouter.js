@@ -19,16 +19,23 @@ filmRouter.get('/search', async (req, res) => {
     res.render(views.index, {  
             title: "Prototipo Cinematrix",
             films: 0});
+    // console.log('/films/start');
+    // filmController.getlistFilmsStart
 });
+
+filmRouter.get('/start',
+    
+    filmController.getlistFilmsStart
+);
 
 filmRouter.post("/list",
     multerFactory.none(),
     filmController.postListByKeyWord
 );
 
-filmRouter.post("/listActor",
+filmRouter.get("/listActor",
     multerFactory.none(),
-    filmController.postlistActoreByFilm
+    filmController.getlistFilmsStart
 );
 
 module.exports = filmRouter;
