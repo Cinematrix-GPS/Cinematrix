@@ -38,7 +38,6 @@ class filmController {
 	};
 
 	getlistFilmsStart = async (request, response) =>{
-		console.log("CONTRROLLER!!! getlistFilmsStart");
 		await this.filmDAO.listFilmsStart()
 		.then( filmsStart => {
 				
@@ -46,8 +45,23 @@ class filmController {
 					title: "Listado completo",
 					films: filmsStart
 				});
-			}
-		)
+		})
+	};
+
+	getFilmByIdCtrl = async (request, response) =>{
+		console.log("ID --> "+request.params.id);
+		await this.filmDAO.getFilmById(request.params.id)
+		.then(listadopeliculas =>{
+			console.log(listadopeliculas);
+			
+				response.render(views.vistaPelicula, {
+					title: "Listado completo",
+					films: 0
+				});
+			
+			
+
+		})
 	};
 
 
