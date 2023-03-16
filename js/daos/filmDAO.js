@@ -25,11 +25,9 @@ class FilmDAO extends BaseDAO {
     }
 
     async getFilmById(id){
-        let film = this.query(qFilms.qGetFilmById, [id]);
-        let actores = this.query(qFilms.qGetActorsById, [id]);
-        // console.log(film);
-        let datos = {film, actores};
-        return datos;
+        
+        
+        return this.query(qFilms.qGetFilmById, [id]);
     }
 
     // async getActorsById(id){

@@ -26,15 +26,21 @@ module.exports ={
                     FROM peliculas p 
                     ORDER BY P.fechaEstreno DESC;`,
 
-    qGetFilmById: ` SELECT id, nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero 
-                    FROM peliculas
-                    WHERE id=?`,
+    // qGetFilmById: ` SELECT id, nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero 
+    //                 FROM peliculas
+    //                 WHERE id=?`,
 
-    qGetActorsById: `SELECT a.*
-                    FROM peliculas p
+    qGetFilmById: ` SELECT p.id, p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis, p.genero, a.nombreAct, a.apellidosAct 
+                    FROM peliculas  p
                     LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula
                     LEFT JOIN actores a ON ap.id_actor=a.id
-                    WHERE p.id=?`
+                    WHERE p.id=?`,
+
+    // qGetActorsById: `SELECT a.*
+    //                 FROM peliculas p
+    //                 LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula
+    //                 LEFT JOIN actores a ON ap.id_actor=a.id
+    //                 WHERE p.id=?`
 
     //Para actores
     
