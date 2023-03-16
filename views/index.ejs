@@ -45,13 +45,10 @@
           
           <article class="imgCardContainer">
         
-            <a class="titleCard" href="#">
-              <%=p.nombre%>           </a>
-      
+            <a class="titleCard" href="#"><%=p.nombre.toUpperCase()%></a>
             <div class="imgCard">
               <a href="#">
-                  <img class="portada" width="300" height="169" src="data:image/jpeg;base64,<%=((new Buffer(p.img)).toString('base64'))%>" alt="<%=p.nombre%>">    </a>
-      
+                  <img class="portada" width="300" height="169" src="data:image/jpeg;base64,<%=((new Buffer(p.img)).toString('base64'))%>" alt="<%=p.nombre%>"></a>
             </div>
       
           </article>
