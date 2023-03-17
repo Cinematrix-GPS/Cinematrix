@@ -25,7 +25,11 @@ module.exports ={
     qlistFilmStar: `SELECT p.nombre, p.img
                     FROM peliculas p 
                     ORDER BY P.fechaEstreno DESC;
-                    `
+                    `,
+    qlistFilmByTitle: `SELECT p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis
+                    FROM peliculas p
+                    WHERE p.nombre like ?`
+                    
 };
 
 // Para paginacion SELECT p.id, p.nombre, p.img FROM peliculas p LIMIT 8, 4; Donde LIMIT [Desplazamiento][numero que aparecen]

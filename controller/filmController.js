@@ -50,6 +50,17 @@ class filmController {
 		)
 	};
 
+	getlistFilmsByTitle = async(request, response) =>{
+		await this.filmDAO.listFilmsByTitle()
+		.then( filmListByTitle => {
+				response.render(views.titulo,{
+					title: "Listar peliculas por nombre",
+					films: filmListByTitle
+				});
+			}
+		)
+	};
+
 
 }
 

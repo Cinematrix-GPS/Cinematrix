@@ -1,6 +1,7 @@
 'use strict';
 
 const BaseDAO = require('./baseDAO');
+const { qlistFilmByTitle } = require('./querysFilm');
 const qFilms = require('./querysFilm');
 
 class FilmDAO extends BaseDAO {
@@ -23,6 +24,11 @@ class FilmDAO extends BaseDAO {
     async listFilmsStart(){
         return this.query(qFilms.qlistFilmStar);
     }
+
+    async listFilmsByTitle(){
+        return this.query(qFilms.qlistFilmByTitle);
+    }
+
 }
 
 module.exports = FilmDAO;
