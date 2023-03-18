@@ -1,6 +1,7 @@
 "use strict";
 
 const views = require("../js/configView");
+const { GetComentaries } = require("../js/daos/querysComment");
 
 
 class filmController {
@@ -76,6 +77,35 @@ class filmController {
 
 		})
 	};
+	GetComentaries = async (request, response) =>{
+		console.log("ID --> "+request.params.id);
+		await this.filmDAO.GetComentaries(request.params.id)
+		.then(listadopeliculas =>{
+			//Sale con los datos de los actores
+			// console.log(listadopeliculas);
+			// Filtrando json con los actores
+			let pelicula = listadopeliculas.map(p =>{
+				return {id: p.id, nombre: p.nombre,	img: p.img,	duracion: p.duracion, puntuacion: p.puntuacion,	fechaEstreno: p.fechaEstreno,
+					sinopsis: p.sinopsis, genero: p.genero}
+			}).slice(0, 1);
+			
+			console.log(pelicula);
+			let actores =listadopeliculas.map(  a =>{
+				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
+			});
+			console.log(actores);
+			
+				// response.render(views.vistaPelicula, {
+				// 	title: "Listado completo",
+				// 	film: ,
+				// 	actores: 
+				// });
+			
+			
+
+		})
+	};
+
 
 
 }
