@@ -45,7 +45,7 @@ filmRouter.get("/getFilmById/:id",
 
 filmRouter.get("/getCommentaries/:id",
     multerFactory.none(),
-    filmController.GetComentaries
+    filmController.getCommentaries
 );
 
 

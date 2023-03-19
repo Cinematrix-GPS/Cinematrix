@@ -77,9 +77,9 @@ class filmController {
 
 		})
 	};
-	GetComentaries = async (request, response) =>{
-		console.log("ID peli--> "+request.params.idPeli);
-		await this.commentDAO.GetComentaries(request.params.idPeli)
+	getCommentaries = async (request, response) =>{
+		console.log("ID peli--> "+request.params.id);
+		await this.filmDAO.getCommentaries(request.params.id)
 		.then(listadocomentarios =>{
 			//Sale con los datos de los actores
 			// console.log(listadopeliculas);

@@ -43,10 +43,10 @@ module.exports ={
     //                 WHERE p.id=?`
 
     // conseguir los comentarios
-    GetComentaries: `SELECT nombre_usuario, texto, fecha
+    getCommentaries: `SELECT nombre_usuario, texto, fecha
     FROM comentarios
     WHERE id_pelicula= ?
-    ORDER BY id DESC`,
+    ORDER BY fecha DESC`,
 };
 
 // Para paginacion SELECT p.id, p.nombre, p.img FROM peliculas p LIMIT 8, 4; Donde LIMIT [Desplazamiento][numero que aparecen]

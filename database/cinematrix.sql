@@ -261,6 +261,14 @@ ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peli
 insert into `comentarios` values (1,1,'Cineadicto23',8,'Sherk es vida, Shrek es amor',NOW());
 insert into `comentarios` values (2,1,'Cineadicto23',1,'Sabiais que para la version alemana de no dejaron a Arnold doblarse a si mismo porque su voz no era lo suficientemente grave',NOW());
 insert into `comentarios` values (3,1,'Cineadicto23',8,'Mi hermano el pesado me recuerda mucho a Asno',NOW());
+insert into `comentarios` values (4,2,'MiMadre',1,'El robot es muy pesao, nunca muere hay como 6 peliculas sobre él. Cambiando si es bueno o malo o ambas. Esta es la mejor de la saga',NOW());
+insert into `comentarios` values (5,2,'MiMadre',8,'Pelicula divertida y emotiva por ser la primera pelicula que vio mi hijo mayor en el cine',NOW());
+insert into `comentarios` values (6,2,'MiMadre',12,'La primera pelicula que vi en el cine con mis padres en Madrid',NOW());
+insert into `comentarios` values (7,3,'PeterParker',10,'Hasta un robot que no habla liga más que yo',NOW());
+insert into `comentarios` values (8,3,'PeterParker',7,'Esta peli es Pocahontas pero con tios azules',NOW());
+insert into `comentarios` values (9,3,'PeterParker',2,'Vivimos en una sociedad',NOW());
+insert into `comentarios` values (10,3,'PeterParker',9,'No la veais en versión original, no os enterais de nada',NOW());
+insert into `comentarios` values (11,4,'AQNHQV',9,'Yo tampoco me entere de nada y eso que la vi en español',NOW());
 
 
 
