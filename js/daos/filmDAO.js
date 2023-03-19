@@ -25,8 +25,9 @@ class FilmDAO extends BaseDAO {
         return this.query(qFilms.qlistFilmStar);
     }
 
-    async listFilmsByTitle(){
-        return this.query(qFilms.qlistFilmByTitle);
+    async listFilmsByTitle(title){
+        const formattedtitle = `%${title}%`; 
+        return this.query(qFilms.qlistFilmByTitle, Array(1).fill(formattedtitle));
     }
 
 }

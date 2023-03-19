@@ -51,10 +51,10 @@ class filmController {
 	};
 
 	getlistFilmsByTitle = async(request, response) =>{
-		await this.filmDAO.listFilmsByTitle()
+		await this.filmDAO.listFilmsByTitle(request.body.nombreBuscar)
 		.then( filmListByTitle => {
 				response.render(views.titulo,{
-					title: "Listar peliculas por nombre",
+					title: "Listar peliculas por titulo",
 					films: filmListByTitle
 				});
 			}
