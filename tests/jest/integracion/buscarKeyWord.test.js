@@ -43,7 +43,12 @@ describe('Test de Integración búsqueda de película por keyword', () => {
 
 	// Al acabar, borramos la peli que hemos creado y cerramos la conexión
 	afterAll(async () => {
-		await dao.query("DELETE FROM peliculas WHERE id>0;");
+		await dao.query("DELETE FROM peliculas WHERE id>0");
+
+		await dao.query("DROP TABLE actores_peliculas");
+		await dao.query("DROP TABLE actores");
+		await dao.query("DROP TABLE peliculas");
+
 		await pool.end();
 	});
 
