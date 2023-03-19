@@ -30,6 +30,11 @@ class FilmDAO extends BaseDAO {
         return this.query(qFilms.qGetFilmById, [id]);
     }
 
+    async getCommentaries(id){
+        const formattedKeyWord = `%${keyWord}%`; // Para rodear los '?' de '%?%'
+        return this.query(qFilms.GetComentaries, Array(1).fill(formattedKeyWord));
+    }
+
     // async getActorsById(id){
     //     return this.query(qFilms.qGetFilmById, [id]);
     // }

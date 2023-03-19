@@ -245,11 +245,12 @@ COMMIT;
 
 
 CREATE TABLE `comentarios`(
-`id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) PRIMARY KEY AUTO_INCREMENT,
 `id_usuario` int(11) NOT NULL,
 `nombre_usuario` varchar(30),
 `id_pelicula` int(11) NOT NULL,
-`texto` varchar(200)
+`texto` varchar(200),
+`fecha` datetime
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --FALTA AÑADIR LA RESTRICCION PARA LOS USUARIOS
@@ -257,9 +258,9 @@ ALTER TABLE `comentarios`
 ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-insert into `comentarios` values (1,1,'Cineadicto23',8,'Sherk es vida, Shrek es amor');
-insert into `comentarios` values (2,1,'Cineadicto23',1,'Sabiais que para la version alemana de no dejaron a Arnold doblarse a si mismo porque su voz no era lo suficientemente grave');
-insert into `comentarios` values (3,1,'Cineadicto23',8,'Mi hermano el pesado me recuerda mucho a Asno');
+insert into `comentarios` values (1,1,'Cineadicto23',8,'Sherk es vida, Shrek es amor',NOW());
+insert into `comentarios` values (2,1,'Cineadicto23',1,'Sabiais que para la version alemana de no dejaron a Arnold doblarse a si mismo porque su voz no era lo suficientemente grave',NOW());
+insert into `comentarios` values (3,1,'Cineadicto23',8,'Mi hermano el pesado me recuerda mucho a Asno',NOW());
 
 
 
