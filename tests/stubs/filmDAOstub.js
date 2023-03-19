@@ -9,8 +9,9 @@ class FilmDAO {
 		return this.lista.filter(p => p.nombre.includes(keyWord));
 	}
 
-	async basicInfoFilms(information){
-		return this.lista.toString()===information.toString();
+	async basicInfoFilms(id){
+
+		return this.lista.filter(p=>p.id.includes([id]));
 	}
 
 

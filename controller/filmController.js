@@ -56,13 +56,13 @@ class filmController {
 			// console.log(listadopeliculas);
 			// Filtrando json con los actores
 			let pelicula = listadopeliculas.map(p =>{
-				return {id: p.id, nombre: p.nombrePelicula,	duracion: p.duracion, puntuacion: p.puntuacion,	fechaEstreno: p.fechaEstreno,
+				return {id: p.id, nombre: p.nombre,	duracion: p.duracion, puntuacion: p.puntuacion,	fechaEstreno: p.fechaEstreno,
 					sinopsis: p.sinopsis, genero: p.genero}
 			}).slice(0, 1);
 			
 			console.log(pelicula);
 			let actores =listadopeliculas.map(  a =>{
-				return {nombreAct: a.nombre, apellidosAct: a.apellidos}
+				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
 			console.log(actores);
 			

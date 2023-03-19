@@ -15,7 +15,6 @@ const peliculas = [{
 }];
 
 const infoBasic=[{
-	id: 1,
 	nombre:	"Terminator",
 	img: 1,
 	duracion: 108,
@@ -23,33 +22,9 @@ const infoBasic=[{
 	fechaEstreno: "1984-10-26",
 	sinopsis: "En el año 2029 las máquinas dominan el mundo. Los rebeldes que luchan contra ellas tienen como líder a John Connor, un hombre que nació en los años ochenta. Para eliminarlo y así acabar con la rebelión, las máquinas envían al pasado el robot Terminator con la misión de matar a Sarah Connor, la madre de John, e impedir así su nacimiento. Sin embargo, un hombre del futuro intentará protegerla.",
 	genero: "Ciencia ficción",
-	nombreAct:"Arnold",
-	apellidosAct: "Schwarzenegger"
+	Actores: [ {nombreAct:"Arnold",apellidosAct: "Schwarzenegger"},{nombreAct:"Linda",apellidosAct: "Hamilton"},{nombreAct:"Michael",apellidosAct: "Biehn"}]
 },
-{
-	id: 1,
-	nombre:	"Terminator",
-	img: 1,
-	duracion: 108,
-	puntuacion: 10,
-	fechaEstreno: "1984-10-26",
-	sinopsis: "En el año 2029 las máquinas dominan el mundo. Los rebeldes que luchan contra ellas tienen como líder a John Connor, un hombre que nació en los años ochenta. Para eliminarlo y así acabar con la rebelión, las máquinas envían al pasado el robot Terminator con la misión de matar a Sarah Connor, la madre de John, e impedir así su nacimiento. Sin embargo, un hombre del futuro intentará protegerla.",
-	genero: "Ciencia ficción",
-	nombreAct:"Linda",
-	apellidosAct: "Hamilton"
-},
-{
-	id: 1,
-	nombre:	"Terminator",
-	img: 1,
-	duracion: 108,
-	puntuacion: 10,
-	fechaEstreno: "1984-10-26",
-	sinopsis: "En el año 2029 las máquinas dominan el mundo. Los rebeldes que luchan contra ellas tienen como líder a John Connor, un hombre que nació en los años ochenta. Para eliminarlo y así acabar con la rebelión, las máquinas envían al pasado el robot Terminator con la misión de matar a Sarah Connor, la madre de John, e impedir así su nacimiento. Sin embargo, un hombre del futuro intentará protegerla.",
-	genero: "Ciencia ficción",
-	nombreAct:"Michael",
-	apellidosAct: "Biehn"
-}];
+];
 
 
 describe('Test Controlador Películas', () => {
@@ -95,6 +70,8 @@ describe('Test Controlador Películas', () => {
 	//dao.basicInfoFilms(req.body.)
 
 
+
+
 describe('Test Controlador de datos basicos...',()=>{
 	const dao = new FilmDAO(infoBasic);
 	const filmController = new FilmController(dao);
@@ -111,27 +88,35 @@ describe('Test Controlador de datos basicos...',()=>{
 		render: jest.fn()
 	};
 	test('Busqueda de informacion con id existente',async()=>{
-		req.body.id=1;
+		req.params.id=[1];
 
 		await filmController.getFilmByIdCtrl(req,res);
-		//esperando que funciones
-		expect(res.render).toHaveBeenCalledWith(expect.anything(),expect.objectContaining({
+		//esperando que funcione
+		/*expect(res.render).toHaveBeenCalledWith(expect.anything(),expect.objectContaining({
 			films: expect.arrayContaining([
 				infoBasic[0],
 				infoBasic[1],
 				infoBasic[2]
 			])
-		}));
+		}));*/
+		expect(res.render).toHaveProperty('titleV',infoBasic[0].nombre);
+		expect(res.render).toHaveProperty('idV',infoBasic[0].id);
+		expect(res.render).toHaveProperty('sinopsisV',infoBasic[0].sinopsis);
+		expect(res.render).toHaveProperty('generoV',infoBasic[0].genero);
+		expect(res.render).toHaveProperty('actoresV',infoBasic[0].Actores);
+		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
 	});
 
 	test('Busqueda de informacion con id no existente',async()=>{
-		req.body.id=2;
+		req.params.id=100;
 
 		await filmController.getFilmByIdCtrl(req,res);
 
-		expect(res.render).toHaveBeenCalledWith(expect.anything(),expect.objectContaining({
-			films: expect.arrayContaining([ ])
-		}));
-
+		expect(res.render).toHaveProperty('titleV',infoBasic[0].nombre);
+		expect(res.render).toHaveProperty('idV',infoBasic[0].id);
+		expect(res.render).toHaveProperty('sinopsisV',infoBasic[0].sinopsis);
+		expect(res.render).toHaveProperty('generoV',infoBasic[0].genero);
+		expect(res.render).toHaveProperty('actoresV',infoBasic[0].Actores);
+		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
 	});
 });

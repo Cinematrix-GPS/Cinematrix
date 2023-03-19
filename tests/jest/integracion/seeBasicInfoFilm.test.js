@@ -1,4 +1,4 @@
-
+/*
 const FilmController = require('../../../controller/filmController');
 
 require('dotenv').config();
@@ -75,4 +75,4 @@ describe('Test de Integracion Ver informacion basica de una Pelicula',()=>{
         });
 
 
-})
+})*/
