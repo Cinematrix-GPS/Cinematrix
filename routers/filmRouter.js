@@ -38,9 +38,10 @@ filmRouter.get("/listActor",
     filmController.getlistFilmsStart
 );
 
-filmRouter.get("/listTitle",
+
+filmRouter.get("/getFilmById/:id",
     multerFactory.none(),
-    filmController.getlistFilmsByTitle
+    filmController.getFilmByIdCtrl
 );
 
 module.exports = filmRouter;

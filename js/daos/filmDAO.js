@@ -25,10 +25,22 @@ class FilmDAO extends BaseDAO {
         return this.query(qFilms.qlistFilmStar);
     }
 
+
     async listFilmsByTitle(title){
         const formattedtitle = `%${title}%`; 
-        return this.query(qFilms.qlistFilmByTitle, Array(1).fill(formattedtitle));
+        return this.query(qFilms.qLisFilmByTittle, [tittle]);
     }
+
+
+    async getFilmById(id){
+        
+        
+        return this.query(qFilms.qGetFilmById, [id]);
+    }
+
+    // async getActorsById(id){
+    //     return this.query(qFilms.qGetFilmById, [id]);
+    // }
 
 }
 
