@@ -13,7 +13,7 @@ class filmController {
 		console.log("CONTRROLLER!!!");
 		if(request){
 			console.log("Buscar keyword");
-			console.log(request.body.);
+			console.log(request.body.nombreBuscar);
 			await this.filmDAO.listFilms(request.body.nombreBuscar)
 			.then(filmListByKeyWord => {
 					response.render(views.index, {
