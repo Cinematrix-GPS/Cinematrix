@@ -13,23 +13,7 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&family=Roboto+Condensed&display=swap" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-      <script type="text/javascript">
-        $(function () {
-            $(".keyword").show();
-            $(".search").hide();
-            $(".title").change(function () {
-              var title = $(".title").is(":checked");
-                if (title) {
-                  $(".search").show();
-                  $(".keyword").hide();
-                }
-                else {
-                  $(".search").hide();
-                  $(".keyword").show();
-                }
-            });
-        });
-    </script>
+      
   </head>
 
 
@@ -37,7 +21,36 @@
 
     <% include("menu") %>
 
-    registro
+    <form action="/users/signup" method="POST" enctype="multipart/form-data">
+      <h1 class="display-6 text-center">Registrarse</h1>
+      <!--Los campos vacios se comprueban con el campo 'required'-->
+      <div class="input-group p-2">
+          <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Nombre de usuario">
+      </div>
+      <div class="input-group p-2">
+          <input type="email" name="correo" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com">
+          
+      </div>
+      <div class="input-group">
+          
+      </div>
+      <div class="input-group p-2">
+          <input type="password" name="password" class="form-control" id="floatingInput" placeholder="Contraseña" >
+      </div>
+      <div class="input-group">
+          
+      </div>
+      <div class="input-group p-2">
+          <input type="password" name="password2" class="form-control" id="floatingInput" placeholder="Confirmar contraseña" >
+      </div>
+      <div class="input-group">
+          
+      </div>
+      <br>
+
+      <button type="submit" class="btn btn-primary w-100">Registarse</button>
+      <!-- <a href="/" class="link-dark "><h6 class="h6 text-center">Ya estoy registrado</h5></a> -->
+  </form>
 
     
   </body>

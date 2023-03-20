@@ -33,8 +33,20 @@ app.use(express.urlencoded({extended: true}));//Devuelve middleware que solo ana
 const filmRoutes = require("./routers/filmRouter");
 app.use("/films", filmRoutes);
 
+const userRoutes = require("./routers/userRouter");
+app.use("/users", userRoutes);
+
 app.get("/", (request, response) => {
 	response.redirect('/films/start');
+	
+});
+
+
+app.get("/registro", (request, response) => {
+	response.render("registro", {  
+		title: "REGISTRO" 
+		
+	});
 	
 });
 
