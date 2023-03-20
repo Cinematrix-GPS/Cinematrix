@@ -15,16 +15,23 @@ const peliculas = [{
 }];
 
 const infoBasic=[{
-	nombre:	"Terminator",
-	id: 1,
-	img: 1,
-	duracion: 108,
-	puntuacion: 10,
-	fechaEstreno: "1984-10-26",
-	sinopsis: "En el año 2029 las máquinas dominan el mundo. Los rebeldes que luchan contra ellas tienen como líder a John Connor, un hombre que nació en los años ochenta. Para eliminarlo y así acabar con la rebelión, las máquinas envían al pasado el robot Terminator con la misión de matar a Sarah Connor, la madre de John, e impedir así su nacimiento. Sin embargo, un hombre del futuro intentará protegerla.",
-	genero: "Ciencia ficción",
-	Actores: [ {nombreAct:"Arnold",apellidosAct: "Schwarzenegger"},{nombreAct:"Linda",apellidosAct: "Hamilton"},{nombreAct:"Michael",apellidosAct: "Biehn"}]
-}];
+	id: 2,
+    nombre: 'Joker',
+    duracion: 122,
+    puntuacion: 10,
+    fechaEstreno: '2019-06-18T22:00:00.000Z',
+    sinopsis: 'La pasión de Arthur Fleck, un hombre ignorado por la sociedad, es hacer reír a la gente. Sin embargo, una serie de trágicos sucesos harán que su visión del mundo se distorsione considerablemente convirtiéndolo en un brillante criminal.',
+    genero: 'Drama',
+	actores:[  { nombreAct: 'Joaquin', 
+	apellidosAct: 'Phoenix' 
+	  },
+	{ nombreAct: 'Robert',
+	 apellidosAct: 'De Niro'
+   },
+	{ nombreAct: 'Zazie',
+	 apellidosAct: 'Beetz' 
+	  }],
+  }];
 
 
 describe('Test Controlador Películas', () => {
@@ -88,16 +95,12 @@ describe('Test Controlador de datos basicos...',()=>{
 		render: jest.fn()
 	};
 	test('Busqueda de informacion con id existente',async()=>{
-		req.params.id=[1];
+		req.params.id=2;
 
 		await filmController.getFilmByIdCtrl(req,res);
 		//esperando que funcione
-		expect(res.render).toHaveProperty('titleV',infoBasic[0].nombre);
-		expect(res.render).toHaveProperty('idV',infoBasic[0].id);
-		expect(res.render).toHaveProperty('sinopsisV',infoBasic[0].sinopsis);
-		expect(res.render).toHaveProperty('generoV',infoBasic[0].genero);
-		expect(res.render).toHaveProperty('actoresV',infoBasic[0].Actores);
-		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
+		//console.log("primer valor "+infoBasic["nombre"])
+		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining(infoBasic[0]));		
 	});
 
 	/*test('Busqueda de informacion con id no existente',async()=>{

@@ -65,7 +65,7 @@ class filmController {
 				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
 			console.log(actores);
-			
+			//console.log(pelicula);
 				response.render(views.vistaPelicula, {
 				titleV: pelicula[0].nombre,
 				idV: pelicula[0].id,
