@@ -6,7 +6,8 @@ todas las vistas y nos ahorramos muchos fallos innecesarios
 
 module.exports ={
    
-    setuser = `INSERT INTO usuarios (id, nombreCompleto, username, email, password) VALUES (NULL, ?, ?, ?, ?);`
+    createUser : `INSERT INTO usuarios (nombreCompleto, username, email, password) 
+                VALUES (?, ?, ?, ?);`
     
 };
 

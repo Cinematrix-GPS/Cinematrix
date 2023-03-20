@@ -26,6 +26,7 @@ class BaseDAO {
 
 		return new Promise((resolve, reject) => {
 			connection.query(...params, (err, result) => {
+				
 				connection.release(); // IMPORTANTE: liberamos la conexión una vez tenemos los resultados
 				 
 				(err) ? reject(err):resolve(result);

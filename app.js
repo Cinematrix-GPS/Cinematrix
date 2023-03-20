@@ -44,7 +44,7 @@ app.get("/", (request, response) => {
 
 app.get("/registro", (request, response) => {
 	response.render("registro", {  
-		title: "REGISTRO" 
+		title: "REGISTRO inicio" 
 		
 	});
 	
