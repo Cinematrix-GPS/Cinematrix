@@ -2,8 +2,6 @@
 
 const views = require("../js/configView");
 
-
-
 class filmController {
 
 	constructor (dao) {
@@ -50,7 +48,7 @@ class filmController {
 	};
 
 	getFilmByIdCtrl = async (request, response) =>{
-		console.log("ID --> "+request.params.id);
+		console.log("ID --> " + request.params.id);
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
@@ -79,7 +77,19 @@ class filmController {
 				});
 		})
 	};
-
+	
+	getCommentaries = async (request, response) =>{
+		console.log("ID comentario --> " + request.params.id);
+		await this.filmDAO.getFilmCommentaries(request.params.id)
+		.then(listadocomentarios =>{
+			console.log(listadocomentarios);
+				// response.render(views.vistaPelicula, {
+				// 	title: "Listado completo",
+				// 	film: ,
+				// 	actores: 
+				// });
+		})
+	};
 
 }
 

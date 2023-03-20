@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `actores` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(30) NOT NULL,
-  `apellidos` varchar(40) NOT NULL
+  `nombreAct` varchar(30) NOT NULL,
+  `apellidosAct` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -252,7 +252,8 @@ CREATE TABLE `comentarios`(
 `fecha` datetime
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---FALTA AÑADIR LA RESTRICCION PARA LOS USUARIOS
+-- FALTA AÑADIR LA RESTRICCION PARA LOS USUARIOS
+
 ALTER TABLE `comentarios`
 ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 

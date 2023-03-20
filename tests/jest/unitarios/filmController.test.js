@@ -93,22 +93,21 @@ describe('Test ver comentarios', () => {
 
 	test('Ver comentarios cuando el comentario existe', async () => {
 
-		req.body.comment = 1;
+		req.params.id = 1;
 
-		await filmController.postListComments(req, res);
+		await filmController.getCommentaries(req, res);
 
 		// Esperamos que se haya llamado a la función res.render y que se le haya pasado por parámetro lo siguiente
 		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({
-			films: expect.arrayContaining([
-				comentarios[0]
-			])
+			films: expect.arrayContaining([comentarios[0]])
 		}));
 	});
 
 	test('Ver comentarios cuando el comentario no existe', async () => {
-		req.body.comment = 4;
+		
+		req.params.id = 4;
 
-		await filmController.postListComments(req, res);
+		await filmController.getCommentaries(req, res);
 
 		// Esperamos que se llame a request.render con un objeto que tenga un array vacío de films
 		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({
