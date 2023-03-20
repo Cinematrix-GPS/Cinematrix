@@ -13,6 +13,7 @@ class FilmDAO {
 	async getFilmById(id){
 		//console.log("para mirar q sale "+ id+ "...");
 		return this.lista.filter(p => p.id==id);
+		
 	}
 
 
