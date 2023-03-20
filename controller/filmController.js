@@ -11,19 +11,10 @@ class filmController {
 
 	postListByKeyWord = async (request, response) => {
 		console.log("CONTRROLLER!!!");
-		if(request){
-			console.log("Buscar keyword");
-			console.log(request.body.nombreBuscar);
-			await this.filmDAO.listFilms(request.body.nombreBuscar)
-			.then(filmListByKeyWord => {
-					response.render(views.index, {
-						title: "Mostrando resultados",
-						films: filmListByKeyWord
-					});
-				}
-			)
-		}
-		else if(request.body.titulo){
+		console.log(request.body.title);
+		console.log(request.body.titulo);
+		console.log(request.body.nombreBuscar);
+		if(request.body.title){
 			console.log("Buscar Titulo");
 			console.log(request.body.titulo);
 			await this.filmDAO.listFilmsByTitle(request.body.titulo)
@@ -31,6 +22,18 @@ class filmController {
 					response.render(views.index,{
 						title: "Listar peliculas por titulo",
 						films: filmListByTitle
+					});
+				}
+			)
+		}
+		else{
+			console.log("Buscar keyword");
+			console.log(request.body.title);
+			await this.filmDAO.listFilms(request.body.nombreBuscar)
+			.then(filmListByKeyWord => {
+					response.render(views.index, {
+						title: "Mostrando resultados",
+						films: filmListByKeyWord
 					});
 				}
 			)
