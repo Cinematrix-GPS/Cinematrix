@@ -13,25 +13,23 @@ const peliculas = [{
 	img: 1
 }];
 
-const comentarios = [{
-	id: 1,
-	usuario: 2,
-	pelicula: 2,
-	texto: "Muy buena película",
-	fecha: 10-10-1000
-}, {
-	id: 2,
-	usuario: 2,
-	pelicula: 3,
-	texto: "Sobrecogedora",
-	fecha: 10-10-1000
-}, {
-	id: 3,
-	usuario: 1,
-	pelicula: 1,
-	texto: "Impactante",
-	fecha: 10-10-1000
-}];
+const comentarios = [
+	{	id: 1,
+		usuario: 2,
+		pelicula: 2,
+		texto: "Muy buena película",
+		fecha: "10-10-1000"	},
+	{ 	id: 2,
+		usuario: 2,
+		pelicula: 3,
+		texto: "Sobrecogedora",
+		fecha: "10-10-1000"	},
+	{	id: 3,
+		usuario: 1,
+		pelicula: 1,
+		texto: "Impactante",
+		fecha: "10-10-1000"	}
+];
 
 describe('Test palabra clave', () => {
 	const dao = new FilmDAO(peliculas);
@@ -98,9 +96,7 @@ describe('Test ver comentarios', () => {
 		await filmController.getCommentaries(req, res);
 
 		// Esperamos que se haya llamado a la función res.render y que se le haya pasado por parámetro lo siguiente
-		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({
-			films: expect.arrayContaining([comentarios[0]])
-		}));
+		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining(comentarios[0]));
 	});
 
 	test('Ver comentarios cuando el comentario no existe', async () => {
@@ -110,9 +106,7 @@ describe('Test ver comentarios', () => {
 		await filmController.getCommentaries(req, res);
 
 		// Esperamos que se llame a request.render con un objeto que tenga un array vacío de films
-		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({
-			films: expect.arrayContaining([ ])
-		}));
+		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining([ ]));
 	});
 
 });

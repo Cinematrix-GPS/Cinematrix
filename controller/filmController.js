@@ -83,11 +83,13 @@ class filmController {
 		await this.filmDAO.getFilmCommentaries(request.params.id)
 		.then(listadocomentarios =>{
 			console.log(listadocomentarios);
-				// response.render(views.vistaPelicula, {
-				// 	title: "Listado completo",
-				// 	film: ,
-				// 	actores: 
-				// });
+			response.render(views.vistaPelicula, {
+				id: listadocomentarios[0].id,
+				usuario: listadocomentarios[0].usuario,
+				pelicula: listadocomentarios[0].pelicula,
+				texto: listadocomentarios[0].texto,
+				fecha: listadocomentarios[0].fecha
+			});
 		})
 	};
 
