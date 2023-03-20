@@ -31,7 +31,6 @@ class FilmDAO extends BaseDAO {
     }
 
     async getCommentaries(id){
-        console.log("Llega al DAO "+id);
         return this.query(qFilms.getCommentaries, [id]);
     }
 

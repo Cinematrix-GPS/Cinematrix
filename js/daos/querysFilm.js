@@ -43,7 +43,7 @@ module.exports ={
     //                 WHERE p.id=?`
 
     // conseguir los comentarios
-    getCommentaries: `SELECT nombre_usuario, texto, fecha
+    getCommentaries: `SELECT *
     FROM comentarios
     WHERE id_pelicula= ?
     ORDER BY fecha DESC`,

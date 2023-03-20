@@ -81,9 +81,6 @@ class filmController {
 		console.log("ID peli--> "+request.params.id);
 		await this.filmDAO.getCommentaries(request.params.id)
 		.then(listadocomentarios =>{
-			//Sale con los datos de los actores
-			// console.log(listadopeliculas);
-			// Filtrando json con los actores
 			console.log(listadocomentarios);
 
 				// response.render(views.vistaPelicula, {
