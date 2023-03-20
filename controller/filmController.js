@@ -2,10 +2,9 @@
 
 const views = require("../js/configView");
 
-
 class filmController {
 
-	constructor (dao){
+	constructor (dao) {
 		this.filmDAO = dao;
 	}
 
@@ -79,10 +78,6 @@ class filmController {
 		})
 	};
 
-
 }
 
 module.exports = filmController;
-
-
-
