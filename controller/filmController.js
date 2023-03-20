@@ -44,17 +44,7 @@ class filmController {
 	};
 		
 	
-	postlistActoreByFilm = async (request, response) => {
-		await this.filmDAO.listActoreByFilm(request.body.nombreBuscar)
-		.then( actorListByFilm => {
-				response.render(views.actor, {
-					title: "Mostrando resultados Actores",
-					films: actorListByFilm
-				});
-			}
-		)
-		.catch(error =>{  response.status(500);  });
-	};
+	
 
 	getlistFilmsStart = async (request, response) =>{
 		await this.filmDAO.listFilmsStart()

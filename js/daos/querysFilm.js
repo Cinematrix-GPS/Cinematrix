@@ -15,9 +15,7 @@ module.exports ={
                 OR a.apellidosAct like ?
                 OR p.genero like ?`,
                 
-    listActorByFilm:    ` SELECT DISTINCT a.nombre, a.apellidos FROM peliculas p 
-                        LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula 
-                        LEFT JOIN actores a ON ap.id_actor=a.id WHERE p.nombre like ?;`,
+    
 
 	createFilm: `INSERT INTO peliculas(nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero)
 							    VALUES(?, ?, ?, ?, ?, ?, ?)`,
@@ -26,7 +24,7 @@ module.exports ={
                     FROM peliculas p 
                     ORDER BY P.fechaEstreno DESC;`,
     
-    qlistFilmByTitle: `SELECT p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis
+    qlistFilmByTitle: `SELECT p.id, p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis
                         FROM peliculas p
                         WHERE p.nombre = ?`,
 
