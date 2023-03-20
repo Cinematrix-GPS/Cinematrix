@@ -2,10 +2,9 @@
 
 const views = require("../js/configView");
 
-
 class filmController {
 
-	constructor (dao){
+	constructor (dao) {
 		this.filmDAO = dao;
 	}
 
@@ -44,7 +43,21 @@ class filmController {
 	};
 		
 	
+<<<<<<< HEAD
 	
+=======
+	postlistActoreByFilm = async (request, response) => {
+		await this.filmDAO.listActoreByFilm(request.body.nombreBuscar)
+		.then( actorListByFilm => {
+				response.render(views.actor, {
+					title: "Mostrando resultados Actores",
+					films: actorListByFilm
+				});
+			}
+		)
+		.catch(error =>{ response.status(500); });
+	};
+>>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
 
 	getlistFilmsStart = async (request, response) =>{
 		await this.filmDAO.listFilmsStart()
@@ -58,7 +71,7 @@ class filmController {
 	};
 
 	getFilmByIdCtrl = async (request, response) =>{
-		console.log("ID --> "+request.params.id);
+		console.log("ID --> " + request.params.id);
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
@@ -87,11 +100,22 @@ class filmController {
 				});
 		})
 	};
-
+	
+	getCommentaries = async (request, response) =>{
+		console.log("ID comentario --> " + request.params.id);
+		await this.filmDAO.getFilmCommentaries(request.params.id)
+		.then(comments =>{
+			console.log(comments);
+			response.render(views.vistaPelicula, {
+				id: comments[0].id,
+				usuario: comments[0].usuario,
+				pelicula: comments[0].pelicula,
+				texto: comments[0].texto,
+				fecha: comments[0].fecha
+			});
+		}).catch(error =>{ throw new TypeError("No hay comentarios para esta película") });
+	};
 
 }
 
 module.exports = filmController;
-
-
-

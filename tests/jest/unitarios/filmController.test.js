@@ -14,6 +14,7 @@ const peliculas = [{
 	img: 1
 }];
 
+<<<<<<< HEAD
 const infoBasic=[{
 	nombre:	"Terminator",
 	id: 1,
@@ -26,8 +27,27 @@ const infoBasic=[{
 	Actores: [ {nombreAct:"Arnold",apellidosAct: "Schwarzenegger"},{nombreAct:"Linda",apellidosAct: "Hamilton"},{nombreAct:"Michael",apellidosAct: "Biehn"}]
 }];
 
+=======
+const comentarios = [
+	{	id: 1,
+		usuario: 2,
+		pelicula: 1,
+		texto: "Muy buena película",
+		fecha: "10-10-1000"	},
+	{ 	id: 2,
+		usuario: 2,
+		pelicula: 1,
+		texto: "Sobrecogedora",
+		fecha: "10-10-1000"	},
+	{	id: 3,
+		usuario: 1,
+		pelicula: 2,
+		texto: "Impactante",
+		fecha: "10-10-1000"	}
+];
+>>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
 
-describe('Test Controlador Películas', () => {
+describe('Test palabra clave', () => {
 	const dao = new FilmDAO(peliculas);
 	const filmController = new FilmController(dao);
 
@@ -67,6 +87,7 @@ describe('Test Controlador Películas', () => {
 		}));
 	});
 });
+<<<<<<< HEAD
 	//dao.basicInfoFilms(req.body.)
 
 
@@ -74,6 +95,12 @@ describe('Test Controlador Películas', () => {
 
 describe('Test Controlador de datos basicos...',()=>{
 	const dao = new FilmDAO(infoBasic);
+=======
+
+describe('Test ver comentarios', () => {
+
+	const dao = new FilmDAO(comentarios);
+>>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
 	const filmController = new FilmController(dao);
 
 	const req = {
@@ -87,6 +114,7 @@ describe('Test Controlador de datos basicos...',()=>{
 		json: jest.fn(),
 		render: jest.fn()
 	};
+<<<<<<< HEAD
 	test('Busqueda de informacion con id existente',async()=>{
 		req.params.id=[1];
 
@@ -113,3 +141,27 @@ describe('Test Controlador de datos basicos...',()=>{
 		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
 	});*/
 });
+=======
+
+	test('Ver comentarios cuando el comentario existe', async () => {
+
+		req.params.id = 1;
+
+		await filmController.getCommentaries(req, res);
+
+		// Esperamos que se haya llamado a la función res.render y que se le haya pasado por parámetro lo siguiente
+		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining(comentarios[0]));
+	});
+
+	test('Ver comentarios cuando el comentario no existe', async () => {
+		
+		req.params.id = 3;
+		try {
+			await filmController.getCommentaries(req, res);
+		} catch (exception) {
+			expect(exception.message).toBe("No hay comentarios para esta película");
+		}
+	});
+
+});
+>>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
