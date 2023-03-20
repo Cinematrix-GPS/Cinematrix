@@ -106,7 +106,7 @@ describe('Test ver comentarios', () => {
 	});
 
 	test('Ver comentarios cuando el comentario no existe', async () => {
-		req.body.nombreBuscar = 4;
+		req.body.comment = 4;
 
 		await filmController.postListComments(req, res);
 
