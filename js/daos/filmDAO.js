@@ -24,6 +24,11 @@ class FilmDAO extends BaseDAO {
         return this.query(qFilms.qlistFilmStar);
     }
 
+    async listFilmsByTitle(title){
+ 
+        return this.query(qFilms.qlistFilmByTitle, [title]);
+    }
+
     async getFilmById(id){
         
         

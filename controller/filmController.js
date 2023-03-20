@@ -11,14 +11,33 @@ class filmController {
 
 	postListByKeyWord = async (request, response) => {
 		console.log("CONTRROLLER!!!");
-		await this.filmDAO.listFilms(request.body.nombreBuscar)
-		.then(filmListByKeyWord => {
-				response.render(views.index, {
-					title: "Mostrando resultados",
-					films: filmListByKeyWord
-				});
-			}
-		)
+		
+		// console.log(request.body.titulo);
+		// console.log(request.body.nombreBuscar);
+		if(request.body.titulo){
+			console.log("Buscar Titulo");
+			console.log(request.body.titulo);
+			await this.filmDAO.listFilmsByTitle(request.body.titulo)
+			.then( filmListByTitle => {
+					response.render(views.index,{
+						title: "Listar peliculas por titulo",
+						films: filmListByTitle
+					});
+				}
+			)
+		}
+		else if(request.body.nombreBuscar){
+			console.log("Buscar keyword");
+			console.log(request.body.nombreBuscar);
+			await this.filmDAO.listFilms(request.body.nombreBuscar)
+			.then(filmListByKeyWord => {
+					response.render(views.index, {
+						title: "Listar peliculas por palabra clave",
+						films: filmListByKeyWord
+					});
+				}
+			)
+		}
 		// .catch(error=>{  
 		// 	console.log("Error de acceso a la base de datos");
 		// 	response.status(500);  }); // No hay catch para que se propague la excepción y llegue al router listActoreByFilm

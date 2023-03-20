@@ -11,8 +11,8 @@ module.exports ={
                     LEFT JOIN actores a ON ap.id_actor=a.id
                 WHERE p.nombre like ?
                 OR p.sinopsis like ?
-                OR a.nombre like ?
-                OR a.apellidos like ?
+                OR a.nombreAct like ?
+                OR a.apellidosAct like ?
                 OR p.genero like ?`,
                 
     listActorByFilm:    ` SELECT DISTINCT a.nombre, a.apellidos FROM peliculas p 
@@ -25,6 +25,10 @@ module.exports ={
     qlistFilmStar: `SELECT p.id, p.nombre, p.img
                     FROM peliculas p 
                     ORDER BY P.fechaEstreno DESC;`,
+    
+    qlistFilmByTitle: `SELECT p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis
+                        FROM peliculas p
+                        WHERE p.nombre = ?`,
 
     // qGetFilmById: ` SELECT id, nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero 
     //                 FROM peliculas
