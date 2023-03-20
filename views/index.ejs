@@ -16,13 +16,12 @@
       <script type="text/javascript">
        
        $(function () {
-            // $(".keyword").show();
-            // $(".search").hide();
+            
             $(".title").change(function () {
-              var title = $(".title").is(":checked");
+              var checkTitle = $(".title").is(":checked");
               const busquedaGlobal = document.querySelector('#busquedaGlobal');
               const btnGlobal = document.querySelector('#botonBusqueda');
-                if (title) {
+                if (checkTitle) {
                   busquedaGlobal.setAttribute("name", "titulo");
                   btnGlobal.textContent="Buscar por título";
                 }
