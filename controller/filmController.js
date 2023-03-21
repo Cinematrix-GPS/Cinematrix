@@ -61,6 +61,7 @@ class filmController {
 			}).slice(0, 1);
 			
 			console.log(pelicula);
+			
 			let actores =listadopeliculas.map(  a =>{
 				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});

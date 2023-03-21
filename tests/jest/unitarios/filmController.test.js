@@ -14,15 +14,49 @@ const peliculas = [{
 	img: 1
 }];
 
+
+
 const infoBasic=[{
 	id: 2,
-    nombre: 'Joker',
+    nombre: "Joker",
     duracion: 122,
     puntuacion: 10,
-    fechaEstreno: '2019-06-18T22:00:00.000Z',
-    sinopsis: 'La pasión de Arthur Fleck, un hombre ignorado por la sociedad, es hacer reír a la gente. Sin embargo, una serie de trágicos sucesos harán que su visión del mundo se distorsione considerablemente convirtiéndolo en un brillante criminal.',
-    genero: 'Drama',
-	actores:[  { nombreAct: 'Joaquin', 
+    fechaEstreno: "2019-06-18T22:00:00.000Z",
+    sinopsis: "La pasión de Arthur Fleck, un hombre ignorado por la sociedad, es hacer reír a la gente. Sin embargo, una serie de trágicos sucesos harán que su visión del mundo se distorsione considerablemente convirtiéndolo en un brillante criminal.",
+    genero: "Drama",
+	nombreAct: "Joaquin", 
+	apellidosAct: "Phoenix",
+  },{
+	id: 2,
+    nombre: "Joker",
+    duracion: 122,
+    puntuacion: 10,
+    fechaEstreno: "2019-06-18T22:00:00.000Z",
+    sinopsis: "La pasión de Arthur Fleck, un hombre ignorado por la sociedad, es hacer reír a la gente. Sin embargo, una serie de trágicos sucesos harán que su visión del mundo se distorsione considerablemente convirtiéndolo en un brillante criminal.",
+    genero: "Drama",
+	nombreAct: "Robert",
+	apellidosAct: "De Niro",
+  },{
+	id: 2,
+    nombre: "Joker",
+    duracion: 122,
+    puntuacion: 10,
+    fechaEstreno: "2019-06-18T22:00:00.000Z",
+    sinopsis: "La pasión de Arthur Fleck, un hombre ignorado por la sociedad, es hacer reír a la gente. Sin embargo, una serie de trágicos sucesos harán que su visión del mundo se distorsione considerablemente convirtiéndolo en un brillante criminal.",
+    genero: "Drama",
+	nombreAct: "Zazie",
+	apellidosAct: "Beetz"
+  }];
+
+  
+let salida=[{
+	idV: 2,
+    titleV: 'Joker',
+    duracionV: 122,
+    fechaEstrenoV: '2019-06-18T22:00:00.000Z',
+    sinopsisV: 'La pasión de Arthur Fleck, un hombre ignorado por la sociedad, es hacer reír a la gente. Sin embargo, una serie de trágicos sucesos harán que su visión del mundo se distorsione considerablemente convirtiéndolo en un brillante criminal.',
+    generoV: 'Drama',
+	actoresV:[  { nombreAct: 'Joaquin', 
 	apellidosAct: 'Phoenix' 
 	  },
 	{ nombreAct: 'Robert',
@@ -33,7 +67,7 @@ const infoBasic=[{
 	  }],
   }];
 
-
+salida=salida.sort();
 describe('Test Controlador Películas', () => {
 	const dao = new FilmDAO(peliculas);
 	const filmController = new FilmController(dao);
@@ -99,20 +133,9 @@ describe('Test Controlador de datos basicos...',()=>{
 
 		await filmController.getFilmByIdCtrl(req,res);
 		//esperando que funcione
-		//console.log("primer valor "+infoBasic["nombre"])
-		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining(infoBasic[0]));		
+		expect(res.render).toHaveBeenCalledWith(expect.anything(), salida[0]);		
 	});
 
-	/*test('Busqueda de informacion con id no existente',async()=>{
-		req.params.id=100;
 
-		await filmController.getFilmByIdCtrl(req,res);
 
-		expect(res.render).toHaveProperty('titleV',infoBasic[0].nombre);
-		expect(res.render).toHaveProperty('idV',infoBasic[0].id);
-		expect(res.render).toHaveProperty('sinopsisV',infoBasic[0].sinopsis);
-		expect(res.render).toHaveProperty('generoV',infoBasic[0].genero);
-		expect(res.render).toHaveProperty('actoresV',infoBasic[0].Actores);
-		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
-	});*/
 });
