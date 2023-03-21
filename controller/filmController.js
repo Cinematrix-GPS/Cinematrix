@@ -33,7 +33,7 @@ class filmController {
 				});
 			}
 		)
-		.catch(error =>{  response.status(500);  });
+		.catch(error =>{ response.status(500); });
 	};
 
 	getlistFilmsStart = async (request, response) =>{
@@ -81,16 +81,16 @@ class filmController {
 	getCommentaries = async (request, response) =>{
 		console.log("ID comentario --> " + request.params.id);
 		await this.filmDAO.getFilmCommentaries(request.params.id)
-		.then(listadocomentarios =>{
-			console.log(listadocomentarios);
+		.then(comments =>{
+			console.log(comments);
 			response.render(views.vistaPelicula, {
-				id: listadocomentarios[0].id,
-				usuario: listadocomentarios[0].usuario,
-				pelicula: listadocomentarios[0].pelicula,
-				texto: listadocomentarios[0].texto,
-				fecha: listadocomentarios[0].fecha
+				id: comments[0].id,
+				usuario: comments[0].usuario,
+				pelicula: comments[0].pelicula,
+				texto: comments[0].texto,
+				fecha: comments[0].fecha
 			});
-		})
+		}).catch(error =>{ throw new TypeError("No hay comentarios para esta película") });
 	};
 
 }
