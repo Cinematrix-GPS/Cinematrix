@@ -66,7 +66,9 @@ class filmController {
 				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
 			console.log(actores);
-			//console.log(pelicula);
+			if (pelicula.length==0){
+				response.render(views.vistaPelicula,[])
+			}else{
 				response.render(views.vistaPelicula, {
 				titleV: pelicula[0].nombre,
 				idV: pelicula[0].id,
@@ -77,6 +79,7 @@ class filmController {
 				duracionV: pelicula[0].duracion,
 
 				});
+			}
 		})
 	};
 

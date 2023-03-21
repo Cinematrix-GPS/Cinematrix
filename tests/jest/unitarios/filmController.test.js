@@ -136,6 +136,12 @@ describe('Test Controlador de datos basicos...',()=>{
 		expect(res.render).toHaveBeenCalledWith(expect.anything(), salida[0]);		
 	});
 
+	test('Busqueda de informacion con id inexistente',async()=>{
+		req.params.id=10000;
 
+		await filmController.getFilmByIdCtrl(req,res);
+		//esperando que funcione
+		expect(res.render).toHaveBeenCalledWith(expect.anything(),);		
+	});
 
 });
