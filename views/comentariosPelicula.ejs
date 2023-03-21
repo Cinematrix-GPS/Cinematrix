@@ -12,71 +12,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&family=Roboto+Condensed&display=swap" rel="stylesheet">
 
-    <title>Comentarios de Usuarios</title>
-    <style>
-      body {
-        background-color: whitesmoke;
-        color: white;
-        font-family: Arial, sans-serif;
-      }
-      
-      #seccionComentarios {
-        background-color: white;
-        color: black;
-        margin: 20px auto;
-        padding: 20px;
-        width: 80%;
-      }
-      
-      .comentario {
-        border: 1px solid #ccc;
-        margin: 10px;
-        padding: 10px;
-        background-color: #f7f7f7;
-        animation: desplegar 0.5s ease-in-out;
-      }
-      
-
-      .nombre-usuario {
-        font-weight: bold;
-        background-color: #0077be;
-        padding: 5px;
-        display: inline-block;
-        color: white;
-        margin-bottom: 10px;
-      }
-
-
-      
-      .texto-comentario {
-        margin-top: 10px;
-      }
-
-      .fecha-comentario {
-        font-style: italic;
-        color:grey;
-      }
-      
-      @keyframes desplegar {
-
-        from {
-          opacity: 0;
-          transform: translateY(-10%);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      .mostrar {
-        display: block !important;
-      }
-    </style>
+    <!-- <title>Comentarios de Usuarios</title> -->
+    
   </head>
   <body>
     <button onclick="mostrarComentarios()">+Comentarios</button>
+    
+    <% if (comments.length === 0) { %>
+      <h2>Sin comentarios</h2>
+    <% } else { %>
+      
+        
     <div id="seccionComentarios"> 
       <div id="listaComentarios">
        
@@ -88,8 +34,10 @@
             </div>
           <% }); %> 
         
+      
       </div>
     </div>
+    <% } %>
     <script>
       var comentariosVisibles = true;
       

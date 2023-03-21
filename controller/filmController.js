@@ -94,10 +94,11 @@ class filmController {
 		.then(comments =>{
 			console.log(comments);
 			response.render(views.comentario, {
-				id: comments[0].id,
+				// id: comments[0].id,
 				comments: comments
 			});
-		}).catch(error =>{ throw new TypeError("No hay comentarios para esta película") });
+		})
+		// .catch(error =>{ throw new TypeError("No hay comentarios para esta película") });
 	};
 
 }

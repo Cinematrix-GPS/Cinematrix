@@ -8,15 +8,12 @@
  } 
 
 
-
- 
-
  .contenido{
   margin-top: 100px;
   margin-bottom: 100px;
   padding: 20px;
 }
-
+/* CARS DE CARATULAS */
 .portada{
   width: 100%; /* need to overwrite inline dimensions */
   height: auto;
@@ -95,4 +92,60 @@ h2 {
 .fondoMenu{
   background-color: #1B4571;
   color: white !important;
+}
+/* --------------------------------------------------- */
+/* COMENTARIOS */
+
+#seccionComentarios {
+  background-color: white;
+  color: black;
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+}
+
+.comentario {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f7f7f7;
+  animation: desplegar 0.5s ease-in-out;
+}
+
+
+.nombre-usuario {
+  font-weight: bold;
+  background-color: #0077be;
+  padding: 5px;
+  display: inline-block;
+  color: white;
+  margin-bottom: 10px;
+}
+
+
+
+.texto-comentario {
+  margin-top: 10px;
+}
+
+.fecha-comentario {
+  font-style: italic;
+  color:grey;
+}
+
+@keyframes desplegar {
+
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mostrar {
+  display: block !important;
 }
