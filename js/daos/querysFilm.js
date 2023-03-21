@@ -26,7 +26,7 @@ module.exports ={
     
     qlistFilmByTitle: `SELECT p.id, p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis
                         FROM peliculas p
-                        WHERE p.nombre = ?`,
+                        WHERE p.nombre like ?`,
 
     // qGetFilmById: ` SELECT id, nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero 
     //                 FROM peliculas

@@ -22,8 +22,8 @@ class FilmDAO extends BaseDAO {
     }
 
     async listFilmsByTitle(title){
- 
-        return this.query(qFilms.qlistFilmByTitle, [title]);
+        const formattedKeyWord = `%${title}%`;
+        return this.query(qFilms.qlistFilmByTitle, [formattedKeyWord]);
     }
 
     async getFilmById(id){
