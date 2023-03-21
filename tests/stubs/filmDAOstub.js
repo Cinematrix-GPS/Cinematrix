@@ -8,8 +8,8 @@ class FilmDAO {
 		return this.lista.filter(p => p.nombre.includes(keyWord));
 	}
 
-	async getFilmCommentaries(comment) {
-		return this.lista.filter(observation => observation.id == comment);
+	async getFilmCommentaries(film) {
+		return this.lista.filter(observation => observation.pelicula == film);
 	}
 
 }
