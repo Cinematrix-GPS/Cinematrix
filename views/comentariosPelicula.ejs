@@ -77,14 +77,12 @@
   </head>
   <body>
     <button onclick="mostrarComentarios()">+Comentarios</button>
-    <button onclick="listarComentarios()">+LComentarios</button>
     <div id="seccionComentarios"> 
-      <h2>Comentarios:</h2>
       <div id="listaComentarios">
        
           <% comments.forEach(function(comments) { %>
             <div class="comentario">
-              <div class="nombre-usuario">"Usuario no va ;(" <%=comments.usuario%></div>
+              <div class="nombre-usuario"><%=comments.username%></div>
               <div class="fecha-comentario"><%=comments.fecha%></div>
               <div class="texto-comentario"><%=comments.texto%></div>
             </div>
