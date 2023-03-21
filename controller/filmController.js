@@ -20,7 +20,8 @@ class filmController {
 			.then( filmListByTitle => {
 					response.render(views.index,{
 						title: "Listar peliculas por titulo",
-						films: filmListByTitle
+						films: filmListByTitle,
+						msg: "Busqueda por Título"
 					});
 				}
 			)
@@ -32,7 +33,8 @@ class filmController {
 			.then(filmListByKeyWord => {
 					response.render(views.index, {
 						title: "Listar peliculas por palabra clave",
-						films: filmListByKeyWord
+						films: filmListByKeyWord,
+						msg: "Busqueda por palabra clave"
 					});
 				}
 			)
@@ -51,7 +53,8 @@ class filmController {
 				
 				response.render(views.index, {
 					title: "Listado completo",
-					films: filmsStart
+					films: filmsStart,
+					msg: ""
 				});
 		})
 	};
