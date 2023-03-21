@@ -11,8 +11,6 @@ class FilmDAO extends BaseDAO {
         return this.query(qFilms.listFilm, Array(5).fill(formattedKeyWord));   
     }
 
-    
-
 	async createFilm(nombre, imagen, duracion, puntuacion, fechaEstreno, sinopsis, genero){
 		return this.query(qFilms.createFilm, [nombre, imagen, duracion, puntuacion, fechaEstreno, sinopsis, genero]);
 	}
@@ -22,13 +20,10 @@ class FilmDAO extends BaseDAO {
     }
 
     async listFilmsByTitle(title){
- 
         return this.query(qFilms.qlistFilmByTitle, [title]);
     }
 
     async getFilmById(id){
-        
-        
         return this.query(qFilms.qGetFilmById, [id]);
     }
 
