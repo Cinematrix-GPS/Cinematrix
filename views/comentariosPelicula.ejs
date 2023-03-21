@@ -81,26 +81,15 @@
     <div id="seccionComentarios"> 
       <h2>Comentarios:</h2>
       <div id="listaComentarios">
-        <div class="comentario">
-          <div class="nombre-usuario">Carlos</div>
-          <div class="fecha-comentario">20/03/2001</div>
+       
           <% comments.forEach(function(comments) { %>
-        
-
-            <span><%=comments.texto%></span>
-            <span><%=comments.usuario%></span><br> 
-    
+            <div class="comentario">
+              <div class="nombre-usuario">"Usuario no va ;(" <%=comments.usuario%></div>
+              <div class="fecha-comentario"><%=comments.fecha%></div>
+              <div class="texto-comentario"><%=comments.texto%></div>
+            </div>
           <% }); %> 
-          <div class="texto-comentario">Terminator esta muy guay dasmkkdnfdsn mfnbkhdsgfvbvjhbfi wenfjkdsjsofjuien fjzdknvcjknfsjiendifnd sjsaddsdasdjeh fewhfehused fyhekwg fjsdhufuksgjdbfejn fbsdhfgfkehfsdjkfhskd fheukjf gbdsuofg ougefiusegfkj vlvje wuioefunds jolfnmeoif nsudofheiw uowbnfodusnfuids.</div>
-        </div>
-        <div class="comentario">
-          <div class="nombre-usuario">Usuario 2</div>
-          <div class="texto-comentario">Comentario de ejemplo 2</div>
-        </div>
-        <div class="comentario">
-          <div class="nombre-usuario">Usuario 3</div>
-          <div class="texto-comentario">Comentario de ejemplo3</div>
-        </div>
+        
       </div>
     </div>
     <script>
@@ -120,16 +109,6 @@
         }
       }
 
-      function listarComentarios(item){
-        for (var i = 0; i < item.array.length; i++){
-          var list = item.array[i];
-          
-          list = document.createElement('li');
-          document.getElementByClass('box').appendChild(list);
-          
-          console.log(list);
-        }  
-      }
     </script>
   </body>
 </html>
