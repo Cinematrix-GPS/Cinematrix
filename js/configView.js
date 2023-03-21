@@ -6,8 +6,8 @@ todas las vistas y nos ahorramos muchos fallos innecesarios
 module.exports ={
     index: "index",
     actor: "indexActor",
-    vistaPelicula: "datosPelicula"
-         
+    vistaPelicula: "datosPelicula",
+    comentario: "comentariosPelicula"
 };
 
  

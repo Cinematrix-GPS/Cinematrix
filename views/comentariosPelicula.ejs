@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+
+    <meta charset="UTF-8">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/index.css" media="screen"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+    <title>Comentarios de Usuarios</title>
+    <style>
+      body {
+        background-color: whitesmoke;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+      
+      #seccionComentarios {
+        background-color: white;
+        color: black;
+        margin: 20px auto;
+        padding: 20px;
+        width: 80%;
+      }
+      
+      .comentario {
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 10px;
+        background-color: #f7f7f7;
+        animation: desplegar 0.5s ease-in-out;
+      }
+      
+
+      .nombre-usuario {
+        font-weight: bold;
+        background-color: #0077be;
+        padding: 5px;
+        display: inline-block;
+        color: white;
+        margin-bottom: 10px;
+      }
+
+
+      
+      .texto-comentario {
+        margin-top: 10px;
+      }
+
+      .fecha-comentario {
+        font-style: italic;
+        color:grey;
+      }
+      
+      @keyframes desplegar {
+
+        from {
+          opacity: 0;
+          transform: translateY(-10%);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .mostrar {
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="mostrarComentarios()">+Comentarios</button>
+    <div id="seccionComentarios"> 
+      <div id="listaComentarios">
+       
+          <% comments.forEach(function(comments) { %>
+            <div class="comentario">
+              <div class="nombre-usuario"><%=comments.username%></div>
+              <div class="fecha-comentario"><%=comments.fecha%></div>
+              <div class="texto-comentario"><%=comments.texto%></div>
+            </div>
+          <% }); %> 
+        
+      </div>
+    </div>
+    <script>
+      var comentariosVisibles = true;
+      
+      function mostrarComentarios() {
+        comentariosVisibles = !comentariosVisibles;
+        var seccionComentarios = document.getElementById("seccionComentarios");
+        if (comentariosVisibles) {
+          seccionComentarios.style.display = "block";
+          seccionComentarios.classList.add("mostrar");
+        } else {
+          seccionComentarios.classList.remove("mostrar");
+          setTimeout(function() {
+            seccionComentarios.style.display = "none";
+          }, 500);
+        }
+      }
+
+    </script>
+  </body>
+</html>
