@@ -37,49 +37,52 @@
   </head>
   <body>
 
-    <% include("menu") %>
+    <%- include("menu2") %>
     
-    <h1><%= title %></h1>
-    
-    <div class="row">
-      <div class="col col-2">
-        <h4 class="strong">Búsqueda avanzada</h4>
-      </div>
-        <form action="/films/list" method="POST" class="col col-4">
-          <input id="busquedaGlobal" class="keyword" type="search" name="nombreBuscar" required="">
-          <button id="botonBusqueda" type="submit" class="keyword">Buscar por palabra clave</button>
-          
-          <label for="type">Título</label>
-          <input type="checkbox" class="col col-1 title" id="type" name="title" value="1">
-          
-        </form>
+      <div class="contenido">
+      
+        <!-- <h1><%= title %></h1> -->
         
+        <!-- <div class=" row">
+          <div class="col col-2">
+            <h4 class="strong">Búsqueda avanzada</h4>
+          </div>
+            <form action="/films/list" method="POST" class="col col-4">
+              <input id="busquedaGlobal" class="keyword" type="search" name="nombreBuscar" required="">
+              <button id="botonBusqueda" type="submit" class="keyword">Buscar por palabra clave</button>
+              
+              <label for="type">Título</label>
+              <input type="checkbox" class="col col-1 title" id="type" name="title" value="1">
+              
+            </form>
+            
+        </div> -->
+
+      
+      
+        <% if (films === 0) { %>
+          <h2>Sin coincidencias</h2>
+        <% } else { %>
+          <% if (typeof(films) !== "undefined") { %>
+            <div>
+              <h2>Resultados: <%= films.length %></h2>
+
+              <div class="containerGridCard">
+              <% films.forEach(function(p) { %>
+              
+                <article class="imgCardContainer">
+              
+                  <a class="titleCard" href="/films/getFilmById/<%= p.id %>"><%= p.nombre.toUpperCase() %></a>
+                  <div class="imgCard">
+                    <a href="#">
+                      <img class="portada" width="300" height="169" src="data:image/jpeg; base64, <%= ((new Buffer(p.img)).toString('base64')) %>" alt="<%= p.nombre %>"></a> 
+                  </div>
+            
+                </article>
+              
+              <% }); %>
+          <% } %>
+        <% } %>
     </div>
-
-    
-    
-    <% if (films === 0) { %>
-      <h2>Sin coincidencias</h2>
-    <% } else { %>
-      <% if (typeof(films) !== "undefined") { %>
-        <div>
-          <h2>Resultados: <%= films.length %></h2>
-
-          <div class="containerGridCard">
-          <% films.forEach(function(p) { %>
-          
-            <article class="imgCardContainer">
-          
-              <a class="titleCard" href="/films/getFilmById/<%= p.id %>"><%= p.nombre.toUpperCase() %></a>
-              <div class="imgCard">
-                <a href="#">
-                   <img class="portada" width="300" height="169" src="data:image/jpeg; base64, <%= ((new Buffer(p.img)).toString('base64')) %>" alt="<%= p.nombre %>"></a> 
-              </div>
-        
-            </article>
-          
-          <% }); %>
-      <% } %>
-    <% } %>
   </body>
 </html>

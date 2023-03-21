@@ -3,10 +3,19 @@
  } */
 
  body {
-  padding: 20px;
+  
   
  } 
 
+
+
+ 
+
+ .contenido{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 20px;
+}
 
 .portada{
   width: 100%; /* need to overwrite inline dimensions */
