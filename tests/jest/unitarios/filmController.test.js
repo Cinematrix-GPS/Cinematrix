@@ -141,7 +141,7 @@ describe('Test Controlador de datos basicos...',()=>{
 
 		await filmController.getFilmByIdCtrl(req,res);
 		//esperando que funcione
-		expect(res.render).toHaveBeenCalledWith(expect.anything(),);		
+		expect(res.render).toHaveBeenCalledWith(expect.anything(),[]);		
 	});
 
 });
