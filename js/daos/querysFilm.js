@@ -45,8 +45,9 @@ module.exports ={
     //                 WHERE p.id=?`
 
     // conseguir los comentarios
-    getCommentaries: `SELECT *
-    FROM comentarios
+    getCommentaries: `SELECT c.id, c.id_usuario, c.id_pelicula, c.texto, c.fecha, u.username
+    FROM comentarios c 
+    LEFT JOIN usuarios u ON c.id_usuario=u.id
     WHERE id_pelicula= ?
     ORDER BY fecha DESC`,
 };
