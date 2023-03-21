@@ -237,7 +237,7 @@ ALTER TABLE `peliculas`
 ALTER TABLE `actores_peliculas`
   ADD CONSTRAINT `actores_peliculas_ibfk_1` FOREIGN KEY (`id_actor`) REFERENCES `actores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `actores_peliculas_ibfk_2` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
+
 
 
 
@@ -252,10 +252,30 @@ CREATE TABLE `comentarios`(
 `fecha` datetime
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombreCompleto` varchar(45) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombreCompleto`, `username`, `email`, `password`) VALUES
+(1, 'Juan', 'Juantio', 'Juantio@jjj.es', '1234'),
+(2, 'popo', 'popo', 'popo@jjj.es', '1234'),
+(3, 'erer', 'erer', 'erer@jjj.es', '1234'),
+(4, 'pepe', 'pepegot', 'probando@gmail.com', '1234');
+
 -- FALTA AÑADIR LA RESTRICCION PARA LOS USUARIOS
 
 ALTER TABLE `comentarios`
 ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 
 insert into `comentarios` values (1,1,8,'Sherk es vida, Shrek es amor',NOW());
@@ -272,6 +292,9 @@ insert into `comentarios` values (11,4,9,'Yo tampoco me entere de nada y eso que
 
 
 
+
+
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
