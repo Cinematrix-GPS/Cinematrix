@@ -49,13 +49,20 @@
 
               <div class="containerGridCard">
               <% films.forEach(function(p) { %>
-              
+                
                 <article class="imgCardContainer">
-              
+                  
                   <a class="titleCard" href="/films/getFilmById/<%= p.id %>"><%= p.nombre.toUpperCase() %></a>
+                  <!-- <a class="puntCard" href="#"><%= p.puntuacion %></a> 
+                  Para meter la info de la puntuacion
+                  -->
                   <div class="imgCard">
                     <a href="#">
-                      <img class="portada" width="300" height="169" src="data:image/jpeg; base64, <%= ((new Buffer(p.img)).toString('base64')) %>" alt="<%= p.nombre %>"></a> 
+                      <img class="portada" width="300" height="169" src="data:image/jpeg; base64, <%= ((new Buffer(p.img)).toString('base64')) %>" alt="<%= p.nombre %>"></a>
+                      <!-- <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-warning">
+                        Puntuacion <%=p.puntuacion%>
+                        
+                      </span>  -->
                   </div>
             
                 </article>

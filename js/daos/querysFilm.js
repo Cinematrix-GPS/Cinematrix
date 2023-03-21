@@ -5,7 +5,7 @@ todas las vistas y nos ahorramos muchos fallos innecesarios
 */
 
 module.exports ={
-    listFilm:   `SELECT DISTINCT p.nombre, p.img, p.id
+    listFilm:   `SELECT DISTINCT p.nombre, p.img, p.id, p.puntuacion
                 FROM peliculas p
                     LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula
                     LEFT JOIN actores a ON ap.id_actor=a.id
@@ -20,7 +20,7 @@ module.exports ={
 	createFilm: `INSERT INTO peliculas(nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero)
 							    VALUES(?, ?, ?, ?, ?, ?, ?)`,
 
-    qlistFilmStar: `SELECT p.id, p.nombre, p.img
+    qlistFilmStar: `SELECT p.id, p.nombre, p.img, p.puntuacion
                     FROM peliculas p 
                     ORDER BY P.fechaEstreno DESC;`,
     
