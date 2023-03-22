@@ -21,22 +21,7 @@
     
       <div class="contenido">
       
-        <!-- <h1><%= title %></h1> -->
         
-        <!-- <div class=" row">
-          <div class="col col-2">
-            <h4 class="strong">Búsqueda avanzada</h4>
-          </div>
-            <form action="/films/list" method="POST" class="col col-4">
-              <input id="busquedaGlobal" class="keyword" type="search" name="nombreBuscar" required="">
-              <button id="botonBusqueda" type="submit" class="keyword">Buscar por palabra clave</button>
-              
-              <label for="type">Título</label>
-              <input type="checkbox" class="col col-1 title" id="type" name="title" value="1">
-              
-            </form>
-            
-        </div> -->
 
       
         <%= msg %>
@@ -58,7 +43,7 @@
                   -->
                   <div class="imgCard">
                     <a href="#">
-                      <img class="portada" width="300" height="169" src="data:image/jpeg; base64, <%= ((new Buffer(p.img)).toString('base64')) %>" alt="<%= p.nombre %>"></a>
+                      <img class="portada " width="300" height="169" src="data:image/jpeg; base64, <%= ((new Buffer(p.img)).toString('base64')) %>" alt="<%= p.nombre %>"></a>
                       <!-- <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-warning">
                         Puntuacion <%=p.puntuacion%>
                         

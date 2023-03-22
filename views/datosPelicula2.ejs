@@ -27,27 +27,43 @@
         Puntuacion: <%=pelicula.puntuacion%>
         <span class="visually-hidden">Puntuacion</span>
       </span> -->
-      <h3> <span class="position-absolute top-0 start-50 translate-middle badge bg-success">Puntuacion: <%=pelicula.puntuacion%></span></h3>
+      <h3> <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">Puntuacion: <%=pelicula.puntuacion%></span></h3>
      
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded-start" alt="...">
-      </div>
+        <div class="containerGridCard">
+          
+          <article class="imgCardContainer">
+            <a class="titleCard" href="#"><%= pelicula.nombre.toUpperCase() %></a>
+            <div class="imgCard">
+              <a href="#">
+            <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded-start imgCard" alt="...">
+              </a>
+              </div>
+
+          </article>
+          
+        </div>
+       </div>
       <div class="col-md-8">
         <div class="card-body">
             
           <h5 class="card-title"><%=pelicula.nombre%></h5>
           <p class="card-text"><%=pelicula.sinopsis%></p>
           <!-- getFullYear() -->
-          <p class="card-text"><small class="text-muted">Año de estreno: <%=pelicula.fechaEstreno.getFullYear()%> | <%=pelicula.duracion%> minutos</small></p>
+          <p class="card-text"><small class="text-muted">Año de estreno: <%=pelicula.fechaEstreno.getFullYear()%> | <%=pelicula.duracion%> minutos | <%=pelicula.genero%></small></p>
           
         </div>
-        <h5 class="card-title">Actores</h5>
-        <ul class="list-group list-group-flush">
+        <div class="card-body">
+          <h5 class="card-title">Actores</h5>
+          <ul class="list-group list-group-flush">
             <% actoresV.forEach(function(actor) { %>
             <li class="list-group-item"><%=actor.nombreAct%> <%=actor.apellidosAct%></li>
             <% }); %>
           </ul>
+        </div>
+        
+        
         <div class="card-body">
             <a href="/films/getCommentaries/<%= pelicula.id %>" class="btn btn-primary">Ir a Comentarios</a>
         </div>
