@@ -43,10 +43,10 @@ filmRouter.get("/getFilmById/:id",
     filmController.getFilmByIdCtrl
 );
 
-filmRouter.get("/getCommentaries/:id",
-    multerFactory.none(),
-    filmController.getCommentaries
-);
+ filmRouter.get("/getCommentaries/:id",
+     multerFactory.none(),
+     filmController.getCommentaries
+ );
 
 
 module.exports = filmRouter;

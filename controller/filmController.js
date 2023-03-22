@@ -10,31 +10,42 @@ class filmController {
 
 	postListByKeyWord = async (request, response) => {
 		console.log("CONTRROLLER!!!");
-		await this.filmDAO.listFilms(request.body.nombreBuscar)
-		.then(filmListByKeyWord => {
-				response.render(views.index, {
-					title: "Mostrando resultados",
-					films: filmListByKeyWord
-				});
-			}
-		)
+		
+		// console.log(request.body.titulo);
+		// console.log(request.body.nombreBuscar);
+		if(request.body.titulo){
+			console.log("Buscar Titulo");
+			console.log(request.body.titulo);
+			await this.filmDAO.listFilmsByTitle(request.body.titulo)
+			.then( filmListByTitle => {
+					response.render(views.index,{
+						title: "Listar peliculas por titulo",
+						films: filmListByTitle,
+						msg: "Busqueda por Título"
+					});
+				}
+			)
+		}
+		else if(request.body.nombreBuscar){
+			console.log("Buscar keyword");
+			console.log(request.body.nombreBuscar);
+			await this.filmDAO.listFilms(request.body.nombreBuscar)
+			.then(filmListByKeyWord => {
+					response.render(views.index, {
+						title: "Listar peliculas por palabra clave",
+						films: filmListByKeyWord,
+						msg: "Busqueda por palabra clave"
+					});
+				}
+			)
+		}
 		// .catch(error=>{  
 		// 	console.log("Error de acceso a la base de datos");
 		// 	response.status(500);  }); // No hay catch para que se propague la excepción y llegue al router listActoreByFilm
 	};
 		
 	
-	postlistActoreByFilm = async (request, response) => {
-		await this.filmDAO.listActoreByFilm(request.body.nombreBuscar)
-		.then( actorListByFilm => {
-				response.render(views.actor, {
-					title: "Mostrando resultados Actores",
-					films: actorListByFilm
-				});
-			}
-		)
-		.catch(error =>{ response.status(500); });
-	};
+	
 
 	getlistFilmsStart = async (request, response) =>{
 		await this.filmDAO.listFilmsStart()
@@ -42,7 +53,8 @@ class filmController {
 				
 				response.render(views.index, {
 					title: "Listado completo",
-					films: filmsStart
+					films: filmsStart,
+					msg: ""
 				});
 		})
 	};
@@ -55,13 +67,13 @@ class filmController {
 			// console.log(listadopeliculas);
 			// Filtrando json con los actores
 			let pelicula = listadopeliculas.map(p =>{
-				return {id: p.id, nombre: p.nombrePelicula,	duracion: p.duracion, puntuacion: p.puntuacion,	fechaEstreno: p.fechaEstreno,
+				return {id: p.id, nombre: p.nombre,	duracion: p.duracion, puntuacion: p.puntuacion,	fechaEstreno: p.fechaEstreno,
 					sinopsis: p.sinopsis, genero: p.genero}
 			}).slice(0, 1);
 			
 			console.log(pelicula);
 			let actores =listadopeliculas.map(  a =>{
-				return {nombreAct: a.nombre, apellidosAct: a.apellidos}
+				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
 			console.log(actores);
 			
@@ -78,19 +90,18 @@ class filmController {
 		})
 	};
 	
+
 	getCommentaries = async (request, response) =>{
 		console.log("ID comentario --> " + request.params.id);
 		await this.filmDAO.getFilmCommentaries(request.params.id)
 		.then(comments =>{
 			console.log(comments);
-			response.render(views.vistaPelicula, {
-				id: comments[0].id,
-				usuario: comments[0].usuario,
-				pelicula: comments[0].pelicula,
-				texto: comments[0].texto,
-				fecha: comments[0].fecha
+			response.render(views.comentario, {
+				// id: comments[0].id,
+				comments: comments
 			});
-		}).catch(error =>{ throw new TypeError("No hay comentarios para esta película") });
+		})
+		// .catch(error =>{ throw new TypeError("No hay comentarios para esta película") });
 	};
 
 }

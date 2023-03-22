@@ -1,5 +1,6 @@
 const FilmDAO = require('../../stubs/filmDAOstub');
 
+
 const FilmController = require('../../../controller/filmController');
 
 const peliculas = [{
@@ -13,6 +14,20 @@ const peliculas = [{
 	img: 1
 }];
 
+<<<<<<< HEAD
+const infoBasic=[{
+	nombre:	"Terminator",
+	id: 1,
+	img: 1,
+	duracion: 108,
+	puntuacion: 10,
+	fechaEstreno: "1984-10-26",
+	sinopsis: "En el año 2029 las máquinas dominan el mundo. Los rebeldes que luchan contra ellas tienen como líder a John Connor, un hombre que nació en los años ochenta. Para eliminarlo y así acabar con la rebelión, las máquinas envían al pasado el robot Terminator con la misión de matar a Sarah Connor, la madre de John, e impedir así su nacimiento. Sin embargo, un hombre del futuro intentará protegerla.",
+	genero: "Ciencia ficción",
+	Actores: [ {nombreAct:"Arnold",apellidosAct: "Schwarzenegger"},{nombreAct:"Linda",apellidosAct: "Hamilton"},{nombreAct:"Michael",apellidosAct: "Biehn"}]
+}];
+
+=======
 const comentarios = [
 	{	id: 1,
 		usuario: 2,
@@ -30,6 +45,7 @@ const comentarios = [
 		texto: "Impactante",
 		fecha: "10-10-1000"	}
 ];
+>>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
 
 describe('Test palabra clave', () => {
 	const dao = new FilmDAO(peliculas);
@@ -71,10 +87,20 @@ describe('Test palabra clave', () => {
 		}));
 	});
 });
+<<<<<<< HEAD
+	//dao.basicInfoFilms(req.body.)
+
+
+
+
+describe('Test Controlador de datos basicos...',()=>{
+	const dao = new FilmDAO(infoBasic);
+=======
 
 describe('Test ver comentarios', () => {
 
 	const dao = new FilmDAO(comentarios);
+>>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
 	const filmController = new FilmController(dao);
 
 	const req = {
@@ -88,6 +114,34 @@ describe('Test ver comentarios', () => {
 		json: jest.fn(),
 		render: jest.fn()
 	};
+<<<<<<< HEAD
+	test('Busqueda de informacion con id existente',async()=>{
+		req.params.id=[1];
+
+		await filmController.getFilmByIdCtrl(req,res);
+		//esperando que funcione
+		expect(res.render).toHaveProperty('titleV',infoBasic[0].nombre);
+		expect(res.render).toHaveProperty('idV',infoBasic[0].id);
+		expect(res.render).toHaveProperty('sinopsisV',infoBasic[0].sinopsis);
+		expect(res.render).toHaveProperty('generoV',infoBasic[0].genero);
+		expect(res.render).toHaveProperty('actoresV',infoBasic[0].Actores);
+		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
+	});
+
+	/*test('Busqueda de informacion con id no existente',async()=>{
+		req.params.id=100;
+
+		await filmController.getFilmByIdCtrl(req,res);
+
+		expect(res.render).toHaveProperty('titleV',infoBasic[0].nombre);
+		expect(res.render).toHaveProperty('idV',infoBasic[0].id);
+		expect(res.render).toHaveProperty('sinopsisV',infoBasic[0].sinopsis);
+		expect(res.render).toHaveProperty('generoV',infoBasic[0].genero);
+		expect(res.render).toHaveProperty('actoresV',infoBasic[0].Actores);
+		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
+	});*/
+});
+=======
 
 	test('Ver comentarios cuando el comentario existe', async () => {
 
@@ -110,3 +164,4 @@ describe('Test ver comentarios', () => {
 	});
 
 });
+>>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
