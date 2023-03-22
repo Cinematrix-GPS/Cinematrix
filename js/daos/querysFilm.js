@@ -22,7 +22,7 @@ module.exports ={
 
     qlistFilmStar: `SELECT p.id, p.nombre, p.img, p.puntuacion
                     FROM peliculas p 
-                    ORDER BY P.fechaEstreno DESC;`,
+                    ORDER BY p.fechaEstreno DESC;`,
     
     qlistFilmByTitle: `SELECT p.id, p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis
                         FROM peliculas p

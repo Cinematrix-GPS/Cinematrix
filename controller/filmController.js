@@ -72,11 +72,14 @@ class filmController {
 			}).slice(0, 1);
 			
 			console.log(pelicula);
+			
 			let actores =listadopeliculas.map(  a =>{
 				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
 			console.log(actores);
-			
+			if (pelicula.length==0){
+				response.render(views.vistaPelicula,[])
+			}else{
 				response.render(views.vistaPelicula, {
 				titleV: pelicula[0].nombre,
 				idV: pelicula[0].id,
@@ -87,21 +90,20 @@ class filmController {
 				duracionV: pelicula[0].duracion,
 
 				});
+			}
 		})
 	};
 	
 
 	getCommentaries = async (request, response) =>{
-		console.log("ID comentario --> " + request.params.id);
+		console.log("ID película --> " + request.params.id);
 		await this.filmDAO.getFilmCommentaries(request.params.id)
 		.then(comments =>{
 			console.log(comments);
 			response.render(views.comentario, {
-				// id: comments[0].id,
 				comments: comments
 			});
 		})
-		// .catch(error =>{ throw new TypeError("No hay comentarios para esta película") });
 	};
 
 }
