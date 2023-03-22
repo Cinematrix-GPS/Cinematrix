@@ -94,8 +94,6 @@ describe('Test de integracion de la informacion basica de una pelicula',()=>{
 	test('Busqueda de informacion con id  no existente',async()=>{
 		const id=100000;
 		await dao.getFilmById(id).then(result => {
-			
-
 			expect(result).toEqual([])
 
 	});	
