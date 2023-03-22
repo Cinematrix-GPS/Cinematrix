@@ -36,9 +36,12 @@ describe('Test ver comentarios', () => {
 		req.params.id = 1;
 
 		await filmController.getCommentaries(req, res);
+		
+		const objetoCapturado = res.render.mock.calls[0][1].comments;
 
 		// Esperamos que se haya llamado a la función res.render y que se le haya pasado por parámetro lo siguiente
-		expect(res.render).toHaveBeenCalledWith(expect.anything(), expect.objectContaining(comentarios[0] && comentarios[1]));
+		expect(objetoCapturado).toContain(comentarios[0]);
+		expect(objetoCapturado).toContain(comentarios[1]);
 	});
 
 	test('Ver comentarios cuando el comentario no existe', async () => {
@@ -47,11 +50,12 @@ describe('Test ver comentarios', () => {
 		const res = new Response();
 
 		req.params.id = 3;
-		try {
-			await filmController.getCommentaries(req, res);
-		} catch (exception) {
-			expect(exception.message).toBe("No hay comentarios para esta película");
-		}
+
+		await filmController.getCommentaries(req, res);
+		
+		const objetoCapturado = res.render.mock.calls[0][1].comments;
+
+		expect(objetoCapturado).toHaveLength(0);
 	});
 
 });
