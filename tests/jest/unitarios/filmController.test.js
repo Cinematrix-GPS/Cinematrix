@@ -1,6 +1,5 @@
 const FilmDAO = require('../../stubs/filmDAOstub');
 
-
 const FilmController = require('../../../controller/filmController');
 
 const peliculas = [{
@@ -14,8 +13,7 @@ const peliculas = [{
 	img: 1
 }];
 
-<<<<<<< HEAD
-const infoBasic=[{
+const infoBasic = [{
 	nombre:	"Terminator",
 	id: 1,
 	img: 1,
@@ -27,7 +25,6 @@ const infoBasic=[{
 	Actores: [ {nombreAct:"Arnold",apellidosAct: "Schwarzenegger"},{nombreAct:"Linda",apellidosAct: "Hamilton"},{nombreAct:"Michael",apellidosAct: "Biehn"}]
 }];
 
-=======
 const comentarios = [
 	{	id: 1,
 		usuario: 2,
@@ -45,9 +42,9 @@ const comentarios = [
 		texto: "Impactante",
 		fecha: "10-10-1000"	}
 ];
->>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
 
 describe('Test palabra clave', () => {
+
 	const dao = new FilmDAO(peliculas);
 	const filmController = new FilmController(dao);
 
@@ -64,6 +61,7 @@ describe('Test palabra clave', () => {
 	};
 
 	test('Búsqueda de películas por keyWord cuando la peli existe', async () => {
+
 		req.body.nombreBuscar = "Alien";
 
 		await filmController.postListByKeyWord(req, res);
@@ -74,6 +72,7 @@ describe('Test palabra clave', () => {
 				peliculas[0]
 			])
 		}));
+
 	});
 
 	test('Búsqueda de películas por keyWord cuando la peli NO existe', async () => {
@@ -86,21 +85,12 @@ describe('Test palabra clave', () => {
 			films: expect.arrayContaining([ ])
 		}));
 	});
+
 });
-<<<<<<< HEAD
-	//dao.basicInfoFilms(req.body.)
 
+describe('Test Controlador de datos basicos', () => {
 
-
-
-describe('Test Controlador de datos basicos...',()=>{
 	const dao = new FilmDAO(infoBasic);
-=======
-
-describe('Test ver comentarios', () => {
-
-	const dao = new FilmDAO(comentarios);
->>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
 	const filmController = new FilmController(dao);
 
 	const req = {
@@ -114,9 +104,9 @@ describe('Test ver comentarios', () => {
 		json: jest.fn(),
 		render: jest.fn()
 	};
-<<<<<<< HEAD
-	test('Busqueda de informacion con id existente',async()=>{
-		req.params.id=[1];
+
+	test('Busqueda de informacion con id existente', async () => {
+		req.params.id = 1;
 
 		await filmController.getFilmByIdCtrl(req,res);
 		//esperando que funcione
@@ -128,20 +118,12 @@ describe('Test ver comentarios', () => {
 		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
 	});
 
-	/*test('Busqueda de informacion con id no existente',async()=>{
-		req.params.id=100;
-
-		await filmController.getFilmByIdCtrl(req,res);
-
-		expect(res.render).toHaveProperty('titleV',infoBasic[0].nombre);
-		expect(res.render).toHaveProperty('idV',infoBasic[0].id);
-		expect(res.render).toHaveProperty('sinopsisV',infoBasic[0].sinopsis);
-		expect(res.render).toHaveProperty('generoV',infoBasic[0].genero);
-		expect(res.render).toHaveProperty('actoresV',infoBasic[0].Actores);
-		expect(res.render).toHaveProperty('duracionV',infoBasic[0].duracion);
-	});*/
 });
-=======
+
+describe('Test ver comentarios', () => {
+
+	const dao = new FilmDAO(comentarios);
+	const filmController = new FilmController(dao);
 
 	test('Ver comentarios cuando el comentario existe', async () => {
 
@@ -161,7 +143,7 @@ describe('Test ver comentarios', () => {
 		} catch (exception) {
 			expect(exception.message).toBe("No hay comentarios para esta película");
 		}
+
 	});
 
 });
->>>>>>> 691ebd6a9d9b8d47f9563104a581dfe0424126b5
