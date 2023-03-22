@@ -74,34 +74,31 @@ describe('Test de integracion de la informacion basica de una pelicula',()=>{
 		const id=1;
 		await dao.getFilmById(id).then(result => {
 			
+			/*expect(result[0]).toContain([
+				expect.objectContaining(alien)
+		])*/
+			expect(result[0].nombre).toEqual("Alien: el octavo pasajero"),
+			expect(result[0].id).toEqual(1),
+			expect(result[0].duracion).toEqual(115),
+			expect(result[0].puntuacion).toEqual(9),
+			expect(result[0].genero).toEqual("Terror"),
+			expect(result[0].nombreAct).toEqual("Sigourney"),
+			expect(result[0].apellidosAct).toEqual("Weaver"),
+			expect(result[1].nombreAct).toEqual("John"),
+			expect(result[1].apellidosAct).toEqual("Hurt"),
+			expect(result[2].nombreAct).toEqual("Ian"),
+			expect(result[2].apellidosAct).toEqual("Holm")
+	});	
 			
-			expect(result).toContain([
-				expect.objectContaining({
-					id: 1,
-					nombre: "Alien: el octavo pasajero",
-					duracion:115,
-					puntuacion: 9,
-					fecha:"1979-05-24T22:00:00.000Z",
-					sinopsis: "La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.",
-					genero:"Terror",
-					nombreAct:"Sigourney",apellidosAct:"Weaver"})
-				expect.objectContaining({id: 1,
-						nombre: "Alien: el octavo pasajero",
-						duracion:115,
-						puntuacion: 9,
-						fecha:"1979-05-24T22:00:00.000Z",
-						sinopsis: "La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.",
-						genero:"Terror",
-						nombreAct:"John",apellidosAct:"Hurt"})
-				expect.objectContaining({id: 1,
-							nombre: "Alien: el octavo pasajero",
-							duracion:115,
-							puntuacion: 9,
-							fecha:"1979-05-24T22:00:00.000Z",
-							sinopsis: "La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.",
-							genero:"Terror",
-							nombreAct:"Ian",apellidosAct:"Holm"});
-		});	
+	});
+	test('Busqueda de informacion con id  no existente',async()=>{
+		const id=100000;
+		await dao.getFilmById(id).then(result => {
+			
+
+			expect(result).toEqual([])
+
+	});	
 			
 	});
 
