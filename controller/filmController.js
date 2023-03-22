@@ -67,8 +67,14 @@ class filmController {
 			// console.log(listadopeliculas);
 			// Filtrando json con los actores
 			let pelicula = listadopeliculas.map(p =>{
-				return {id: p.id, nombre: p.nombre,	duracion: p.duracion, puntuacion: p.puntuacion,	fechaEstreno: p.fechaEstreno,
-					sinopsis: p.sinopsis, genero: p.genero}
+				return {id: p.id, 
+					nombre: p.nombre,
+					img: p.img,	
+					duracion: p.duracion, 
+					puntuacion: p.puntuacion,	
+					fechaEstreno: p.fechaEstreno,
+					sinopsis: p.sinopsis, 
+					genero: p.genero}
 			}).slice(0, 1);
 			
 			console.log(pelicula);
@@ -77,14 +83,21 @@ class filmController {
 			});
 			console.log(actores);
 			
+				// response.render(views.vistaPelicula, {
+				// 	titleV: pelicula[0].nombre,
+				// 	idV: pelicula[0].id,
+				// 	sinopsisV: pelicula[0].sinopsis,
+				// 	generoV: pelicula[0].genero,
+				// 	actoresV: actores,
+				// 	fechaEstrenoV: pelicula[0].fechaEstreno,
+				// 	duracionV: pelicula[0].duracion
+
+				// });
 				response.render(views.vistaPelicula, {
-				titleV: pelicula[0].nombre,
-				idV: pelicula[0].id,
-				sinopsisV: pelicula[0].sinopsis,
-				generoV: pelicula[0].genero,
-				actoresV: actores,
-				fechaEstrenoV: pelicula[0].fechaEstreno,
-				duracionV: pelicula[0].duracion,
+					pelicula: pelicula[0],
+					
+					actoresV: actores,
+					
 
 				});
 		})
