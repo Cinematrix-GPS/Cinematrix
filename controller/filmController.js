@@ -96,16 +96,14 @@ class filmController {
 	
 
 	getCommentaries = async (request, response) =>{
-		console.log("ID comentario --> " + request.params.id);
+		console.log("ID película --> " + request.params.id);
 		await this.filmDAO.getFilmCommentaries(request.params.id)
 		.then(comments =>{
 			console.log(comments);
 			response.render(views.comentario, {
-				// id: comments[0].id,
 				comments: comments
 			});
 		})
-		// .catch(error =>{ throw new TypeError("No hay comentarios para esta película") });
 	};
 
 }
