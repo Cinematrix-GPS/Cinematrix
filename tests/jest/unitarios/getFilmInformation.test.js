@@ -73,6 +73,9 @@ let salida = [{
 	});
 
 	test('Busqueda de informacion con id inexistente',async()=>{
+		const req = new Request();
+		const res = new Response();
+
 		req.params.id=10000;
 
 		await filmController.getFilmByIdCtrl(req,res);
