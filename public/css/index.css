@@ -17,6 +17,7 @@
 .portada{
   width: 100%; /* need to overwrite inline dimensions */
   height: auto;
+  
 }
 
 h2 {
@@ -39,6 +40,7 @@ h2 {
 .imgCard {
   line-height: 0;
   overflow: hidden;
+  border-radius:10px;
 }
 
 .imgCard img {
@@ -61,7 +63,7 @@ h2 {
   transition: opacity .5s;
   background: rgba(0, 9, 90, 0.4);
   color: white ; 
-  
+  border-radius:10px;
   text-align: center;
   /* position the text in t’ middle*/
   display: flex;
@@ -83,7 +85,7 @@ h2 {
   transition: opacity .5s;
   background: rgba(0, 9, 90, 0.4);
   color: rgb(246, 238, 6) ; 
-  
+  border-radius:10px;
   text-align: center;
   /* position the text in t’ middle*/
   display: flex;
