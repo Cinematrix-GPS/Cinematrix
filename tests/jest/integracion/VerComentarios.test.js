@@ -1,5 +1,3 @@
-const FilmController = require('../../../controller/filmController');
-
 require('dotenv').config();
 
 const {getPool} = require('../../../database/configDB');
