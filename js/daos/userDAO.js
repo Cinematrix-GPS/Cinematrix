@@ -6,7 +6,20 @@ const qUser = require('./querysUser');
 class userDAO extends BaseDAO {
 	
     async createUser(usuario){
-		return this.query(qUser.createUser, [usuario.nombreCompl, usuario.nick, usuario.correo, usuario.pass]);
+
+		var valid = true;
+		var errorSpan = document.getElementById("floatingInput");
+		
+		document.querySelectorAll()
+		if(usuario.nombreCompl === "" || usuario.nick === ""|| usuario.correo === "" || usuario.pass === ""){
+			valid = false;
+			
+		}
+
+		if(valid){
+			this.query(qUser.createUser, [usuario.nombreCompl, usuario.nick, usuario.correo, usuario.pass]);
+		}
+		
 	}
 	
 }
