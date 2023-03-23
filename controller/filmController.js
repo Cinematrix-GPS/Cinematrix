@@ -99,7 +99,6 @@ class filmController {
 				});
 			})
 		}
-	
 
 	getCommentaries = async (request, response) => {
 		console.log("ID película --> " + request.params.id);
@@ -122,12 +121,12 @@ class filmController {
 
 	rateFilm = async (request, response) => {
 		await this.filmDAO.rate(request.usuario, request.pelicula, request.puntuacion);
-		response.render({ message: "Se ha registrado su puntuación" });
+		response.render(views.vistaPelicula, { message: "Se ha registrado su puntuación" });
 	};
 
 	updateFilmScore = async (request, response) => {
 		await this.filmDAO.updateScore(request.body.usuario, request.body.pelicula, request.body.puntuacion);
-		response.render({ message: "Se ha actualizado su puntuación" });
+		response.render(views.vistaPelicula, { message: "Se ha actualizado su puntuación" });
 	};
 
 }
