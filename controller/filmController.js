@@ -61,6 +61,7 @@ class filmController {
 
 	getFilmByIdCtrl = async (request, response) =>{
 		console.log("ID --> " + request.params.id);
+		let comments = await this.filmDAO.getFilmCommentaries(request.params.id)
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
@@ -103,18 +104,6 @@ class filmController {
 		}
 	
 	
-
-	getCommentaries = async (request, response) =>{
-		console.log("ID película --> " + request.params.id);
-		await this.filmDAO.getFilmCommentaries(request.params.id)
-		.then(comments =>{
-			console.log(comments);
-			response.render(views.comentario, {
-				comments: comments
-			});
-		})
-	};
-
 }
 
 module.exports = filmController;
