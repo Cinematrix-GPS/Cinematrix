@@ -18,6 +18,8 @@ class userController {
 			pass: request.body.password,
 		};
 		console.log(usuario);
+
+		
 		await this.userDAO.createUser(usuario)
 		.then(insertmsg => {
 			console.log(insertmsg);
