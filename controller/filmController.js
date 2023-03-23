@@ -98,12 +98,10 @@ class filmController {
 					pelicula: pelicula[0],
 					
 					actoresV: actores,
-					
-
 				});
-			}
-		})
-	};
+			})
+		}
+	
 	
 
 	getCommentaries = async (request, response) =>{
