@@ -56,8 +56,10 @@ describe('Test de Integración ver comentarios de una película', () => {
 		await dao.query("DELETE FROM peliculas WHERE id > 0;");
 
 		await dao.createFilm('Alien: el octavo pasajero', 1, 115, 9, '1979-05-25', 'La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.', 'Terror');
+		await dao.createFilm('Terminator', 2, 200, 8, '1979-05-25', 'La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.', 'Acción');
 		await dao.createUser(1, 'Eustagelio', 'eusta', 'eustagelio@kgmail.com', 'aBcDe1*');
-		await dao.creatComment(1, 1, 1, 'Amo a mi mamá', '1975-05-25');
+		await dao.createComment(1, 1, 1, 'Amo a mi mamá', '1975-05-25');
+		await dao.createComment(2, 1, 2, null, '1979-05-25');
 	
 	});
 
@@ -69,22 +71,22 @@ describe('Test de Integración ver comentarios de una película', () => {
 		await pool.end();
 	});
 
-	test('Ver comentarios cuando la película existe', async () => {
+	test('Ver comentarios de una película con comentarios', async () => {
 		const id = 1;
 
 		await dao.getFilmCommentaries(id).then(result => {
 			expect(result).toEqual(expect.arrayContaining([
 				expect.objectContaining({ texto: 'Amo a mi mamá' })
 			]))
-		});		
+		});
 	});
 
-	test('Ver comentarios cuando la película no existe', async () => {
+	test('Ver comentarios de una película sin comentarios', async () => {
 		const id = 2;
 
 		await dao.getFilmCommentaries(id).then(result => {
 			expect(result).toHaveLength(0);
-		});	
+		});
 	});
 
 });
