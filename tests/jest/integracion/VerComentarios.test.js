@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const {getPool} = require('../../../database/configDB');
+const { getPool } = require('../../../database/configDB');
 
 const FilmDAO = require('../../../js/daos/filmDAO');
 
@@ -9,7 +9,6 @@ describe('Test de Integración ver comentarios de una película', () => {
 	const pool = getPool();
 	const dao = new FilmDAO(pool);
 	
-	// Creamos una película antes de todo
 	beforeAll(async () => {
 
 		await dao.query(`CREATE TABLE peliculas (
@@ -54,6 +53,8 @@ describe('Test de Integración ver comentarios de una película', () => {
 						)`);
 
 		await dao.query("DELETE FROM peliculas WHERE id > 0;");
+		await dao.query("DELETE FROM usuarios WHERE id > 0;");
+		await dao.query("DELETE FROM comentarios WHERE id > 0;");
 
 		await dao.createFilm('Alien: el octavo pasajero', 1, 115, 9, '1979-05-25', 'La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.', 'Terror');
 		await dao.createFilm('Terminator', 2, 200, 8, '1979-05-25', 'La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.', 'Acción');
@@ -63,11 +64,13 @@ describe('Test de Integración ver comentarios de una película', () => {
 	
 	});
 
-	// Al acabar, borramos la peli que hemos creado y cerramos la conexión
 	afterAll(async () => {
 		await dao.query("DELETE FROM peliculas WHERE id > 0;");
 		await dao.query("DELETE FROM usuarios WHERE id > 0;");
 		await dao.query("DELETE FROM comentarios WHERE id > 0;");
+		await dao.query("DROP TABLE peliculas;");
+        await dao.query("DROP TABLE usuarios;");
+        await dao.query("DROP TABLE comentarios;");
 		await pool.end();
 	});
 
