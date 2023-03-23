@@ -2,6 +2,8 @@
 
 const views = require("../js/configView");
 
+const { check, validationResult } = require("express-validator");
+
 
 class userController {
 
@@ -20,11 +22,11 @@ class userController {
 		// console.log(usuario);
 
 		// Username no debe existir en bdd
-
+		return this.userDAO.createUser(usuario);
 
 		
 		//Correo no debe existir en bdd
-		this.userDAO.isUsername(usuario.username)
+		/*this.userDAO.isUsername(usuario.username)
 		.then(value => {
 			console.log("Existe usuario"+value);
 			if(value == 0)	return this.userDAO.createUser(usuario);
@@ -48,7 +50,7 @@ class userController {
 			});
 
 		})
-
+		*/
 		
 	
 	};
