@@ -13,21 +13,43 @@ class userController {
 		console.log("CONTRROLLER usuario!!!");
 		let usuario = {
 			nombreCompl: request.body.nombreCompleto,
-			nick: request.body.username,
+			username: request.body.username,
 			correo: request.body.correo,
 			pass: request.body.password,
 		};
-		console.log(usuario);
+		// console.log(usuario);
+
+		// Username no debe existir en bdd
+
 
 		
-		await this.userDAO.createUser(usuario)
-		.then(insertmsg => {
-			console.log(insertmsg);
-				response.render(views.registro, {
-					title: "REGISTRO COMPLETO"
+		//Correo no debe existir en bdd
+		this.userDAO.isUsername(usuario.username)
+		.then(value => {
+			console.log("Existe usuario"+value);
+			if(value == 0)	return this.userDAO.createUser(usuario);
+			else throw "Username ya en uso";
+		})
+		.then(value => {
+			console.log("Existe registo"+value);
+			if (value.affectedRows){
+				response.render(views.registro,{
+					title: "REGISTRO COMPLETO",
+					// fallo: "Sin errores"
 				});
 			}
-		)
+			else throw "Error en la base de datos"
+
+		})
+		.catch(error =>{
+			response.render(views.registro,{
+				title: error,
+				// fallo: error?error:0
+			});
+
+		})
+
+		
 	
 	};
 

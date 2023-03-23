@@ -7,19 +7,13 @@ class userDAO extends BaseDAO {
 	
     async createUser(usuario){
 
-		var valid = true;
-		var errorSpan = document.getElementById("floatingInput");
-		
-		document.querySelectorAll()
-		if(usuario.nombreCompl === "" || usuario.nick === ""|| usuario.correo === "" || usuario.pass === ""){
-			valid = false;
-			
-		}
+		return this.query(qUser.createUser, [usuario.nombreCompl, usuario.username, usuario.correo, usuario.pass]);
+	}
 
-		if(valid){
-			this.query(qUser.createUser, [usuario.nombreCompl, usuario.nick, usuario.correo, usuario.pass]);
-		}
-		
+	// Comprobamos si existe username
+	async isUsername(username){
+
+		return this.query(qUser.existeUsername, [username]);
 	}
 	
 }

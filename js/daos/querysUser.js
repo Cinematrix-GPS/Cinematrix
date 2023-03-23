@@ -7,7 +7,10 @@ todas las vistas y nos ahorramos muchos fallos innecesarios
 module.exports ={
    
     createUser : `INSERT INTO usuarios (nombreCompleto, username, email, password) 
-                VALUES (?, ?, ?, ?);`
+                VALUES (?, ?, ?, ?);`,
+
+    existeUsername: `SELECT count(username) 
+                    FROM usuarios WHERE username=?;`
     
 };
 
