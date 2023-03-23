@@ -31,14 +31,14 @@ class userController {
 
 		// Username no debe existir en bdd
 		
-		return this.userDAO.createUser(usuario);
+		
 		
 		//Correo no debe existir en bdd
-		/*this.userDAO.isUsername(usuario.username)
+		this.userDAO.isUsername(usuario.username)
 		.then(value => {
 			console.log("Existe usuario"+value);
 			if(value == 0)	return this.userDAO.createUser(usuario);
-			else throw "Username ya en uso";
+			else throw "Username ya en uso 1";
 		})
 		.then(value => {
 			console.log("Existe registo"+value);
@@ -54,11 +54,11 @@ class userController {
 		.catch(error =>{
 			response.render(views.registro,{
 				title: error,
-				// fallo: error?error:0
+				//fallo: error?error:0
 			});
 
 		})
-		*/
+		
 		
 	
 	};
