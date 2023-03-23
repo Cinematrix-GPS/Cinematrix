@@ -22,7 +22,7 @@ module.exports ={
 
     qlistFilmStar: `SELECT p.id, p.nombre, p.img, p.puntuacion
                     FROM peliculas p 
-                    ORDER BY P.fechaEstreno DESC;`,
+                    ORDER BY p.fechaEstreno DESC;`,
     
     qlistFilmByTitle: `SELECT p.id, p.nombre, p.img, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis
                         FROM peliculas p
@@ -46,10 +46,16 @@ module.exports ={
 
     // conseguir los comentarios
     getCommentaries: `SELECT c.id, c.id_usuario, c.id_pelicula, c.texto, c.fecha, u.username
-    FROM comentarios c 
-    LEFT JOIN usuarios u ON c.id_usuario=u.id
-    WHERE id_pelicula= ?
-    ORDER BY fecha DESC`,
+                        FROM comentarios c 
+                        LEFT JOIN usuarios u ON c.id_usuario=u.id
+                        WHERE id_pelicula= ?
+                        ORDER BY fecha DESC`,
+
+    createUser: `INSERT INTO USUARIOS(id, nombreCompleto, username, email, password)
+                 VALUES (?, ?, ?, ?, ?)`,
+
+    createComment: `INSERT INTO COMENTARIOS(id, id_usuario, id_pelicula, texto, fecha)
+                    VALUES(?, ?, ?, ?, ?)` ,                      
 };
 
 // Para paginacion SELECT p.id, p.nombre, p.img FROM peliculas p LIMIT 8, 4; Donde LIMIT [Desplazamiento][numero que aparecen]

@@ -5,31 +5,38 @@ const qFilms = require('./querysFilm');
 
 class FilmDAO extends BaseDAO {
 	
-	async listFilms(keyWord){
-
+	async listFilms(keyWord) {
         const formattedKeyWord = `%${keyWord}%`; // Para rodear los '?' de '%?%'
         return this.query(qFilms.listFilm, Array(5).fill(formattedKeyWord));   
     }
 
-	async createFilm(nombre, imagen, duracion, puntuacion, fechaEstreno, sinopsis, genero){
+	async createFilm(nombre, imagen, duracion, puntuacion, fechaEstreno, sinopsis, genero) {
 		return this.query(qFilms.createFilm, [nombre, imagen, duracion, puntuacion, fechaEstreno, sinopsis, genero]);
 	}
 
-    async listFilmsStart(){
+    async listFilmsStart() {
         return this.query(qFilms.qlistFilmStar);
     }
 
-    async listFilmsByTitle(title){
+    async listFilmsByTitle(title) {
         const formattedKeyWord = `%${title}%`;
         return this.query(qFilms.qlistFilmByTitle, [formattedKeyWord]);
     }
 
-    async getFilmById(id){
+    async getFilmById(id) {
         return this.query(qFilms.qGetFilmById, [id]);
     }
 
-    async getFilmCommentaries(id){
+    async getFilmCommentaries(id) {
         return this.query(qFilms.getCommentaries, [id]);
+    }
+
+    async createUser(id, nombreCompleto, username, email, password) {
+        return this.query(qFilms.createUser, [id, nombreCompleto, username, email, password]);
+    }
+
+    async createComment(id, id_usuario, id_pelicula, texto, fecha) {
+        return this.query(qFilms.createComment, [id, id_usuario, id_pelicula, texto, fecha]);
     }
 
     // async getActorsById(id){

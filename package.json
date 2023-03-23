@@ -4,7 +4,8 @@
   "description": "Proyecto Cinematrix de GPS",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
+	"test-silent": "jest --silent --detectOpenHandles",
     "start": "node ./app.js",
     "dev": "nodemon ./app.js"
   },
