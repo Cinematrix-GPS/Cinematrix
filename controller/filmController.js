@@ -97,8 +97,8 @@ class filmController {
 				// });
 				response.render(views.vistaPelicula, {
 					pelicula: pelicula[0],
-					
 					actoresV: actores,
+					comentariosV: comments
 				});
 			})
 		}
