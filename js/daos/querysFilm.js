@@ -4,7 +4,7 @@ En este archivo vamos a guardar los normbres de las vistas, de esta manera cambi
 todas las vistas y nos ahorramos muchos fallos innecesarios
 */
 
-module.exports ={
+module.exports = {
     listFilm:   `SELECT DISTINCT p.nombre, p.img, p.id, p.puntuacion
                 FROM peliculas p
                     LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula
@@ -14,9 +14,7 @@ module.exports ={
                 OR a.nombreAct like ?
                 OR a.apellidosAct like ?
                 OR p.genero like ?`,
-                
     
-
 	createFilm: `INSERT INTO peliculas(nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero)
 							    VALUES(?, ?, ?, ?, ?, ?, ?)`,
 
@@ -55,7 +53,15 @@ module.exports ={
                  VALUES (?, ?, ?, ?, ?)`,
 
     createComment: `INSERT INTO COMENTARIOS(id, id_usuario, id_pelicula, texto, fecha)
-                    VALUES(?, ?, ?, ?, ?)` ,                      
+                    VALUES(?, ?, ?, ?, ?)`,
+
+    getUserRateForFilm: 'SELECT puntuacion FROM puntuaciones WHERE usuario = ? AND pelicula = ?',
+
+    rateFilm: `INSERT INTO puntuaciones(usuario, pelicula, puntuacion)
+               VALUES(?, ? ,?)`,
+
+    updateFilmScore: `UPDATE puntuaciones SET puntuacion = ? WHERE usuario = ? AND pelicula = ?`,
+    
 };
 
 // Para paginacion SELECT p.id, p.nombre, p.img FROM peliculas p LIMIT 8, 4; Donde LIMIT [Desplazamiento][numero que aparecen]

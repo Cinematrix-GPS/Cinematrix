@@ -26,7 +26,7 @@ class filmController {
 				}
 			)
 		}
-		else if(request.body.nombreBuscar){
+		else if (request.body.nombreBuscar) {
 			console.log("Buscar keyword");
 			console.log(request.body.nombreBuscar);
 			await this.filmDAO.listFilms(request.body.nombreBuscar)
@@ -43,11 +43,8 @@ class filmController {
 		// 	console.log("Error de acceso a la base de datos");
 		// 	response.status(500);  }); // No hay catch para que se propague la excepción y llegue al router listActoreByFilm
 	};
-		
-	
-	
 
-	getlistFilmsStart = async (request, response) =>{
+	getlistFilmsStart = async (request, response) => {
 		await this.filmDAO.listFilmsStart()
 		.then( filmsStart => {
 				
@@ -59,21 +56,21 @@ class filmController {
 		})
 	};
 
-	getFilmByIdCtrl = async (request, response) =>{
+	getFilmByIdCtrl = async (request, response) => {
 		console.log("ID --> " + request.params.id);
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
 			// console.log(listadopeliculas);
 			// Filtrando json con los actores
-			let pelicula = listadopeliculas.map(p =>{
+			let pelicula = listadopeliculas.map(p => {
 				return {id: p.id, nombre: p.nombre,	duracion: p.duracion, puntuacion: p.puntuacion,	fechaEstreno: p.fechaEstreno,
 					sinopsis: p.sinopsis, genero: p.genero}
 			}).slice(0, 1);
 			
 			console.log(pelicula);
 			
-			let actores =listadopeliculas.map(  a =>{
+			let actores =listadopeliculas.map(a => {
 				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
 			console.log(actores);
@@ -95,7 +92,7 @@ class filmController {
 	};
 	
 
-	getCommentaries = async (request, response) =>{
+	getCommentaries = async (request, response) => {
 		console.log("ID película --> " + request.params.id);
 		await this.filmDAO.getFilmCommentaries(request.params.id)
 		.then(comments =>{
@@ -104,6 +101,24 @@ class filmController {
 				comments: comments
 			});
 		})
+	};
+
+	getUserRateForFilm = async (request, response) => {
+		await this.filmDAO.getUserRate(request.body.usuario, request.body.pelicula)
+		.then(punctuation => {
+			if (punctuation == null) rateFilm(request, response);
+			else updateFilmScore(request, response);
+		})
+	};
+
+	rateFilm = async (request, response) => {
+		await this.filmDAO.rate(request.usuario, request.pelicula, request.puntuacion);
+		response.render({ message: "Se ha registrado su puntuación" });
+	};
+
+	updateFilmScore = async (request, response) => {
+		await this.filmDAO.updateScore(request.body.usuario, request.body.pelicula, request.body.puntuacion);
+		response.render({ message: "Se ha actualizado su puntuación" });
 	};
 
 }

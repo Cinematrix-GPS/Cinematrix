@@ -6,7 +6,7 @@ const qFilms = require('./querysFilm');
 class FilmDAO extends BaseDAO {
 	
 	async listFilms(keyWord) {
-        const formattedKeyWord = `%${keyWord}%`; // Para rodear los '?' de '%?%'
+        const formattedKeyWord = `%${keyWord}%`;
         return this.query(qFilms.listFilm, Array(5).fill(formattedKeyWord));   
     }
 
@@ -39,9 +39,18 @@ class FilmDAO extends BaseDAO {
         return this.query(qFilms.createComment, [id, id_usuario, id_pelicula, texto, fecha]);
     }
 
-    // async getActorsById(id){
-    //     return this.query(qFilms.qGetFilmById, [id]);
-    // }
+    async getUserRate(usuario, pelicula) {
+        return this.query(qFilms.getUserRateForFilm, [usuario, pelicula]);
+    }
+
+    async rate(usuario, pelicula, puntuacion) {
+        return this.query(qFilms.rateFilm, [usuario, pelicula, puntuacion]);
+    }
+
+    async updateScore(usuario, pelicula, puntuacion) {
+        return this.query(qFilms.getUserRateForFilm, [usuario, pelicula, puntuacion]);
+    }
+    
 }
 
 module.exports = FilmDAO;
