@@ -12,6 +12,14 @@ class userController {
 	}
 
 	addUser = async (request, response) => {
+
+		const errors = validationResult(request);
+	
+		if (!errors.isEmpty()){
+			return response.status(400).json({ errors: errors.array() });
+		}
+		
+
 		console.log("CONTRROLLER usuario!!!");
 		let usuario = {
 			nombreCompl: request.body.nombreCompleto,
@@ -19,11 +27,11 @@ class userController {
 			correo: request.body.correo,
 			pass: request.body.password,
 		};
-		// console.log(usuario);
+		console.log(usuario);
 
 		// Username no debe existir en bdd
+		
 		return this.userDAO.createUser(usuario);
-
 		
 		//Correo no debe existir en bdd
 		/*this.userDAO.isUsername(usuario.username)

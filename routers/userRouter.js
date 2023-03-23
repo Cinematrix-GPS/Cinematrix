@@ -20,20 +20,13 @@ userRouter.post("/signup", multerFactory.none(),
 
     [check("nombreCompleto","El nombre completo está vacío").notEmpty(),
     check("username","El nombre de usuario está vacío").notEmpty(),
-    check("correo","El correo está vacío").isEmail(),
+    check("correo","Debes introducir un correo electrónico válido").isEmail(),
     check("password", "La longitud minima debe ser 4").isLength({ min: 4}),
-    check("password2"),
-    
+    check("password2","La contraseña de confirmación debe tener el mismo valor que la contraseña").exists()
+    .custom(( value, {req})=> value === req.body.password)
     ],
-    (req,res) =>{
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-          return res.status(400).json({ errors: errors.array() });
-        }
-        
 
-    },
-    useRCrtl.addUser
+    useRCrtl.addUser,
 
 )
 
