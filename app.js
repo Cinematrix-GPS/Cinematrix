@@ -24,7 +24,7 @@ app.use(express.urlencoded({extended: true}));//Devuelve middleware que solo ana
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 
-const pool = require('./database/configDB').getPool(); // Para obtener los datos de conexión a la BBDD
+const pool = require('./database/configDB').connectionInfo; // Para obtener los datos de conexión a la BBDD
 const sessionStore = new MySQLStore(pool);
 
 // Middleware para la creación de las sesiones. Una vez leida la sesión, podemos pasarle cosas al router de auth
