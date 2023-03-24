@@ -1,6 +1,8 @@
 const authRouter = require('express-promise-router')();
 const LoginController = require("../controller/loginController");
 
+const views = require('../js/configView');
+
 const {getPool} = require('../database/configDB');
 
 const UserDAO = require('../js/daos/userDAO');

@@ -3,10 +3,10 @@ const queries = require('./querysUser');
 
 class UserDAO extends BaseDAO {
 	
-	// Devuelve un objeto con la información del usuario o null si no existe
+	// Devuelve un objeto con la información del usuario o undefined si no existe
 	async getUser(mail){
-        const formattedKeyWord = `%${mail}%`; // Para rodear los '?' de '%?%'
-        return (await this.query(queries.readUser, [formattedKeyWord]))[0];
+		console.log(`mail: ${mail}`);
+        return (await this.query(queries.readUser, [mail]))[0];
     }
 
 }
