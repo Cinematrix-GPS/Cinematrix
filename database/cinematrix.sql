@@ -27,6 +27,8 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `actores`
 --
 
+use cinematrix;
+
 CREATE TABLE `actores` (
   `id` int(11) NOT NULL,
   `nombreAct` varchar(30) NOT NULL,

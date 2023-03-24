@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
-	"test-silent": "jest --silent --detectOpenHandles",
+    "test-silent": "jest --silent --detectOpenHandles",
     "start": "node ./app.js",
     "dev": "nodemon ./app.js"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/angelphi1618/Cinematrix#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "chai": "^4.3.7",
     "connect-livereload": "^0.6.1",

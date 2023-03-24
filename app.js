@@ -5,13 +5,6 @@ const path = require("path"); // módulo para manejar rutas
 const morgan = require("morgan");  // Para depuración
 app.use(morgan("dev")); //Al realizar cambios en los archivos, se reinicia la aplicacion automaticamente (Para programar)
 
-
-
-
-//Configuracion base de datos
-
-
-
 require('dotenv').config(); // Para utilizar variables de entorno desde ficheros
 const PORT = process.env.PORT || 3000;
 
@@ -27,6 +20,21 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());// Devuelve middleware que solo analiza json y solo mira las solicitudes donde el encabezado Content-Type coincide con la opción de tipo.
 app.use(express.urlencoded({extended: true}));//Devuelve middleware que solo analiza cuerpos codificados en URL y solo mira las solicitudes donde el encabezado Content-Type coincide con la opción de tipo
 
+// Configuración de las sesiones
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+
+const pool = require('./database/configDB').getPool(); // Para obtener los datos de conexión a la BBDD
+const sessionStore = new MySQLStore(pool);
+
+// Middleware para la creación de las sesiones. Una vez leida la sesión, podemos pasarle cosas al router de auth
+app.use(session({
+	key: 'login_cookie',
+	secret: '7587631bc33f9454e32112c1eaeb21be',
+	store: sessionStore,
+	resave: true,
+	saveUninitialized: true
+}), require('./routers/authRouter'));
 
 // Enrutamiento
 
