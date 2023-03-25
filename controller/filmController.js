@@ -87,16 +87,16 @@ class filmController {
 			if (pelicula.length==0){
 				response.render(views.vistaPelicula,[])
 			}else{
-				// response.render(views.vistaPelicula, {
-				// titleV: pelicula[0].nombre,
-				// idV: pelicula[0].id,
-				// sinopsisV: pelicula[0].sinopsis,
-				// generoV: pelicula[0].genero,
-				// actoresV: actores,
-				// fechaEstrenoV: pelicula[0].fechaEstreno,
-				// duracionV: pelicula[0].duracion,
-				// comentariosV: comments
-				// });
+				 response.render(views.vistaPelicula, {
+				 titleV: pelicula[0].nombre,
+				 idV: pelicula[0].id,
+				 sinopsisV: pelicula[0].sinopsis,
+				 generoV: pelicula[0].genero,
+				 actoresV: actores,
+				 fechaEstrenoV: pelicula[0].fechaEstreno,
+				 duracionV: pelicula[0].duracion,
+				 comentariosV: comments
+				 });
 				response.render(views.vistaPelicula, {
 					pelicula: pelicula[0],
 					
