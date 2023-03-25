@@ -44,36 +44,14 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">1</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">2</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">3</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">4</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">5</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">6</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">7</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">8</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">9</a>
-      </div>
-      <div class="col col-1">
-        <a href="/getUserRateForFilm" class="btn btn-primary">10</a>
+    <div class="row text-center">
+      <strong>Puntuar película:</strong>
+    </div>
+    <div class="row mt-3">
+      <div class="col col-4 offset-4">
+        <% for (let i = 0; i < 11; i++) { %>
+          <a href="/getUserRate/<% pelicula.id %>" class="btn btn-primary" type="punctuation"><%= i %></a>
+        <% } %>
       </div>
     </div>
     <button onclick="mostrarComentarios()">+Comentarios</button>
