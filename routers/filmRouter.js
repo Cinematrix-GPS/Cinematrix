@@ -43,10 +43,9 @@ filmRouter.get("/getFilmById/:id",
     filmController.getFilmByIdCtrl
 );
 
- filmRouter.get("/getCommentaries/:id",
-     multerFactory.none(),
-     filmController.getCommentaries
- );
-
+filmRouter.get("/getUserRate/:id",
+    multerFactory.none(),
+    filmController.getUserRateForFilm
+);
 
 module.exports = filmRouter;
