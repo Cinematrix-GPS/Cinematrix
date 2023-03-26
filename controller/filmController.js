@@ -91,7 +91,6 @@ class filmController {
 		})
 	};
 	
-
 	getCommentaries = async (request, response) => {
 		console.log("ID película --> " + request.params.id);
 		await this.filmDAO.getFilmCommentaries(request.params.id)
@@ -104,11 +103,14 @@ class filmController {
 	};
 
 	getUserRateForFilm = async (request, response) => {
-		await this.filmDAO.getUserRate(request.session.usuario, request.params.id)
-		.then(punctuation => {
-			if (punctuation == null) rateFilm(request, response);
-			else updateFilmScore(request, response);
-		})
+		// if (request.session == null) mandar a la vista de registro;
+		// else {
+			await this.filmDAO.getUserRate(request.session.usuario, request.params.id)
+			.then(punctuation => {
+				if (punctuation == null) rateFilm(request, response);
+				else updateFilmScore(request, response);
+			})
+		//}
 	};
 
 	rateFilm = async (request, response) => {
