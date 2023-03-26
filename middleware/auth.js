@@ -10,7 +10,15 @@ const requiresLogin = async (req, res, next) => {
 
 	// El usuario existe: todo ok
 	next();
-}
+};
 
+const requiresLogout = async (req, res, next) => {
+	// Si no hay sesión registrada, siguiente
+	if (!req.session.mail)
+		return next();
+	
+	res.redirect('/');
+};
 
 exports.requiresLogin = requiresLogin;
+exports.requiresLogout = requiresLogout;

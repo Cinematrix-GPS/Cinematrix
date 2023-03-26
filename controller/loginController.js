@@ -17,7 +17,7 @@ class LoginController{
 	postLogin = async (req, res) => {
 		// Nos ha llegado una request con información de inicio de sesión
 		const mail = req.body.mail;
-		
+
 		const usuario = await this.dao.getUser(mail);
 
 		console.log(`usuario: ${JSON.stringify(usuario)}`);

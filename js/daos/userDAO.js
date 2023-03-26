@@ -5,7 +5,7 @@ class UserDAO extends BaseDAO {
 	
 	// Devuelve un objeto con la información del usuario o undefined si no existe
 	async getUser(mail){
-		console.log(`mail: ${mail}`);
+		// El DAO devuelve un array, pero como mail es pk, será un array con un único objeto
         return (await this.query(queries.readUser, [mail]))[0];
     }
 

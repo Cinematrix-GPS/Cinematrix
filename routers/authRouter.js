@@ -10,12 +10,15 @@ const UserDAO = require('../js/daos/userDAO');
 const userDAO = new UserDAO(getPool());
 const loginController = new LoginController(userDAO);
 
-authRouter.get('/login', async (req, res) => {
+const {requiresLogout} = require('../middleware/auth')
+
+// Sólo se puede acceder al login si no hay sesión iniciada
+authRouter.get('/login', requiresLogout, async (req, res) => {
     res.render(views.login, {  
             title: "Prototipo Cinematrix",
             films: 0});
 });
 
-authRouter.post('/login', loginController.postLogin);
+authRouter.post('/login', requiresLogout, loginController.postLogin);
 
 module.exports = authRouter;
