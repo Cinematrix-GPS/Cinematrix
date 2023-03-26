@@ -103,14 +103,11 @@ class filmController {
 	};
 
 	getUserRateForFilm = async (request, response) => {
-		//if (request.session.mail == null) mandar a la vista de registro;
-		//else {
-			await this.filmDAO.getUserRate(request.session.email, request.params.id)
-			.then(punctuation => {
-				if (punctuation == null) rateFilm(request, response);
-				else updateFilmScore(request, response);
-			})
-		//}
+		await this.filmDAO.getUserRate(request.session.email, request.params.id)
+		.then(punctuation => {
+			if (punctuation == null) rateFilm(request, response);
+			else updateFilmScore(request, response);
+		})
 	};
 
 	rateFilm = async (request, response) => {

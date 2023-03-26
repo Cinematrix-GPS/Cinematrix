@@ -5,7 +5,7 @@ const FilmController = require("../controller/filmController");
 const multer = require("multer");
 const multerFactory = multer({ storage: multer.memoryStorage() });
 const views = require("../js/configView");
-
+const {requiresLogin} = require("../middleware/auth");
 
 const {getPool} = require('../database/configDB');
 
@@ -44,6 +44,7 @@ filmRouter.get("/getFilmById/:id",
 );
 
 filmRouter.get("/getUserRate/:id",
+    requiresLogin,
     multerFactory.none(),
     filmController.getUserRateForFilm
 );
