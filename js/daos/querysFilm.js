@@ -55,12 +55,19 @@ module.exports = {
     createComment: `INSERT INTO COMENTARIOS(id, id_usuario, id_pelicula, texto, fecha)
                     VALUES(?, ?, ?, ?, ?)`,
 
-    getUserRateForFilm: 'SELECT puntuacion FROM puntuaciones WHERE usuario = ? AND pelicula = ?',
+    getUserRateForFilm: `SELECT puntuacion
+                         FROM puntuaciones JOIN usuarios ON puntuaciones.usuario = usuarios.id
+                         WHERE usuarios.email = ? AND puntuaciones.pelicula = ?`,
 
     rateFilm: `INSERT INTO puntuaciones(usuario, pelicula, puntuacion)
-               VALUES(?, ? ,?)`,
+               VALUES((SELECT DISTINCT usuarios.id
+                       FROM puntuaciones p JOIN usuarios ON p.usuario = usuarios.id
+                       WHERE usuarios.email = ?), ?, ?)`,
 
-    updateFilmScore: `UPDATE puntuaciones SET puntuacion = ? WHERE usuario = ? AND pelicula = ?`,
+    updateFilmScore: `UPDATE puntuaciones SET puntuacion = ?
+                      WHERE usuario = (SELECT DISTINCT usuarios.id
+                                       FROM puntuaciones JOIN usuarios ON puntuaciones.usuario = usuarios.id
+                                       WHERE usuarios.email = ?) AND pelicula = ?`,
     
 };
 

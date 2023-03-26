@@ -103,9 +103,9 @@ class filmController {
 	};
 
 	getUserRateForFilm = async (request, response) => {
-		// if (request.session == null) mandar a la vista de registro;
-		// else {
-			await this.filmDAO.getUserRate(request.session.usuario, request.params.id)
+		//if (request.session.mail == null) mandar a la vista de registro;
+		//else {
+			await this.filmDAO.getUserRate(request.session.email, request.params.id)
 			.then(punctuation => {
 				if (punctuation == null) rateFilm(request, response);
 				else updateFilmScore(request, response);
@@ -114,12 +114,12 @@ class filmController {
 	};
 
 	rateFilm = async (request, response) => {
-		await this.filmDAO.rate(request.session.usuario, request.params.id, request.body.puntuacion);
+		await this.filmDAO.rate(request.session.email, request.params.id, request.body.puntuacion);
 		response.render({ message: "Se ha registrado su puntuación" });
 	};
 
 	updateFilmScore = async (request, response) => {
-		await this.filmDAO.updateScore(request.session.body.usuario, request.params.id, request.body.puntuacion);
+		await this.filmDAO.updateScore(request.session.usuario, request.params.id, request.body.puntuacion);
 		response.render({ message: "Se ha actualizado su puntuación" });
 	};
 
