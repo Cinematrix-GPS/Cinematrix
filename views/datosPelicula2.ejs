@@ -44,11 +44,9 @@
         </div>
       </div>
     </div>
-    <div class="row text-center">
-      <strong>Puntuar película:</strong>
-    </div>
-    <div class="row mt-3">
-      <div class="col col-4 offset-4">
+    <div class="row rim align-items-center">
+      <div class="col col-2 offset-3 text-center"><strong>Valorar película:</strong></div>
+      <div class="col col-4">
         <% for (let i = 0; i < 11; i++) { %>
           <a href="/getUserRate/<% pelicula.id %>" class="btn btn-primary" type="punctuation"><%= i %></a>
         <% } %>

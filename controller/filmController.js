@@ -82,23 +82,23 @@ class filmController {
 			});
 			console.log(actores);
 			
-				// response.render(views.vistaPelicula, {
-				// 	titleV: pelicula[0].nombre,
-				// 	idV: pelicula[0].id,
-				// 	sinopsisV: pelicula[0].sinopsis,
-				// 	generoV: pelicula[0].genero,
-				// 	actoresV: actores,
-				// 	fechaEstrenoV: pelicula[0].fechaEstreno,
-				// 	duracionV: pelicula[0].duracion
+			// response.render(views.vistaPelicula, {
+			// 	titleV: pelicula[0].nombre,
+			// 	idV: pelicula[0].id,
+			// 	sinopsisV: pelicula[0].sinopsis,
+			// 	generoV: pelicula[0].genero,
+			// 	actoresV: actores,
+			// 	fechaEstrenoV: pelicula[0].fechaEstreno,
+			// 	duracionV: pelicula[0].duracion
 
-				// });
-				response.render(views.vistaPelicula, {
-					pelicula: pelicula[0],
-					actoresV: actores,
-					comentariosV: comments
-				});
-			})
-		}
+			// });
+			response.render(views.vistaPelicula, {
+				pelicula: pelicula[0],
+				actoresV: actores,
+				comentariosV: comments
+			});
+		})
+	}
 
 	getCommentaries = async (request, response) => {
 		console.log("ID película --> " + request.params.id);
