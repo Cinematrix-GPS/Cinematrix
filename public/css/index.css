@@ -9,7 +9,7 @@
 
 
  .contenido{
-  margin-top: 100px;
+  margin-top: 130px;
   margin-bottom: 100px;
   padding: 20px;
 }
@@ -17,6 +17,7 @@
 .portada{
   width: 100%; /* need to overwrite inline dimensions */
   height: auto;
+  
 }
 
 h2 {
@@ -32,13 +33,15 @@ h2 {
 /* hover styles */
 .imgCardContainer {
   position: relative;
-  box-shadow: 0px 5px 15px rgb(0, 0, 0 ,0.25);
-  /* background-color:  #1B4571; */
+  /* Sombreado */
+  /* box-shadow: 0px 5px 15px rgb(0, 0, 0 ,0.25); */
+  /* background-color:  #ffffff; */
 }
 
 .imgCard {
   line-height: 0;
   overflow: hidden;
+  border-radius:10px;
 }
 
 .imgCard img {
@@ -61,7 +64,7 @@ h2 {
   transition: opacity .5s;
   background: rgba(0, 9, 90, 0.4);
   color: white ; 
-  
+  border-radius:10px;
   text-align: center;
   /* position the text in t’ middle*/
   display: flex;
@@ -83,7 +86,7 @@ h2 {
   transition: opacity .5s;
   background: rgba(0, 9, 90, 0.4);
   color: rgb(246, 238, 6) ; 
-  
+  border-radius:10px;
   text-align: center;
   /* position the text in t’ middle*/
   display: flex;
@@ -98,7 +101,7 @@ h2 {
 
 .imgCardContainer:hover .imgCard img {
   filter: blur(2px);
-  -webkit-transform:scale(1.3);transform:scale(0.9);/*Para contraer imagenes*/
+  -webkit-transform:scale(1.0);transform:scale(1.3);/*Para contraer imagenes*/
 }
 
 .imgCardContainer:hover .puntCard {
@@ -179,6 +182,15 @@ h2 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.left {
+  width: 70%;
+  float: left;
+}
+.right {
+  width: 30%;
+  float: right;
 }
 
 .mostrar {

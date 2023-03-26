@@ -5,14 +5,15 @@
          $(".title").change(function () {
            var checkTitle = $(".title").is(":checked");
            const busquedaGlobal = document.querySelector('#busquedaGlobal');
-           const btnGlobal = document.querySelector('#botonBusqueda');
+        //    const formulario = document.querySelector('#formularioBusq');
              if (checkTitle) {
-               busquedaGlobal.setAttribute("name", "titulo");
-            //    btnGlobal.textContent="Buscar por título";
+
+                busquedaGlobal.setAttribute("name", "titulo");
+                // formulario.setAttribute("action", "/busquedatiti");
              }
              else {
-               busquedaGlobal.setAttribute("name", "nombreBuscar");
-            //    btnGlobal.textContent="Buscar por palabra clave";
+                busquedaGlobal.setAttribute("name", "nombreBuscar");
+                // formulario.setAttribute("action", "/films/list");
                
              }
          });
@@ -52,31 +53,29 @@
     </nav>
     <header class="border-bottom " style="background-color:  #ffffff;">
         <div class="container d-flex flex-wrap ">
-            <!-- <a href="/" class="row d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-                
-                    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                    <span class="fs-4">Cinematrix</span>
-                
-            </a> -->
             
-            <form action="/films/list" method="POST" class=" " role="search">
+            
+            <form action="/films/list" method="POST" class=" " id="formularioBusq" role="search">
                 <ul class="nav me-auto">
                     <li class="nav-item">
                         <input id="busquedaGlobal" type="search" class="form-control keyword" placeholder="Search..." aria-label="Search" name="nombreBuscar" required>
                     </li>
                     <li class="nav-item">
-                        <button id="botonBusqueda" type="submit" class="btn btn-secondary keyword">Busqueda</button>
+                        <button id="botonBusqueda" type="submit" class="btn btn-success keyword"><i class="bi bi-search"></i></button>
                     </li>
                     
-                    <!-- <li class="nav-item"><label for="type">Título</label></li> -->
-                    <!--  -->
+                    
                     <li class="nav-item">
+                        
                         <input type="checkbox" class="btn-check title" id="btn-check-outlined" name="title" value="1" autocomplete="off">
                         <label class="btn btn-outline-primary" for="btn-check-outlined">Título</label>
+                        <!-- Para posibles ampliaciones de busquedas -->
+                        <!-- <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" name="general" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="success-outlined">General</label>
+                        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" name="title" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="danger-outlined">Título</label> -->
                     </li>
-                    
-                    <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>               -->
+                              
                 </ul>                
             </form>
             <!-- <form class="form-inline">

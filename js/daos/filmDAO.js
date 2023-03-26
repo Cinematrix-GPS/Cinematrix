@@ -47,8 +47,8 @@ class FilmDAO extends BaseDAO {
         return this.query(qFilms.rateFilm, [usuario, pelicula, puntuacion]);
     }
 
-    async updateScore(usuario, pelicula, puntuacion) {
-        return this.query(qFilms.getUserRateForFilm, [usuario, pelicula, puntuacion]);
+    async updateScore(puntuacion, usuario, pelicula) {
+        return this.query(qFilms.updateFilmScore, [puntuacion, usuario, pelicula]);
     }
     
 }

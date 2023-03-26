@@ -30,7 +30,7 @@ module.exports = {
     //                 FROM peliculas
     //                 WHERE id=?`,
 
-    qGetFilmById: `SELECT p.id, p.nombre, p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis, p.genero, a.nombreAct, a.apellidosAct 
+    qGetFilmById: `SELECT p.id, p.nombre, p.img,  p.duracion, p.puntuacion, p.fechaEstreno, p.sinopsis, p.genero, a.nombreAct, a.apellidosAct 
                     FROM peliculas  p
                     LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula
                     LEFT JOIN actores a ON ap.id_actor=a.id

@@ -43,7 +43,7 @@ filmRouter.get("/getFilmById/:id",
     filmController.getFilmByIdCtrl
 );
 
-filmRouter.get("/getUserRate/:id",
+filmRouter.get("/getUserRate/:pelicula/:punctuation",
     requiresLogin,
     multerFactory.none(),
     filmController.getUserRateForFilm
