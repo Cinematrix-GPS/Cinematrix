@@ -37,24 +37,24 @@ class userController {
 		this.userDAO.isUsername(usuario.username)
 		.then(value => {
 			console.log("Existe usuario"+value);
-			if(value == 0)	return this.userDAO.createUser(usuario);
-			else throw "Username ya en uso 1";
+			if(value == "")	return this.userDAO.createUser(usuario);
+			else throw "Usuario ya en uso";
 		})
 		.then(value => {
 			console.log("Existe registo"+value);
-			if (value.affectedRows){
+			if (value){
 				response.render(views.registro,{
 					title: "REGISTRO COMPLETO",
-					// fallo: "Sin errores"
+					fallo: "Sin errores"
 				});
 			}
-			else throw "Error en la base de datos"
+			else  console.log("Error en la base de datos");
 
 		})
 		.catch(error =>{
 			response.render(views.registro,{
 				title: error,
-				//fallo: error?error:0
+				fallo: error?error:0
 			});
 
 		})

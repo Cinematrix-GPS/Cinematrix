@@ -31,6 +31,7 @@ class BaseDAO {
 				console.log("RESULTADO QUERY");
 				console.log(result);
 				(err) ? reject(err):resolve(result);
+				
 			})
 		});
 	}

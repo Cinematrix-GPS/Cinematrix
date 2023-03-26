@@ -9,8 +9,8 @@ module.exports ={
     createUser : `INSERT INTO usuarios (nombreCompleto, username, email, password) 
                 VALUES (?, ?, ?, ?);`,
 
-    existeUsername: `SELECT count(*) 
-                    FROM usuarios WHERE username=?;`
+    existeUsername: `SELECT *
+                        FROM usuarios WHERE username=?;`
     
 };
 
