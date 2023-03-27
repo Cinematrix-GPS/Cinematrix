@@ -11,8 +11,8 @@ class filmController {
 	postListByKeyWord = async (request, response) => {
 		console.log("CONTRROLLER!!!");
 		
-		// console.log(request.body.titulo);
-		// console.log(request.body.nombreBuscar);
+		console.log(request.body.titulo);
+		console.log(request.body.nombreBuscar);
 		if(request.body.titulo){
 			console.log("Buscar Titulo");
 			console.log(request.body.titulo);

@@ -3,19 +3,19 @@
 
 <script type="text/javascript">
        
-    $(function () {
+       $(function () {
          
          $(".title").change(function () {
            var checkTitle = $(".title").is(":checked");
            const busquedaGlobal = document.querySelector('#busquedaGlobal');
-           const btnGlobal = document.querySelector('#botonBusqueda');
+        //    const formulario = document.querySelector('#formularioBusq');
              if (checkTitle) {
-               busquedaGlobal.setAttribute("name", "titulo");
-            //    btnGlobal.textContent="Buscar por título";
+                busquedaGlobal.setAttribute("name", "titulo");
+                // formulario.setAttribute("action", "/busquedatiti");
              }
              else {
-               busquedaGlobal.setAttribute("name", "nombreBuscar");
-            //    btnGlobal.textContent="Buscar por palabra clave";
+                busquedaGlobal.setAttribute("name", "nombreBuscar");
+                // formulario.setAttribute("action", "/films/list");
                
              }
          });
