@@ -106,15 +106,18 @@ class filmController {
 	};
 
 	getUserRateForFilm = async (request, response) => {
-		await this.filmDAO.getUserRate(request.session.mail, request.params.pelicula)
-		.then(punctuation => {
-			if (punctuation === NaN) rateFilm(request, response);
+		await this.filmDAO.getUserRate(request.session.mail, request.params.id)
+		.then(result => {
+			console.log(request.session.mail);
+			console.log(request.params.id);
+			console.log("La puntuación es: ", result);
+			if (result.length == 0) this.rateFilm(request, response);
 			else this.updateFilmScore(request, response);
 		})
 	};
 
 	rateFilm = async (request, response) => {
-		await this.filmDAO.rate(request.session.mail, request.params.pelicula, request.body.punctuation);
+		await this.filmDAO.rate(request.session.mail, request.params.id, request.body.punctuation);
 		response.render(views.vistaPelicula, {
 			pelicula: this.#pelicula[0],
 			actoresV: this.#actores,
@@ -124,7 +127,7 @@ class filmController {
 	};
 
 	updateFilmScore = async (request, response) => {
-		await this.filmDAO.updateScore(request.body.punctuation, request.session.mail, request.params.pelicula);
+		await this.filmDAO.updateScore(request.body.punctuation, request.session.mail, request.params.id);
 		response.render(views.vistaPelicula, {
 			pelicula: this.#pelicula[0],
 			actoresV: this.#actores,
