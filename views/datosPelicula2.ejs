@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <form method="post" action="/getFilmById/rateFilm" class="row align-items-center">
+    <form method="post" action="/films/getFilmById/<%= pelicula.id %>/rateFilm" class="row align-items-center">
       <div class="col col-2 offset-3 text-center"><strong>Valorar película:</strong></div>
       <div class="col col-4">
         <% for (let i = 0; i < 11; i++) { %>
