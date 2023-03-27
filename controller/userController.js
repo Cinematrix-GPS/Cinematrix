@@ -19,14 +19,13 @@ class userController {
 			return response.status(400).json({ errors: errors.array() });
 		}
 		
-		let usuario = {
+	let usuario = {
 			nombreCompl: request.body.nombreCompleto,
 			username: request.body.username,
 			correo: request.body.correo,
 			pass: await bcrypt.hash(request.body.password, 10)
 		};
-		console.log(usuario);
-
+		
 		// Username no debe existir en bdd
 		
 		
