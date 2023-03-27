@@ -63,6 +63,8 @@ class filmController {
 	getFilmByIdCtrl = async (request, response) => {
 		console.log("ID --> " + request.params.id);
 		this.#comments = await this.filmDAO.getFilmCommentaries(request.params.id)
+		let media = (await this.filmDAO.averageRate(request.params.id))[0].puntuacion;
+		if (!media) media = '-';
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
@@ -71,9 +73,9 @@ class filmController {
 			this.#pelicula = listadopeliculas.map(p => {
 				return {id: p.id, 
 					nombre: p.nombre,
-					img: p.img,	
+					img: p.img,
 					duracion: p.duracion, 
-					puntuacion: p.puntuacion,	
+					puntuacion: media,
 					fechaEstreno: p.fechaEstreno,
 					sinopsis: p.sinopsis, 
 					genero: p.genero}
@@ -100,7 +102,6 @@ class filmController {
 				pelicula: this.#pelicula[0],
 				actoresV: this.#actores,
 				comentariosV: this.#comments,
-				message: null
 			});
 		})
 	};
@@ -108,32 +109,18 @@ class filmController {
 	getUserRateForFilm = async (request, response) => {
 		await this.filmDAO.getUserRate(request.session.mail, request.params.id)
 		.then(result => {
-			console.log(request.session.mail);
-			console.log(request.params.id);
-			console.log("La puntuación es: ", result);
 			if (result.length == 0) this.rateFilm(request, response);
 			else this.updateFilmScore(request, response);
 		})
+		response.redirect(`/films/getFilmById/${ request.params.id }`);
 	};
 
 	rateFilm = async (request, response) => {
 		await this.filmDAO.rate(request.session.mail, request.params.id, request.body.punctuation);
-		response.render(views.vistaPelicula, {
-			pelicula: this.#pelicula[0],
-			actoresV: this.#actores,
-			comentariosV: this.#comments,
-			message: "¡Se ha registrado su puntuación!"
-		});
 	};
 
 	updateFilmScore = async (request, response) => {
 		await this.filmDAO.updateScore(request.body.punctuation, request.session.mail, request.params.id);
-		response.render(views.vistaPelicula, {
-			pelicula: this.#pelicula[0],
-			actoresV: this.#actores,
-			comentariosV: this.#comments,
-			message: "¡Se ha actualizado su puntuación!"
-		});
 	};
 
 }

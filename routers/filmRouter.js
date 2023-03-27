@@ -43,7 +43,7 @@ filmRouter.get("/getFilmById/:id",
     filmController.getFilmByIdCtrl
 );
 
-filmRouter.post("/getFilmById/:id/rateFilm",
+filmRouter.post("/getFilmById/:id",
     requiresLogin,
     multerFactory.none(),
     filmController.getUserRateForFilm

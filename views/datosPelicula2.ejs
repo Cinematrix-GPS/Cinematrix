@@ -44,14 +44,13 @@
         </div>
       </div>
     </div>
-    <form method="post" action="/films/getFilmById/<%= pelicula.id %>/rateFilm" class="row align-items-center">
+    <form method="post" action="/films/getFilmById/<%= pelicula.id %>" class="row align-items-center">
       <div class="col col-2 offset-3 text-center"><strong>Valorar película:</strong></div>
       <div class="col col-4">
         <% for (let i = 0; i < 11; i++) { %>
           <input type="submit" class="btn btn-primary" name="punctuation" value="<%= i %>">
         <% } %>
       </div>
-      <div class="col col-3 text-success"><strong><%= message %></strong></div>
     </form>
     <button onclick="mostrarComentarios()">+Comentarios</button>
     <div id="seccionComentarios">

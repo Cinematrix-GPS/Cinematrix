@@ -24,11 +24,15 @@ class FilmDAO extends BaseDAO {
     }
 
     async getFilmById(id) {
-        return this.query(qFilms.qGetFilmById, [id]);
+        return await this.query(qFilms.qGetFilmById, [id]);
     }
 
     async getFilmCommentaries(id) {
         return this.query(qFilms.getCommentaries, [id]);
+    }
+
+    async averageRate(id) {
+        return await this.query(qFilms.getAverageRate, [id]);
     }
 
     async createUser(id, nombreCompleto, username, email, password) {
