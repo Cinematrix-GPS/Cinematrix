@@ -114,7 +114,7 @@ class filmController {
 	};
 
 	rateFilm = async (request, response) => {
-		await this.filmDAO.rate(request.session.mail, request.params.pelicula, request.params.puntuacion);
+		await this.filmDAO.rate(request.session.mail, request.params.pelicula, request.body.punctuation);
 		response.render(views.vistaPelicula, {
 			pelicula: this.#pelicula[0],
 			actoresV: this.#actores,
@@ -124,7 +124,7 @@ class filmController {
 	};
 
 	updateFilmScore = async (request, response) => {
-		await this.filmDAO.updateScore(request.params.puntuacion, request.session.mail, request.params.pelicula);
+		await this.filmDAO.updateScore(request.body.punctuation, request.session.mail, request.params.pelicula);
 		response.render(views.vistaPelicula, {
 			pelicula: this.#pelicula[0],
 			actoresV: this.#actores,
