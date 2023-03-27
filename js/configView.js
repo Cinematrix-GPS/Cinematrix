@@ -8,6 +8,9 @@ module.exports ={
     actor: "indexActor",
     vistaPelicula: "datosPelicula",
     comentario: "comentariosPelicula"
+    registro: "registro"
+    
+         
 };
 
  
