@@ -95,17 +95,22 @@
 <body>
 <div class="popup" id="popup">
     <div class="popup-content">
+        <form action="/users/signup" method="POST" enctype="multipart/form-data">
         <span class="buttonClose" onclick="cerrarRegistro()">+</span>
+
         <h2>Registro</h2>
         <hr class="solid"> 
-        <input type="text" placeholder="Nombre completo">
-        <input type="text" placeholder="Nombre de usuario">
-        <input type="text" placeholder="Correo electrónico">
-        <input type="text" style="-webkit-text-security: disc;" placeholder="Contraseña">
-        <input type="text" style="-webkit-text-security: disc;" placeholder="Repita Contraseña">
-        <div class="errorRegistro">No hay error</div>
+        <input type="text" placeholder="Nombre completo" name="nombreCompleto">
+        <input type="text" placeholder="Nombre de usuario" name="username"º>
+        <input type="text" placeholder="Correo electrónico" name="correo">
+        <input type="text" style="-webkit-text-security: disc;" placeholder="Contraseña" name="password">
+        <input type="text" style="-webkit-text-security: disc;" placeholder="Repita Contraseña" name="password2">
+        <div class="alert alert-secondary" role="alert">
+            A simple secondary alert—check it out!
+          </div>
           
-        <button onclick="mostrarErrores()">Registrar</button> <!--Añadir implementacion al boton-->
+        <button  type="submit" class="btn btn-primary w-100" onclick="mostrarErrores()">Registrar</button> <!--Añadir implementacion al boton-->
+        </form>
     </div>
 </div>
 </body>
