@@ -28,8 +28,7 @@ class BaseDAO {
 			connection.query(...params, (err, result) => {
 				
 				connection.release(); // IMPORTANTE: liberamos la conexión una vez tenemos los resultados
-				console.log("RESULTADO QUERY");
-				console.log(result);
+				
 				(err) ? reject(err):resolve(result);
 				
 			})

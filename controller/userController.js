@@ -3,7 +3,7 @@
 const views = require("../js/configView");
 
 const { check, validationResult } = require("express-validator");
-
+const bcrypt = require('bcrypt');//Para encriptar passw
 
 class userController {
 
@@ -19,13 +19,11 @@ class userController {
 			return response.status(400).json({ errors: errors.array() });
 		}
 		
-
-		console.log("CONTRROLLER usuario!!!");
 		let usuario = {
 			nombreCompl: request.body.nombreCompleto,
 			username: request.body.username,
 			correo: request.body.correo,
-			pass: request.body.password,
+			pass: await bcrypt.hash(request.body.password, 10)
 		};
 		console.log(usuario);
 
@@ -36,12 +34,15 @@ class userController {
 		//Correo no debe existir en bdd
 		this.userDAO.isUsername(usuario.username)
 		.then(value => {
-			console.log("Existe usuario"+value);
-			if(value == "")	return this.userDAO.createUser(usuario);
+			if(value.length == 0)	return this.userDAO.existsMail(usuario.correo);
 			else throw "Usuario ya en uso";
 		})
 		.then(value => {
-			console.log("Existe registo"+value);
+			if(value.length == 0)	return this.userDAO.createUser(usuario);
+			else throw "Mail ya en uso";
+		})
+		.then(value => {
+			console.log("Existe registo "+value);
 			if (value){
 				response.render(views.registro,{
 					title: "REGISTRO COMPLETO",
