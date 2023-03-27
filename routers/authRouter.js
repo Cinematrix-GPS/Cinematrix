@@ -14,7 +14,7 @@ const {requiresLogout} = require('../middleware/auth')
 
 // Sólo se puede acceder al login si no hay sesión iniciada
 authRouter.get('/iniciar', requiresLogout, async (req, res) => {
-    res.render(views.login, {  
+    res.render(views.iniciar, {  
             title: "Prototipo Cinematrix",
             films: 0});
 });
