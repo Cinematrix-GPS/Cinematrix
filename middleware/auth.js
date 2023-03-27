@@ -5,7 +5,7 @@ const requiresLogin = async (req, res, next) => {
 	// Si no había un usuario válido en la cookie de la sesión, limpiamos la cookie y vamos al login
 	if (!req.session.mail || await getUser(req.session.mail) == null){
 		res.clearCookie('token');
-		return res.redirect('/login');
+		return res.redirect('/iniciar');
 	}
 
 	// El usuario existe: todo ok

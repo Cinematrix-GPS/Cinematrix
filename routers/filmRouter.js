@@ -10,9 +10,13 @@ const views = require("../js/configView");
 const {getPool} = require('../database/configDB');
 
 const FilmDAO = require('../js/daos/filmDAO');
+const LoginController = require('../controller/loginController');
 
 const fDAO = new FilmDAO(getPool());
 const filmController = new FilmController(fDAO);
+const loginController = new LoginController(fDAO);
+
+
 
 filmRouter.get('/search', async (req, res) => {
     res.status(200);
@@ -48,5 +52,6 @@ filmRouter.get("/getFilmById/:id",
      filmController.getCommentaries
  );
 
+ 
 
 module.exports = filmRouter;

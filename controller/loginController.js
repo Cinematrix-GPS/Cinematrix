@@ -9,7 +9,7 @@ class LoginController{
 
 	getLogin = async (req, res) => {
 		// Se redirige a la vista de inicio de sesión
-		return res.render(views.login, {
+		return res.render(views.iniciar, {
 			title: 'Identifícate'
 		});
 	};
@@ -24,11 +24,11 @@ class LoginController{
 
 		// Si el usuario no está registrado informamos del error en la vista
 		if (!usuario)
-			return res.render(views.login, {errorMessage: 'El usuario no está registrado!', title: 'Identifícate'});
+			return res.render(views.iniciar, {errorMessage: 'El usuario no está registrado!', title: 'Identifícate'});
 
 		// Si la contraseña es incorrecta
 		if (await bcrypt.compare(req.body.password, usuario.password) == false)
-			return res.render(views.login, {errorMessage: 'La contraseña es incorrecta!', title: 'Identifícate'});
+			return res.render(views.iniciar, {errorMessage: 'La contraseña es incorrecta!', title: 'Identifícate'});
 
 		// Llegados a este punto, el usuario está registrado y ha introducido su contraseña
 		// Guardamos en la sesión el email del usuario para poder identificarlo

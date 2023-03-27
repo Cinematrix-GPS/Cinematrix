@@ -13,12 +13,12 @@ const loginController = new LoginController(userDAO);
 const {requiresLogout} = require('../middleware/auth')
 
 // Sólo se puede acceder al login si no hay sesión iniciada
-authRouter.get('/login', requiresLogout, async (req, res) => {
+authRouter.get('/iniciar', requiresLogout, async (req, res) => {
     res.render(views.login, {  
             title: "Prototipo Cinematrix",
             films: 0});
 });
 
-authRouter.post('/login', requiresLogout, loginController.postLogin);
+authRouter.post('/iniciar', requiresLogout, loginController.postLogin);
 
 module.exports = authRouter;
