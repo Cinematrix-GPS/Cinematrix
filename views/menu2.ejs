@@ -44,7 +44,7 @@
                         <li><a class="dropdown-item" href="#">Login</a></li>
                         <li><a class="dropdown-item" href="#">Usuario</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Registro</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li>
                     </ul>
                 </li>
             </ul>
@@ -92,3 +92,36 @@
         </div>
     </header>
 </div>
+<body>
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <span class="buttonClose" onclick="cerrarRegistro()">+</span>
+        <h2>Registro</h2>
+        <hr class="solid"> 
+        <input type="text" placeholder="Nombre completo">
+        <input type="text" placeholder="Nombre de usuario">
+        <input type="text" placeholder="Correo electrónico">
+        <input type="text" style="-webkit-text-security: disc;" placeholder="Contraseña">
+        <input type="text" style="-webkit-text-security: disc;" placeholder="Repita Contraseña">
+        <div class="errorRegistro">No hay error</div>
+          
+        <button onclick="mostrarErrores()">Registrar</button> <!--Añadir implementacion al boton-->
+    </div>
+</div>
+</body>
+
+<script>
+
+    function mostrarRegistro() {
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function mostrarErrores() {
+        document.getElementById("errorRegistro").style.display = "block";
+    }
+
+    function cerrarRegistro() {
+        document.getElementById("popup").style.display = "none";
+    }
+
+</script>
