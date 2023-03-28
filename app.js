@@ -36,6 +36,11 @@ app.use(session({
 	saveUninitialized: true
 }), require('./routers/authRouter'));
 
+app.use(function(request, response, next) {
+    console.log("Usuario logeado: ", request.session.mail);
+    next();
+})
+
 // Enrutamiento
 
 const filmRoutes = require("./routers/filmRouter");
