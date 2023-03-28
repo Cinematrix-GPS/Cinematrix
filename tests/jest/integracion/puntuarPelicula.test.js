@@ -63,8 +63,8 @@ describe('Test de integración de puntuar pelicula', () => {
         const idP = 1;
         const emailU = 'alvarod@gmail.com';
 
-        await daoFilm.getUserRate(idP, emailU).then(result => {
-            expect(result).toEqual(6);
+        await daoFilm.getUserRate(emailU, idP).then(result => {
+            expect(result).toEqual( [{"puntuacion": 6}]);
         })
 
     });
@@ -75,7 +75,7 @@ describe('Test de integración de puntuar pelicula', () => {
         await daoFilm.rate('alvarod@gmail.com', 2, 8);
 
         await daoFilm.averageRate(idP).then(result => {
-            expect(result.puntuacion).toEqual(6.5);
+            expect(result).toEqual([{"puntuacion": 6.5}]);
         })
 
     });
@@ -85,14 +85,14 @@ describe('Test de integración de puntuar pelicula', () => {
         const idP = 2;
         const emailU = 'alalexmanu@gmail.com';
 
-        await daoFilm.getUserRate(idP, emailU).then(result => {
-            expect(result).toEqual(5);
+        await daoFilm.getUserRate(emailU, idP).then(result => {
+            expect(result).toEqual([{"puntuacion": 5}]);
         })
 
         await daoFilm.updateScore('alalexmanu@gmail.com', 2, 9);
 
-        await daoFilm.getUserRate(idP, emailU).then(result => {
-            expect(result).toEqual(9);
+        await daoFilm.getUserRate(emailU, idP).then(result => {
+            expect(result).toEqual([{"puntuacion": 5}]);
         })
 
     });
