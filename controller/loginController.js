@@ -34,6 +34,7 @@ class LoginController{
 		// Llegados a este punto, el usuario está registrado y ha introducido su contraseña
 		// Guardamos en la sesión el email del usuario para poder identificarlo
 		req.session.mail = req.body.mail;
+		req.session.username = usuario.username;
 
 		// A la página principal con la sesión ya iniciada
 		return res.redirect('/');
