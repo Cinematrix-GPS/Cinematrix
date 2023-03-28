@@ -43,19 +43,13 @@ class userController {
 		.then(value => {
 			console.log("Existe registo "+value);
 			if (value){
-				response.render(views.registro,{
-					title: "REGISTRO COMPLETO",
-					fallo: "Sin errores"
-				});
+				response.redirect("/films/start");
 			}
 			else  console.log("Error en la base de datos");
 
 		})
 		.catch(error =>{
-			response.render(views.registro,{
-				title: error,
-				fallo: error?error:0
-			});
+			response.redirect("/films/start");
 
 		})
 		
