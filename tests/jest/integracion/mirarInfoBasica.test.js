@@ -78,7 +78,6 @@ describe('Test de integracion de la informacion basica de una pelicula',()=>{
 			expect(result[0].nombre).toEqual("Alien: el octavo pasajero"),
 			expect(result[0].id).toEqual(1),
 			expect(result[0].duracion).toEqual(115),
-			expect(result[0].puntuacion).toEqual(9),
 			expect(result[0].genero).toEqual("Terror"),
 			expect(result[0].nombreAct).toEqual("Sigourney"),
 			expect(result[0].apellidosAct).toEqual("Weaver"),

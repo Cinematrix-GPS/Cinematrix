@@ -71,6 +71,8 @@ describe('Test de Integración ver comentarios de una película', () => {
 		await dao.query("DROP TABLE peliculas;");
         await dao.query("DROP TABLE usuarios;");
         await dao.query("DROP TABLE comentarios;");
+		await dao.query("DROP TABLE actores_peliculas;");
+		await dao.query("DROP TABLE actores;");
 		await pool.end();
 	});
 
