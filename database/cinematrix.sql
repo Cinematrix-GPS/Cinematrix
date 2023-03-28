@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2023 a las 17:13:11
+-- Tiempo de generación: 28-03-2023 a las 12:30:09
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -26,8 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `actores`
 --
-
-use cinematrix;
 
 CREATE TABLE `actores` (
   `id` int(11) NOT NULL,
@@ -262,10 +260,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombreCompleto`, `username`, `email`, `password`) VALUES
-(1, 'Juan', 'Juantio', 'Juantio@jjj.es', '1234'),
-(2, 'popo', 'popo', 'popo@jjj.es', '1234'),
-(3, 'erer', 'erer', 'erer@jjj.es', '1234'),
-(4, 'pepe', 'pepegot', 'probando@gmail.com', '1234');
+(1, 'Juan', 'Juantio', 'Juantio@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
+(2, 'popo', 'popo', 'popo@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
+(3, 'erer', 'erer', 'erer@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
+(4, 'pepe', 'pepegot', 'probando@gmail.com', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW');
 
 --
 -- Índices para tablas volcadas
