@@ -66,7 +66,7 @@ module.exports = {
 
     rateFilm: `INSERT INTO puntuaciones(usuario, pelicula, puntuacion)
                VALUES((SELECT DISTINCT usuarios.id
-                       FROM puntuaciones p JOIN usuarios ON p.usuario = usuarios.id
+                       FROM usuarios
                        WHERE usuarios.email = ?), ?, ?)`,
 
     updateFilmScore: `UPDATE puntuaciones SET puntuacion = ?

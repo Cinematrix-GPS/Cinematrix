@@ -68,6 +68,9 @@ class filmController {
 		this.#comments = await this.filmDAO.getFilmCommentaries(request.params.id)
 		let media = (await this.filmDAO.averageRate(request.params.id))[0].puntuacion;
 		if (!media) media = '-';
+		else {
+			media = Number(media.toFixed(2));
+		}
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
