@@ -14,6 +14,7 @@ module.exports = {
                 OR a.nombreAct like ?
                 OR a.apellidosAct like ?
                 OR p.genero like ?`,
+                // OR year(p.fechaEstreno) like ?
     
 	createFilm: `INSERT INTO peliculas(nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero)
 							    VALUES(?, ?, ?, ?, ?, ?, ?)`,
