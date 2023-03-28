@@ -1,8 +1,6 @@
 "use strict";
 
 const views = require("../js/configView");
-const UserDAO = require('../js/daos/userDAO');
-const {getPool} = require('../database/configDB');
 
 class filmController {
 
@@ -10,8 +8,9 @@ class filmController {
 	#actores;
 	#comments;
 
-	constructor (dao) {
-		this.filmDAO = dao;
+	constructor (...params) {
+		this.filmDAO = params[0];
+		this.userDAO = params[1];
 	}
 
 	postListByKeyWord = async (request, response) => {
@@ -129,8 +128,7 @@ class filmController {
 	};
 
 	updateFilmScore = async (request, response) => {
-		const userDAO = new UserDAO(getPool());
-		const idUsuario = (await userDAO.getUser(request.session.mail)).id;
+		const idUsuario = (await this.userDAO.getUser(request.session.mail)).id;
 
 		await this.filmDAO.updateScore(request.body.punctuation, idUsuario, request.params.id);
 	};
