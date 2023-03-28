@@ -4,6 +4,7 @@ class RequestStub {
 		this.body = {};
 		this.query = {};
 		this.params = {};
+		this.session = {};
 	}
 }
 
