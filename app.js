@@ -37,7 +37,7 @@ app.use(session({
 }), require('./routers/authRouter'));
 
 app.use(function(request, response, next) {
-    console.log("Usuario logeado: ", request.session.mail);
+    console.log("Usuario logeado: " + request.session.mail+" "+ request.session.username);
     next();
 })
 
