@@ -64,16 +64,15 @@
         </div>
         
         
-        <div class="card-body">
-            <a href="/films/getCommentaries/<%= pelicula.id %>" class="btn btn-primary">Ir a Comentarios</a>
-        </div>
+        
         
       </div>
       
     </div>
   </div>
-    
+  
 </div>
+
 <form method="post" action="/films/getFilmById/<%= pelicula.id %>" class="row align-items-center mb-5">
   <div class="col col-2 offset-3 text-center"><strong>Valorar película:</strong></div>
   <div class="col col-4">
@@ -84,7 +83,27 @@
 </form>
       <!--VISTA COMENTARIOS-->
     <!-- <a class="linkD" href="#"> Ir a Comentarios </a> -->
-  
+    <% if (comentariosV.length === 0) { %>
+      <h2>Sin comentarios</h2>
+    <% } else { %>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      
+      <% comentariosV.forEach(function(comentariosV) { %>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            <%=comentariosV.username%> <%=comentariosV.fecha%>
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" style="">
+          <div class="accordion-body"> <%=comentariosV.texto%></div>
+        </div>
+      </div> 
+
+
+      <% }); %> 
+    <% } %>
+    </div>
    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
