@@ -16,7 +16,7 @@ const {requiresLogout} = require('../middleware/auth')
 authRouter.get('/login', requiresLogout, async (req, res) => {
     res.render(views.login, {  
             title: "Prototipo Cinematrix",
-            films: 0});
+            errorMessage: null});
 });
 
 authRouter.post('/login', requiresLogout, loginController.postLogin);
