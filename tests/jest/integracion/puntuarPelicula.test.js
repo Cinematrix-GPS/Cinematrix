@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const {getPool} = require('../../../database/configDB');
 const FilmDAO = require('../../../js/daos/filmDAO');
+const UserDAO = require('../../../js/daos/userDAO');
 
 describe('Test de integración de puntuar pelicula', () => {
 
@@ -63,8 +64,8 @@ describe('Test de integración de puntuar pelicula', () => {
         const idP = 1;
         const emailU = 'alvarod@gmail.com';
 
-        await daoFilm.getUserRate(idP, emailU).then(result => {
-            expect(result).toEqual(6);
+        await daoFilm.getUserRate(emailU, idP).then(result => {
+            expect(result[0].puntuacion).toEqual(6);
         })
 
     });
@@ -75,7 +76,7 @@ describe('Test de integración de puntuar pelicula', () => {
         await daoFilm.rate('alvarod@gmail.com', 2, 8);
 
         await daoFilm.averageRate(idP).then(result => {
-            expect(result.puntuacion).toEqual(6.5);
+            expect(result[0].puntuacion).toEqual(6.5);
         })
 
     });
@@ -85,14 +86,18 @@ describe('Test de integración de puntuar pelicula', () => {
         const idP = 2;
         const emailU = 'alalexmanu@gmail.com';
 
-        await daoFilm.getUserRate(idP, emailU).then(result => {
-            expect(result).toEqual(5);
+        await daoFilm.getUserRate(emailU, idP).then(result => {
+            expect(result[0].puntuacion).toEqual(5);
         })
+		
+		const userDAO = new UserDAO(pool);
 
-        await daoFilm.updateScore('alalexmanu@gmail.com', 2, 9);
+		const idUsuario = (await userDAO.getUser(emailU)).id;
+        await daoFilm.updateScore(9, idUsuario, idP);
+        
 
-        await daoFilm.getUserRate(idP, emailU).then(result => {
-            expect(result).toEqual(9);
+        await daoFilm.getUserRate(emailU, idP).then(result => {
+			expect(result[0].puntuacion).toEqual(9);
         })
 
     });

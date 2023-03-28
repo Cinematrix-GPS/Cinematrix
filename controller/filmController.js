@@ -1,6 +1,8 @@
 "use strict";
 
 const views = require("../js/configView");
+const UserDAO = require('../js/daos/userDAO');
+const {getPool} = require('../database/configDB');
 
 class filmController {
 
@@ -66,7 +68,7 @@ class filmController {
 	getFilmByIdCtrl = async (request, response) => {
 		console.log("ID --> " + request.params.id);
 		this.#comments = await this.filmDAO.getFilmCommentaries(request.params.id)
-		let media = (await this.filmDAO.averageRate(request.params.id))[0].puntuacion;
+		let media = (await this.filmDAO.averageRate(request.params.id))[0]?.puntuacion;
 		if (!media) media = '-';
 		else {
 			media = Number(media.toFixed(2));
@@ -127,7 +129,10 @@ class filmController {
 	};
 
 	updateFilmScore = async (request, response) => {
-		await this.filmDAO.updateScore(request.body.punctuation, request.session.mail, request.params.id);
+		const userDAO = new UserDAO(getPool());
+		const idUsuario = (await userDAO.getUser(request.session.mail)).id;
+
+		await this.filmDAO.updateScore(request.body.punctuation, idUsuario, request.params.id);
 	};
 
 }

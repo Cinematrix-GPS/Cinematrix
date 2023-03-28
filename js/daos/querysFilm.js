@@ -70,9 +70,7 @@ module.exports = {
                        WHERE usuarios.email = ?), ?, ?)`,
 
     updateFilmScore: `UPDATE puntuaciones SET puntuacion = ?
-                      WHERE usuario = (SELECT DISTINCT usuarios.id
-                                       FROM puntuaciones JOIN usuarios ON puntuaciones.usuario = usuarios.id
-                                       WHERE usuarios.email = ?) AND pelicula = ?`,
+                      WHERE usuario = ? AND pelicula = ?`,
     
 };
 

@@ -33,11 +33,9 @@ describe('Test Controlador Puntuacion: Puntuacion de una pelicula', () => {
 
 		await filmController.getUserRateForFilm(req, res);
 
-		expect(res.render).toHaveBeenCalledWith(views.index, expect.objectContaining({
-			puntuation: expect.arrayContaining([
-				puntuacion[0].punctuation()
-			])
-		}));
+		// Debe registrarse la puntuación y redirigir la vista
+		expect(res.redirect).toHaveBeenCalledWith(`/films/getFilmById/1`);
+		
 	});
 
 });

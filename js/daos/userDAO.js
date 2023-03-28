@@ -13,9 +13,7 @@ class userDAO extends BaseDAO {
 
 	// Comprobamos si existe username
 	async isUsername(username){
-		
 		return this.query(qUser.existeUsername, [username]);
-		
 	}
 	
 	async existsMail(mail){
