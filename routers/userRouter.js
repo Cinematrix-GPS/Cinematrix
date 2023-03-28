@@ -25,7 +25,16 @@ userRouter.post("/signup", multerFactory.none(),
     // check("password2","La contraseña de confirmación debe tener el mismo valor que la contraseña").exists()
     // .custom(( value, {req})=> value === req.body.password)
     // ],
-
+    check("username", "El nombre de usuario esta vacio").notEmpty(),
+    check("correo","Dirección de correo no válida o vacia").isEmail(),
+    check("password", "La logintud minima debe ser 4").isLength({ min: 4}),
+    check("password2")
+    .custom((value, { req }) => {
+        if (value !== req.body.password) {
+            throw new Error('Las contraseñas no son iguales');
+        }
+        return true;
+    }),
     useRCrtl.addUser,
 
 )

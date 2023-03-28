@@ -6,7 +6,12 @@ const qFilms = require('./querysFilm');
 class FilmDAO extends BaseDAO {
 	
 	async listFilms(keyWord) {
-        const formattedKeyWord = `%${keyWord}%`;
+
+        // let formattedKeyWord ="";
+        // if (typeof keyWord === 'number') formattedKeyWord = keyWord;
+        // else 
+        let formattedKeyWord = `%${keyWord}%`;
+        
         return this.query(qFilms.listFilm, Array(5).fill(formattedKeyWord));   
     }
 
