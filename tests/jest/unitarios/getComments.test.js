@@ -35,7 +35,7 @@ describe('Test ver comentarios', () => {
 
 		req.params.id = 1;
 
-		await filmController.getCommentaries(req, res);
+		await filmController.getFilmByIdCtrl(req, res);
 		
 		const objetoCapturado = res.render.mock.calls[0][1].comments;
 
@@ -51,7 +51,7 @@ describe('Test ver comentarios', () => {
 
 		req.params.id = 3;
 
-		await filmController.getCommentaries(req, res);
+		await filmController.getFilmByIdCtrl(req, res);
 		
 		const objetoCapturado = res.render.mock.calls[0][1].comments;
 
