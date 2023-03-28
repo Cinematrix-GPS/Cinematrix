@@ -26,7 +26,7 @@ class filmController {
 						title: "Listar peliculas por titulo",
 						films: filmListByTitle,
 						msg: "Busqueda por Título",
-						username: request.session.username?request.session.username:"Nombre Usuario"
+						username: request.session.username?request.session.username:0
 					});
 				}
 			)
@@ -40,7 +40,7 @@ class filmController {
 						title: "Listar peliculas por palabra clave",
 						films: filmListByKeyWord,
 						msg: "Busqueda por palabra clave",
-						username: request.session.username?request.session.username:"Nombre Usuario"
+						username: request.session.username?request.session.username:0
 					});
 				}
 			)
@@ -58,7 +58,7 @@ class filmController {
 					title: "Listado completo",
 					films: filmsStart,
 					msg: "",
-					username: request.session.username?request.session.username:"Nombre Usuario"
+					username: request.session.username?request.session.username:0
 				});
 		})
 	};
@@ -108,7 +108,7 @@ class filmController {
 				pelicula: this.#pelicula[0],
 				actoresV: this.#actores,
 				comentariosV: this.#comments,
-				username: request.session.username?request.session.username:"Nombre Usuario"
+				username: request.session.username?request.session.username:0
 			});
 		})
 	};
