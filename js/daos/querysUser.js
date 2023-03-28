@@ -13,8 +13,11 @@ module.exports ={
                         FROM usuarios WHERE username=?;`,
     
     existeMail: `SELECT email
-                    FROM usuarios WHERE email=?;`
-    
+                    FROM usuarios WHERE email=?;`,
+
+	readUser:	`SELECT email, password, username, nombreCompleto
+				 FROM usuarios
+				 WHERE email = ?`
 };
 
 // Para paginacion SELECT p.id, p.nombre, p.img FROM peliculas p LIMIT 8, 4; Donde LIMIT [Desplazamiento][numero que aparecen]

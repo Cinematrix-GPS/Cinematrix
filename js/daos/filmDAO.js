@@ -24,11 +24,15 @@ class FilmDAO extends BaseDAO {
     }
 
     async getFilmById(id) {
-        return this.query(qFilms.qGetFilmById, [id]);
+        return await this.query(qFilms.qGetFilmById, [id]);
     }
 
     async getFilmCommentaries(id) {
         return this.query(qFilms.getCommentaries, [id]);
+    }
+
+    async averageRate(id) {
+        return await this.query(qFilms.getAverageRate, [id]);
     }
 
     async createUser(id, nombreCompleto, username, email, password) {
@@ -47,8 +51,8 @@ class FilmDAO extends BaseDAO {
         return this.query(qFilms.rateFilm, [usuario, pelicula, puntuacion]);
     }
 
-    async updateScore(usuario, pelicula, puntuacion) {
-        return this.query(qFilms.getUserRateForFilm, [usuario, pelicula, puntuacion]);
+    async updateScore(puntuacion, usuario, pelicula) {
+        return this.query(qFilms.updateFilmScore, [puntuacion, usuario, pelicula]);
     }
     
 }

@@ -4,6 +4,10 @@ const views = require("../js/configView");
 
 class filmController {
 
+	#pelicula;
+	#actores;
+	#comments;
+
 	constructor (dao) {
 		this.filmDAO = dao;
 	}
@@ -58,75 +62,65 @@ class filmController {
 
 	getFilmByIdCtrl = async (request, response) => {
 		console.log("ID --> " + request.params.id);
-		let comments = await this.filmDAO.getFilmCommentaries(request.params.id)
+		this.#comments = await this.filmDAO.getFilmCommentaries(request.params.id)
+		let media = (await this.filmDAO.averageRate(request.params.id))[0].puntuacion;
+		if (!media) media = '-';
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
 			// console.log(listadopeliculas);
 			// Filtrando json con los actores
-			let pelicula = listadopeliculas.map(p => {
+			this.#pelicula = listadopeliculas.map(p => {
 				return {id: p.id, 
 					nombre: p.nombre,
-					img: p.img,	
+					img: p.img,
 					duracion: p.duracion, 
-					puntuacion: p.puntuacion,	
+					puntuacion: media,
 					fechaEstreno: p.fechaEstreno,
 					sinopsis: p.sinopsis, 
 					genero: p.genero}
 			}).slice(0, 1);
 			
-			console.log(pelicula);
+			console.log(this.#pelicula);
 			
-			let actores =listadopeliculas.map(a => {
+			this.#actores = listadopeliculas.map(a => {
 				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
-			console.log(actores);
+			console.log(this.#actores);
 			
-				// response.render(views.vistaPelicula, {
-				// 	titleV: pelicula[0].nombre,
-				// 	idV: pelicula[0].id,
-				// 	sinopsisV: pelicula[0].sinopsis,
-				// 	generoV: pelicula[0].genero,
-				// 	actoresV: actores,
-				// 	fechaEstrenoV: pelicula[0].fechaEstreno,
-				// 	duracionV: pelicula[0].duracion
+			// response.render(views.vistaPelicula, {
+			// 	titleV: pelicula[0].nombre,
+			// 	idV: pelicula[0].id,
+			// 	sinopsisV: pelicula[0].sinopsis,
+			// 	generoV: pelicula[0].genero,
+			// 	actoresV: actores,
+			// 	fechaEstrenoV: pelicula[0].fechaEstreno,
+			// 	duracionV: pelicula[0].duracion
 
-				// });
-				response.render(views.vistaPelicula, {
-					pelicula: pelicula[0],
-					actoresV: actores,
-					comentariosV: comments
-				});
-			})
-		}
-
-	getCommentaries = async (request, response) => {
-		console.log("ID película --> " + request.params.id);
-		await this.filmDAO.getFilmCommentaries(request.params.id)
-		.then(comments =>{
-			console.log(comments);
-			response.render(views.comentario, {
-				comments: comments
+			// });
+			response.render(views.vistaPelicula, {
+				pelicula: this.#pelicula[0],
+				actoresV: this.#actores,
+				comentariosV: this.#comments,
 			});
 		})
 	};
 
 	getUserRateForFilm = async (request, response) => {
-		await this.filmDAO.getUserRate(request.session.usuario, request.params.id)
-		.then(punctuation => {
-			if (punctuation == null) rateFilm(request, response);
-			else updateFilmScore(request, response);
+		await this.filmDAO.getUserRate(request.session.mail, request.params.id)
+		.then(result => {
+			if (result.length == 0) this.rateFilm(request, response);
+			else this.updateFilmScore(request, response);
 		})
+		response.redirect(`/films/getFilmById/${ request.params.id }`);
 	};
 
 	rateFilm = async (request, response) => {
-		await this.filmDAO.rate(request.session.usuario, request.params.id, request.body.puntuacion);
-		response.render({ message: "Se ha registrado su puntuación" });
+		await this.filmDAO.rate(request.session.mail, request.params.id, request.body.punctuation);
 	};
 
 	updateFilmScore = async (request, response) => {
-		await this.filmDAO.updateScore(request.session.body.usuario, request.params.id, request.body.puntuacion);
-		response.render({ message: "Se ha actualizado su puntuación" });
+		await this.filmDAO.updateScore(request.body.punctuation, request.session.mail, request.params.id);
 	};
 
 }

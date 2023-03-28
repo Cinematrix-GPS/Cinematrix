@@ -22,7 +22,7 @@
 <div class="contenido  m-0 vh-100 row justify-content-center align-items-center">
   
    
-  <div class="card mb-3 col-auto" style="max-width: 1080px;">
+  <div class="card col-auto" style="max-width: 1080px;">
     <!-- <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">
         Puntuacion: <%=pelicula.puntuacion%>
         <span class="visually-hidden">Puntuacion</span>
@@ -74,6 +74,14 @@
   </div>
     
 </div>
+<form method="post" action="/films/getFilmById/<%= pelicula.id %>" class="row align-items-center mb-5">
+  <div class="col col-2 offset-3 text-center"><strong>Valorar película:</strong></div>
+  <div class="col col-4">
+    <% for (let i = 0; i < 11; i++) { %>
+      <input type="submit" class="btn btn-primary" name="punctuation" value="<%= i %>">
+    <% } %>
+  </div>
+</form>
       <!--VISTA COMENTARIOS-->
     <!-- <a class="linkD" href="#"> Ir a Comentarios </a> -->
   

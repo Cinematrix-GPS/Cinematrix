@@ -24,6 +24,11 @@ class userDAO extends BaseDAO {
 		
 	}
 	
+	async getUser(mail){
+		// El DAO devuelve un array, pero como mail es pk, será un array con un único objeto
+        return (await this.query(qUser.readUser, [mail]))[0];
+    }
+	
 }
 
 module.exports = userDAO;
