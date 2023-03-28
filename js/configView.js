@@ -10,8 +10,6 @@ module.exports ={
     comentario: "comentariosPelicula",
     registro: "registro",
     login: "login"
-    
-         
 };
 
  
