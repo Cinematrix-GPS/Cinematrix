@@ -8,8 +8,9 @@ class filmController {
 	#actores;
 	#comments;
 
-	constructor (dao) {
-		this.filmDAO = dao;
+	constructor (...params) {
+		this.filmDAO = params[0];
+		this.userDAO = params[1];
 	}
 
 	postListByKeyWord = async (request, response) => {
@@ -127,7 +128,9 @@ class filmController {
 	};
 
 	updateFilmScore = async (request, response) => {
-		await this.filmDAO.updateScore(request.body.punctuation, request.session.mail, request.params.id);
+		const idUsuario = (await this.userDAO.getUser(request.session.mail)).id;
+
+		await this.filmDAO.updateScore(request.body.punctuation, idUsuario, request.params.id);
 	};
 
 }

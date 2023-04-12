@@ -54,10 +54,10 @@ module.exports = {
                         WHERE id_pelicula= ?
                         ORDER BY fecha DESC`,
 
-    createUser: `INSERT INTO USUARIOS(id, nombreCompleto, username, email, password)
+    createUser: `INSERT INTO usuarios(id, nombreCompleto, username, email, password)
                  VALUES (?, ?, ?, ?, ?)`,
 
-    createComment: `INSERT INTO COMENTARIOS(id, id_usuario, id_pelicula, texto, fecha)
+    createComment: `INSERT INTO comentarios(id, id_usuario, id_pelicula, texto, fecha)
                     VALUES(?, ?, ?, ?, ?)`,
 
     getUserRateForFilm: `SELECT puntuacion
@@ -70,9 +70,7 @@ module.exports = {
                        WHERE usuarios.email = ?), ?, ?)`,
 
     updateFilmScore: `UPDATE puntuaciones SET puntuacion = ?
-                      WHERE usuario = (SELECT DISTINCT usuarios.id
-                                       FROM puntuaciones JOIN usuarios ON puntuaciones.usuario = usuarios.id
-                                       WHERE usuarios.email = ?) AND pelicula = ?`,
+                      WHERE usuario = ? AND pelicula = ?`,
     
 };
 

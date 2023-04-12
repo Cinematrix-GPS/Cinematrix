@@ -15,7 +15,7 @@ module.exports ={
     existeMail: `SELECT email
                     FROM usuarios WHERE email=?;`,
 
-	readUser:	`SELECT email, password, username, nombreCompleto
+	readUser:	`SELECT id, email, password, username, nombreCompleto
 				 FROM usuarios
 				 WHERE email = ?`
 };
