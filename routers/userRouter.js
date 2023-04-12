@@ -13,7 +13,8 @@ const { check,validationResult } = require('express-validator');
 
 const uFAO = new userDao(getPool());
 const useRCrtl = new userController(uFAO);
-
+//Inicio de sesion
+const {requiresLogout} = require('../middleware/auth');
 
 
 userRouter.post("/signup", multerFactory.none(),
@@ -37,7 +38,20 @@ userRouter.post("/signup", multerFactory.none(),
     }),
     useRCrtl.addUser,
 
-)
+);
+
+// Sólo se puede acceder al login si no hay sesión iniciada
+userRouter.get('/loginForm', 
+    requiresLogout, 
+    async (req, res) => {
+        res.render(views.login, {  
+            title: "Prototipo Cinematrix",
+            errorMessage: null});
+});
+
+userRouter.post('/login', 
+    requiresLogout, 
+    useRCrtl.postLogin);
 
 
 module.exports = userRouter;
