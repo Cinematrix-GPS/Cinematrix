@@ -12,7 +12,7 @@ class FilmDAO extends BaseDAO {
         // else 
         let formattedKeyWord = `%${keyWord}%`;
         
-        return this.query(qFilms.listFilm, Array(5).fill(formattedKeyWord));   
+        return this.query(qFilms.listFilm, Array(5).fill(formattedKeyWord));
     }
 
 	async createFilm(nombre, imagen, duracion, puntuacion, fechaEstreno, sinopsis, genero) {
