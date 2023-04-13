@@ -2,7 +2,8 @@
 
 const { resolve } = require('path');
 const BaseDAO = require('./baseDAO');
-const qUser = require('./querysUser');
+
+const qUser = require('./queries/userQueries');
 
 class userDAO extends BaseDAO {
 	
