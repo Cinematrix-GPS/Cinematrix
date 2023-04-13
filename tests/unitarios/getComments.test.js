@@ -8,7 +8,6 @@ const Response = require('../stubs/responseStub');
 const FilmController = require('../../controller/filmController');
 const views = require('../../js/configView');
 
-
 const comentarios = [
 	{	id: 1,
 		usuario: 2,
