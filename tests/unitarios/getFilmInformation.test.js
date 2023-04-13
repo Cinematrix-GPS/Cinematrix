@@ -1,9 +1,12 @@
-const FilmDAO = require('../../stubs/filmDAOstub');
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+const FilmDAO = require('../stubs/filmDAOstub');
+const RateDAO = require('../stubs/rateDAOstub');
+const CommentDAO = require('../stubs/commentDAOstub');
 
-const FilmController = require('../../../controller/filmController');
-const views = require('../../../js/configView');
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
+
+const FilmController = require('../../controller/filmController');
+const views = require('../../js/configView');
 
 const infoBasic=[{
 	id: 2,
@@ -57,12 +60,26 @@ let salida = {
 	  }],
 };
 
+let puntuaciones = [{
+		mail: 'angel@gps.es',
+		id: 1,
+		punctuation: 10
+	}, {
+		mail: 'manolo@gps.es',
+		id: 2,
+		punctuation: 5
+	}
+]
+
   describe('Test de mostrar datos básicos', () => {
 
-	const dao = new FilmDAO(infoBasic);
-	const filmController = new FilmController(dao);
+	const filmDAO = new FilmDAO(infoBasic);
+	const commentDAO = new CommentDAO(infoBasic);
+	const rateDAO = new RateDAO(puntuaciones);
 
-	test('Busqueda de informacion con id existente',async()=>{
+	const filmController = new FilmController(filmDAO, null, rateDAO, commentDAO);
+
+	test('Busqueda de informacion con id existente', async()=>{
 		const req = new Request();
 		const res = new Response();
 
@@ -86,7 +103,7 @@ let salida = {
 
 		req.params.id=10000;
 
-		const pelis = dao.averageRate(req.params.id);
+		//const pelis = rateDAO.averageRate(req.params.id);
 
 		await filmController.getFilmByIdCtrl(req,res);
 		

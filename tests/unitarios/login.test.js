@@ -1,9 +1,9 @@
-const UserDAO = require('../../stubs/userDAOstub');
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+const UserDAO = require('../stubs/userDAOstub');
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
 
-const UserController = require('../../../controller/loginController');
-const views = require('../../../js/configView');
+const UserController = require('../../controller/loginController');
+const views = require('../../js/configView');
 
 const bcrypt = require('bcrypt');
 

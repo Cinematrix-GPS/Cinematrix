@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const {getPool} = require('../../../database/configDB');
-const FilmDAO = require('../../../js/daos/filmDAO');
-const UserDAO = require('../../../js/daos/userDAO');
+const {getPool} = require('../../database/configDB');
+const FilmDAO = require('../../js/daos/filmDAO');
+const UserDAO = require('../../js/daos/userDAO');
 
 describe('Test de integración de puntuar pelicula', () => {
 

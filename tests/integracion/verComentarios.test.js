@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const { getPool } = require('../../../database/configDB');
+const { getPool } = require('../../database/configDB');
 
-const FilmDAO = require('../../../js/daos/filmDAO');
+const FilmDAO = require('../../js/daos/filmDAO');
 
 describe('Test de Integración ver comentarios de una película', () => {
 

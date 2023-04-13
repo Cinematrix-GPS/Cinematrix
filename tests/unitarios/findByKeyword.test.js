@@ -1,9 +1,9 @@
-const FilmDAO = require('../../stubs/filmDAOstub');
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+const FilmDAO = require('../stubs/filmDAOstub');
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
 
-const FilmController = require('../../../controller/filmController');
-const views = require('../../../js/configView');
+const FilmController = require('../../controller/filmController');
+const views = require('../../js/configView');
 
 const peliculas = [{
 	nombre: "Alien",
