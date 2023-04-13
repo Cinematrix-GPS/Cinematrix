@@ -46,38 +46,54 @@ class userController{
 		
 		if (!errors.isEmpty()){
 			return response.status(400).json({ errors: errors.array() });
+			// response.render(views.index, {
+			// 	title: "Registro con errores",
+			// 	films: 0,
+			// 	msg: errors.msg,
+			// 	username: request.session.username?request.session.username:0
+			// });
+		}
+		else{//SIN ERRORES
+			let usuario = {
+				nombreCompl: request.body.nombreCompleto,
+				username: request.body.username,
+				correo: request.body.correo,
+				pass: await bcrypt.hash(request.body.password, 10)
+			};
+			
+			// Username no debe existir en bdd
+			//Correo no debe existir en bdd
+			this.userDAO.isUsername(usuario.username)
+			.then(value => {
+				if(value.length == 0)	return this.userDAO.existsMail(usuario.correo);
+				else{
+					console.log("Usuario ya en uso");
+					throw "Usuario ya en uso";
+				} 
+			})
+			.then(value => {
+				if(value.length == 0)	return this.userDAO.createUser(usuario);
+				else{
+					console.log("Mail ya en uso");
+					throw "Mail ya en uso";
+				} 
+			})
+			.then(value => {
+				console.log("Existe registo "+value);
+				if (value){
+					response.redirect("/films/start");
+				}
+				else  console.log("Error en la base de datos");
+	
+			})
+			.catch(error =>{
+				response.redirect("/films/start");
+	
+			})
+
 		}
 		
-		let usuario = {
-			nombreCompl: request.body.nombreCompleto,
-			username: request.body.username,
-			correo: request.body.correo,
-			pass: await bcrypt.hash(request.body.password, 10)
-		};
 		
-		// Username no debe existir en bdd
-		//Correo no debe existir en bdd
-		this.userDAO.isUsername(usuario.username)
-		.then(value => {
-			if(value.length == 0)	return this.userDAO.existsMail(usuario.correo);
-			else throw "Usuario ya en uso";
-		})
-		.then(value => {
-			if(value.length == 0)	return this.userDAO.createUser(usuario);
-			else throw "Mail ya en uso";
-		})
-		.then(value => {
-			console.log("Existe registo "+value);
-			if (value){
-				response.redirect("/films/start");
-			}
-			else  console.log("Error en la base de datos");
-
-		})
-		.catch(error =>{
-			response.redirect("/films/start");
-
-		})
 		
 		
 	

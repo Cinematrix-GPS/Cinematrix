@@ -54,7 +54,9 @@
                         <li><a class="dropdown-item" href="/users/loginForm">Login</a></li>
                         <!-- <li><a class="dropdown-item" href="#">Usuario</a></li>-->
                         <li><hr class="dropdown-divider"></li> 
-                        <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li>
+                        <!-- <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li> -->
+                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button> -->
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" >Registro</a></li>
                     </ul>
                 </li>
             </ul>
@@ -89,7 +91,9 @@
     </header>
 </div>
 <body>
-<div class="popup" id="popup">
+
+    <!-- REGISTRO -->
+<!--<div class="popup" id="popup">
     <div class="popup-content">
         <form action="/users/signup" method="POST" enctype="multipart/form-data">
         <span class="buttonClose" onclick="cerrarRegistro()">+</span>
@@ -101,17 +105,68 @@
         <input type="text" placeholder="Correo electrónico" name="correo" required>
         <input type="text" style="-webkit-text-security: disc;" placeholder="Contraseña" name="password" required>
         <input type="text" style="-webkit-text-security: disc;" placeholder="Repita Contraseña" name="password2" required>
-        <div class="alert alert-secondary" role="alert">
-            A simple secondary alert—check it out!
-          </div>
-          
-        <button  type="submit" class="btn btn-primary w-100" onclick="mostrarErrores()">Registrar</button> <!--Añadir implementacion al boton-->
+        
+        <% if (msg) { %>
+            <% if(typeof(msg) !== "undefined"){%>
+            <div class="alert alert-secondary" role="alert">
+                <%=msg%>
+            </div>
+            <%}%>
+        <%}%>  
+        <button  type="submit" class="btn btn-primary w-100" onclick="mostrarErrores()">Registrar</button> //Añadir implementacion al boton
         </form>
     </div>
-</div>
+</div> -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de usuario</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/users/signup" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+              <input type="text" class="form-control" id="recipient-name" placeholder="Nombre completo" name="nombreCompleto" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="recipient-name" placeholder="Nombre de usuario" name="username" required>
+              </div>
+              <div class="mb-3">
+                <input type="text" class="form-control" id="recipient-name" placeholder="Correo electrónico" name="correo" required>
+              </div>
+              <div class="mb-3">
+                <input type="password" class="form-control"  placeholder="Contraseña" name="password" required>
+              </div>
+              <div class="mb-3">
+                <input type="password" class="form-control"  placeholder="Repita Contraseña" name="password2" required>
+              </div>
+            <!-- <div class="mb-3">
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div> -->
+            <% if (msg) { %>
+                <% if(typeof(msg) !== "undefined"){%>
+                <div class="alert alert-secondary" role="alert">
+                    <%=msg%>
+                </div>
+                <%}%>
+            <%}%> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
 </body>
 
-<script>
+<!-- <script>
 
     function mostrarRegistro() {
         document.getElementById("popup").style.display = "flex";
@@ -125,4 +180,4 @@
         document.getElementById("popup").style.display = "none";
     }
 
-</script>
+</script> -->

@@ -20,8 +20,7 @@ const {requiresLogout} = require('../middleware/auth');
 userRouter.post("/signup", multerFactory.none(),
 
     
-    check("username", "El nombre de usuario esta vacio").notEmpty(),
-    check("correo","Dirección de correo no válida o vacia").isEmail(),
+    check("correo","Dirección de correo no válida").isEmail(),
     check("password", "La logintud minima debe ser 4").isLength({ min: 4}),
     check("password2")
     .custom((value, { req }) => {
