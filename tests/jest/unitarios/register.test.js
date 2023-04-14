@@ -3,24 +3,32 @@ const UserDAO = require('../../stubs/userDAOstub');
 const Request = require('../../stubs/requestStub');
 const Response = require('../../stubs/responseStub');
 
-const FilmController = require('../../../controller/filmController');
+const UserController = require('../../../controller/userController');
 
 const usuarios = [
 	{
-		email: 'hola@gmail.com',
-		password: 'aBcDeF1*',
+		nombreCompl: 'Jaime Cano',
+		username: 'jaimeca',
+		correo: 'hola@gmail.com',
+		pass: 'aBcDeF1*',
 	},
 	{
-		email: 'hola@gmail.com',
-		password: 'a',
+		nombreCompl: 'Jaime Cano',
+		username: 'jaimeca',
+		correo: 'hola@gmail.com',
+		pass: 'a',
 	},
 	{
-		id: 'hola@@',
-		mail: 'aBcDeF1*',
+		nombreCompl: 'Jaime Cano',
+		username: 'jaimeca',
+		correo: 'hola@@',
+		pass: 'aBcDeF1*',
 	},
 	{
-		id: 'hola@@',
-		mail: 'a',
+		nombreCompl: 'Jaime Cano',
+		username: 'jaimeca',
+		correo: 'hola@@',
+		pass: 'a',
 	}
 ];
 
@@ -28,34 +36,43 @@ describe('Test unitario registro con email y contraseña', () => {
 
 	const daoUser = new UserDAO(usuarios);
 	
-	const filmController = new FilmController(dao, daoUser);
+	const userController = new UserController(dao, daoUser);
 
-	test('email y contraseña correctos', async () => {
+	test('email y contraseña válidos', async () => {
 		const req = new Request();
 		const res = new Response();
 
-		//await filmController.(req, res);
+		req.body = usuarios[0];
+
+		expect(() => userController.addUser(req, res)).not.toThrow();
 	});
 
-    test('email correcto y contraseña incorrecta', async () => {
+    test('email correcto y contraseña no válida', async () => {
 		const req = new Request();
 		const res = new Response();
 
-		//await filmController.(req, res);
+		req.body = usuarios[1];
+
+		expect(() => userController.addUser(req, res)).toThrow('Contraseña no válida');
 	});
 
-    test('email incorrecto y contraseña correcta', async () => {
+    test('email no válido y contraseña válida', async () => {
 		const req = new Request();
 		const res = new Response();
 
-		//await filmController.(req, res);
+		req.body = usuarios[2];
+
+		expect(() => userController.addUser(req, res)).toThrow('Correo no válido');
 	});
 
-    test('email y contraseña incorrectos', async () => {
+    test('email y contraseña no válidos', async () => {
 		const req = new Request();
 		const res = new Response();
 
-		//await filmController.(req, res);
+		req.body = usuarios[3];
+
+		expect(() => userController.addUser(req, res)).toThrow('Contraseña no válida');
+		expect(() => userController.addUser(req, res)).toThrow('Correo no válido');
 	});
 
 });
