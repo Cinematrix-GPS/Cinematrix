@@ -36,7 +36,7 @@ describe('Test unitario registro con email y contraseña', () => {
 
 	const daoUser = new UserDAO(usuarios);
 	
-	const userController = new UserController(dao, daoUser);
+	const userController = new UserController(daoUser);
 
 	test('email y contraseña válidos', async () => {
 		const req = new Request();
