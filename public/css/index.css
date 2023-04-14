@@ -253,3 +253,7 @@ h2 {
   color: red;
   display: none;
 }
+
+.date {
+  opacity: 0.75;
+}

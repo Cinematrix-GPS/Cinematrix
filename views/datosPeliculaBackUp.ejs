@@ -78,8 +78,8 @@
         <% } else { %> 
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <% comentariosV.forEach(function(comentariosV) { %>
-              <span><strong><%=comentariosV.username%></strong></span><br>
-              <%=comentariosV.fecha.toLocaleDateString()%><br>
+              <span><strong><%=comentariosV.username%></strong></span>
+              <span class="date"><%=comentariosV.fecha.toLocaleDateString()%></span><br>
               <%=comentariosV.texto%><br><br>
             <% }); %> 
           </div>
