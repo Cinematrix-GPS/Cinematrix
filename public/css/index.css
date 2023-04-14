@@ -7,21 +7,20 @@
   
  } 
 
-
  .contenido{
-  margin-top: 130px;
-  margin-bottom: 100px;
-  padding: 20px;
+  margin-top: 8rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
 }
 /* CARS DE CARATULAS */
-.portada{
+.portada {
   width: 100%; /* need to overwrite inline dimensions */
   height: auto;
   
 }
 
 h2 {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 .containerGridCard {
   display: grid;
@@ -32,6 +31,13 @@ h2 {
 
 /* hover styles */
 .imgCardContainer {
+  position: relative;
+  /* Sombreado */
+  /* box-shadow: 0px 5px 15px rgb(0, 0, 0 ,0.25); */
+  /* background-color:  #ffffff; */
+}
+
+.information {
   position: relative;
   /* Sombreado */
   /* box-shadow: 0px 5px 15px rgb(0, 0, 0 ,0.25); */
