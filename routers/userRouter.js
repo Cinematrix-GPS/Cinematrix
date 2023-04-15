@@ -34,6 +34,15 @@ userRouter.post("/signup", multerFactory.none(),
 
 );
 
+userRouter.get('/signup', 
+    requiresLogout, 
+    async (req, res) => {
+        res.render(views.registro, {  
+            title: "Registro usuario",
+            msg: null});
+});
+
+
 // Sólo se puede acceder al login si no hay sesión iniciada
 userRouter.get('/loginForm', 
     requiresLogout, 
