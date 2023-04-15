@@ -40,18 +40,28 @@ class userController{
 		return res.redirect('/');
 	};
 
+	getRegistro = async (req, res) => {
+		// Se redirige a la vista de inicio de sesión
+		return res.render(views.registro, {
+			title: 'Registro',
+			films: 0,
+			msg: "",
+			username: ""
+		});
+	};
+
 	addUser = async (request, response) => {
 
 		const errors = validationResult(request);
 		
 		if (!errors.isEmpty()){
-			return response.status(400).json({ errors: errors.array() });
-			// response.render(views.index, {
-			// 	title: "Registro con errores",
-			// 	films: 0,
-			// 	msg: errors.msg,
-			// 	username: request.session.username?request.session.username:0
-			// });
+			//return response.status(400).json({ errors: errors.array() });
+			 response.render(views.registro, {
+			 	title: "Registro con errores",
+			 	films: 0,
+			 	msg: JSON.stringify(errors.array()).valueOf("msg"),
+			 	username: request.session.username?request.session.username:0
+			 });
 		}
 		else{//SIN ERRORES
 			let usuario = {
