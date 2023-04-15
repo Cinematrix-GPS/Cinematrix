@@ -9,26 +9,26 @@ const usuarios = [
 	{
 		nombreCompl: 'Jaime Cano',
 		username: 'jaimeca',
-		correo: 'hola@gmail.com',
+		correo: 'jaimeca@gmail.com',
 		pass: 'aBcDeF1*',
 	},
 	{
 		nombreCompl: 'Jaime Cano',
 		username: 'jaimeca',
-		correo: 'hola@gmail.com',
-		pass: 'a',
+		correo: 'jaimeca@gmail.com',
+		pass: 'j',
 	},
 	{
 		nombreCompl: 'Jaime Cano',
 		username: 'jaimeca',
-		correo: 'hola@@',
+		correo: 'jaimeca@@',
 		pass: 'aBcDeF1*',
 	},
 	{
 		nombreCompl: 'Jaime Cano',
 		username: 'jaimeca',
-		correo: 'hola@@',
-		pass: 'a',
+		correo: 'jaimeca@@',
+		pass: 'j',
 	}
 ];
 
