@@ -75,7 +75,7 @@ class userController{
 				pass: await bcrypt.hash(request.body.password, 10)
 			};
 			
-			// Username no debe existir en bdd
+			// Udsername no debe existir en bd
 			//Correo no debe existir en bdd
 			this.userDAO.isUsername(usuario.username)
 			.then(value => {
