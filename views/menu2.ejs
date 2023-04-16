@@ -3,126 +3,134 @@
 
 <script type="text/javascript">
        
-       $(function () {
-         
-         $(".title").change(function () {
-           var checkTitle = $(".title").is(":checked");
-           const busquedaGlobal = document.querySelector('#busquedaGlobal');
-        //    const formulario = document.querySelector('#formularioBusq');
-             if (checkTitle) {
-                busquedaGlobal.setAttribute("name", "titulo");
-                // formulario.setAttribute("action", "/busquedatiti");
-             }
-             else {
-                busquedaGlobal.setAttribute("name", "nombreBuscar");
-                // formulario.setAttribute("action", "/films/list");
-               
-             }
-         });
-     });
- 
- </script>
+    $(document).ready(function(){
 
-<div class="menu fixed-top">
-    <nav class="py-2 border-bottom" style="background-color:  #1B4571;">
-        <div class="container d-flex flex-wrap">
-        <ul class="nav me-auto">
-            <li class="nav-item"><a href="/" class="nav-link link-light px-2 active" aria-current="page"><i class="bi bi-house-door-fill"></i> Inicio</a></li>
-            <!--<li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
-             <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li> -->
-        </ul>
-        <!-- <ul class="nav">
+        $("#seleccionar").click(function(){
+
+            const valorSeleccionado = $(this).val();
+            console.log("Valor seleccionado: " + valorSeleccionado);
+
+            if($(this).val() == 0){
+                $("#busqueda").change();
+                busquedaGlobal.setAttribute("name", "nombreBuscar");
+            }
+            else if($(this).val() == 1){
+                $("#busqueda").change();
+                busquedaGlobal.setAttribute("name", "titulo");
+            }
+        });
+
+
+    })
+
+
+</script>
+
+<style>
+    .busquedaGlobal {
+      font-size: 18px;
+      padding: 7px;
+      background-color: #b49f9f;
+      color: rgb(19, 19, 20);
+      border-radius: 5px;
+    }
+  </style>
+
+<div class="menu fixed-top ">
+ <nav class="py-2 border-bottom row" style="background-color:  #1B4571;">
+     <ul class="nav me-auto col col-2 offset-1">
+         <li class="nav-item"><a href="/" class="nav-link link-light px-2 active" aria-current="page"><i class="bi bi-house-door-fill"></i> Inicio</a></li>
+         <!--<li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
+          <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
+         <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
+         <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li> -->
+     </ul>
+
+
+     <form action="/films/list" method="POST" class="col col-5 offset-1" role="search">
+        <ul class="nav">
+            <li class="nav-item">
+                <select class="busquedaGlobal" name="busqueda" id="busqueda" aria-haspopup="true" aria-expanded="false">
+                    <option value="0">KeyWord</option>
+                    <option value="1">Titulo</option>
+                </select>
+            </li>
+            <li class="nav-item">
+                <input id="busquedaGlobal" type="search" class="form-control keyword" placeholder="Search..." aria-label="Search" name="nombreBuscar" required>
+            </li>
+            <li class="nav-item">
+                <button id="botonBusqueda" type="submit" class="btn btn-success keyword"><i class="bi bi-search"></i></button>
+            </li>
             
-            <li class="nav-item"><a href="#" class="btn btn-success px-2">Login</a></li>
-            <li class="nav-item"><a href="#" class="btn px-2">Sign up</a></li>
-        </ul> -->
-        
-        
-            <ul class="nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <!-- <%=username%> -->
-                    <% if (username === 0) { %>
-                        <i class="bi bi-person-circle"></i>
-                    <% } else { %>
-                        <%=username%>
-                    <%} %>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/users/loginForm">Login</a></li>
-                        <!-- <li><a class="dropdown-item" href="#">Usuario</a></li>-->
-                        <li><hr class="dropdown-divider"></li> 
-                        <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <header class="border-bottom " style="background-color:  #ffffff;">
-        <div class="container d-flex flex-wrap ">
+            <!-- <li class="nav-item"><label for="type">Título</label></li> -->
+            <!--  -->
             
-            
-            <form action="/films/list" method="POST" class=" " role="search">
-                <ul class="nav me-auto">
-                    <li class="nav-item">
-                        <input id="busquedaGlobal" type="search" class="form-control keyword" placeholder="Search..." aria-label="Search" name="nombreBuscar" required>
-                    </li>
-                    <li class="nav-item">
-                        <button id="botonBusqueda" type="submit" class="btn btn-success keyword"><i class="bi bi-search"></i></button>
-                    </li>
-                    
-                    <!-- <li class="nav-item"><label for="type">Título</label></li> -->
-                    <!--  -->
-                    <li class="nav-item">
-                        <input type="checkbox" class="btn-check title" id="btn-check-outlined" name="title" value="1" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btn-check-outlined">Título</label>
-                    </li>
-                    
-                    <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>               -->
-                </ul>                
-            </form>
-            
-        </div>
-    </header>
+            <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>               -->
+        </ul>                
+    </form>
+     <!-- <ul class="nav">
+         
+         <li class="nav-item"><a href="#" class="btn btn-success px-2">Login</a></li>
+         <li class="nav-item"><a href="#" class="btn px-2">Sign up</a></li>
+     </ul> -->
+         <ul class="nav col col-1 offset-2">
+             <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 <!-- <%=username%> -->
+                 <% if (username === 0) { %>
+                     <i class="bi bi-person-circle"></i>
+                 <% } else { %>
+                     <%=username%>
+                 <%} %>
+                 </a>
+                 <ul class="dropdown-menu">
+                     <li><a class="dropdown-item" href="/login">Login</a></li>
+                     <!-- <li><a class="dropdown-item" href="#">Usuario</a></li>-->
+                     <li><hr class="dropdown-divider"></li> 
+                     <!-- <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li> -->
+                 </ul>
+             </li>
+         </ul>                 
+</div>
+
+ </nav>
 </div>
 <body>
 <div class="popup" id="popup">
-    <div class="popup-content">
-        <form action="/users/signup" method="POST" enctype="multipart/form-data">
-        <span class="buttonClose" onclick="cerrarRegistro()">+</span>
+ <div class="popup-content">
+     <form action="/users/signup" method="POST" enctype="multipart/form-data">
+     <span class="buttonClose" onclick="cerrarRegistro()">+</span>
 
-        <h2>Registro</h2>
-        <hr class="solid"> 
-        <input type="text" placeholder="Nombre completo" name="nombreCompleto" required>
-        <input type="text" placeholder="Nombre de usuario" name="username" required>
-        <input type="text" placeholder="Correo electrónico" name="correo" required>
-        <input type="text" style="-webkit-text-security: disc;" placeholder="Contraseña" name="password" required>
-        <input type="text" style="-webkit-text-security: disc;" placeholder="Repita Contraseña" name="password2" required>
-        <div class="alert alert-secondary" role="alert">
-            A simple secondary alert—check it out!
-          </div>
-          
-        <button  type="submit" class="btn btn-primary w-100" onclick="mostrarErrores()">Registrar</button> <!--Añadir implementacion al boton-->
-        </form>
-    </div>
+     <h2>Registro</h2>
+     <hr class="solid"> 
+     <input type="text" placeholder="Nombre completo" name="nombreCompleto" required>
+     <input type="text" placeholder="Nombre de usuario" name="username" required>
+     <input type="text" placeholder="Correo electrónico" name="correo" required>
+     <input type="text" style="-webkit-text-security: disc;" placeholder="Contraseña" name="password" required>
+     <input type="text" style="-webkit-text-security: disc;" placeholder="Repita Contraseña" name="password2" required>
+     <div class="alert alert-secondary" role="alert">
+         A simple secondary alert—check it out!
+       </div>
+       
+     <button  type="submit" class="btn btn-primary w-100" onclick="mostrarErrores()">Registrar</button> <!--Añadir implementacion al boton-->
+     </form>
+ </div>
 </div>
 </body>
 
 <script>
 
-    function mostrarRegistro() {
-        document.getElementById("popup").style.display = "flex";
-    }
+ function mostrarRegistro() {
+     document.getElementById("popup").style.display = "flex";
+ }
 
-    function mostrarErrores() {
-        document.getElementById("errorRegistro").style.display = "block";
-    }
+ function mostrarErrores() {
+     document.getElementById("errorRegistro").style.display = "block";
+ }
 
-    function cerrarRegistro() {
-        document.getElementById("popup").style.display = "none";
-    }
+ function cerrarRegistro() {
+     document.getElementById("popup").style.display = "none";
+ }
 
 </script>
