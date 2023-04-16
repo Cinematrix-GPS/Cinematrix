@@ -67,7 +67,7 @@ class userController{
 			username: request.session.username?request.session.username:0
 			});
 		}
-		else{//SIN ERRORES
+		else{ //SIN ERRORES
 			let usuario = {
 				nombreCompl: request.body.nombreCompleto,
 				username: request.body.username,
@@ -75,53 +75,44 @@ class userController{
 				pass: await bcrypt.hash(request.body.password, 10)
 			};
 			
-			// Udsername no debe existir en bd
-			//Correo no debe existir en bdd
+			// Username no debe existir en bd
+			// Correo no debe existir en bdd
 			var iguales;
 
 			this.userDAO.isUsername(usuario.username)
 			.then(value => {
-				if(value.length == 0)	return this.userDAO.existsMail(usuario.correo);
-				else{
+				if (value.length == 0) return this.userDAO.existsMail(usuario.correo);
+				else {
 					iguales = "Ya existe un usuario con ese username";
 					throw "Usuario ya en uso";
 				} 
 			})
 			.then(value => {
-				if(value.length == 0)	return this.userDAO.createUser(usuario);
-				else{
+				if (value.length == 0) return this.userDAO.createUser(usuario);
+				else {
 					iguales = "Ese E-Mail ya está en uso";
 					throw "Mail ya en uso";
 				} 
 			})
 			.then(value => {
-				console.log("Existe registo "+value);
-				if (value){
+				if (value) {
 					response.redirect("/films/start");
 				}
-				else  console.log("Error en la base de datos");
+				else console.log("Error en la base de datos");
 	
 			})
 			.catch(error =>{
-				
-					
-					response.render(views.registro, {
-						title: "Registro con errores",
-						films:0,
-						msg:null,
-						iguales: iguales,
-						valores:valores,
-						username: request.session.username?request.session.username:0
-						});
-						//response.redirect("/films/start/users/signup");
-						
+				response.render(views.registro, {
+					title: "Registro con errores",
+					films:0,
+					msg:null,
+					iguales: iguales,
+					valores:valores,
+					username: request.session.username?request.session.username:0
+				});	
 			})
 
 		}
-		
-		
-		
-		
 	
 	};
 };

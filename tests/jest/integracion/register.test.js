@@ -33,43 +33,16 @@ describe('Test de integración registro con email y contraseña', () => {
 
 	test('Registro con email y contraseña válidos', async () => {
 
-		const correct = {
+		const user = {
 			nombreCompl: 'Jaime Cano',
 			username: 'jaimeca',
 			correo: 'jaimeca@gmail.com',
 			pass: 'aBcDeF1*',
 		}
 
-		await dao.createUser(correct).then(result => {
-			expect(result).toEqual(expect.objectContaining({ affectedRows: 1 }));
+		await dao.createUser(user).then(result => {
+			expect(result).toEqual(expect.objectContaining({ affectedRows: 1 }))
 		});
 	});
-
-	/*test('Registro con email válido y contraseña no válida', async () => {
-
-		await dao.getFilmCommentaries(email).then(result => {
-			expect(result).toEqual(expect.arrayContaining([
-                null
-			]))
-		});
-	});
-
-	test('Registro con email no válido y contraseña válida', async () => {
-
-		await dao.getFilmCommentaries(password).then(result => {
-			expect(result).toEqual(expect.arrayContaining([
-
-			]))
-		});
-	});
-
-	test('Registro con email y contraseña no válidos', async () => {
-
-		await dao.getFilmCommentaries(wrong).then(result => {
-			expect(result).toEqual(expect.arrayContaining([
-
-			]))
-		});
-	});*/
 
 });

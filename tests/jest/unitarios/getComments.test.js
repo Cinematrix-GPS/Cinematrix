@@ -3,8 +3,6 @@ const Request = require('../../stubs/requestStub');
 const Response = require('../../stubs/responseStub');
 
 const FilmController = require('../../../controller/filmController');
-const views = require('../../../js/configView');
-
 
 const comentarios = [
 	{	id: 1,
@@ -37,11 +35,11 @@ describe('Test ver comentarios', () => {
 
 		await filmController.getFilmByIdCtrl(req, res);
 		
-		const objetoCapturado = res.render.mock.calls[0][1].comentariosV;
+		const captura = res.render.mock.calls[0][1].comentariosV;
 
 		// Esperamos que se haya llamado a la función res.render y que se le haya pasado por parámetro lo siguiente
-		expect(objetoCapturado).toContain(comentarios[0]);
-		expect(objetoCapturado).toContain(comentarios[1]);
+		expect(captura).toContain(comentarios[0]);
+		expect(captura).toContain(comentarios[1]);
 	});
 
 	test('Ver comentarios cuando el comentario no existe', async () => {
@@ -53,9 +51,9 @@ describe('Test ver comentarios', () => {
 
 		await filmController.getFilmByIdCtrl(req, res);
 		
-		const objetoCapturado = res.render.mock.calls[0][1].comentariosV;
+		const captura = res.render.mock.calls[0][1].comentariosV;
 
-		expect(objetoCapturado).toHaveLength(0);
+		expect(captura).toHaveLength(0);
 	});
 
 });

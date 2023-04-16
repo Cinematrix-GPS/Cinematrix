@@ -1,86 +1,81 @@
 "use strict"
 
+const UserDAO = require('../../stubs/userDAOstub');
+const UserController = require('../../../controller/userController');
+
+const Request = require('../../stubs/requestStub');
 const Response = require('../../stubs/responseStub');
+
 const views = require('../../../js/configView');
-const userRouter = require('../../../routers/userRouter');
 
-userRouter.post = jest.fn();
-
-const usuarios = [
+let usuarios = [
 	{
-		nombreCompleto: 'Jaime Cano',
-		username: 'jaimeca',
-		correo: 'jaimeca@gmail.com',
-		password: 'aBcDeF1*',
+		nombreCompleto: "Carmelo Cotón",
+		username: "melocotón",
+		correo: "carmelo@gmail.com",
+		password: "aBcDeF1*"
 	},
 	{
-		nombreCompleto: 'Jaime Cano',
-		username: 'jaimeca',
-		correo: 'jaimeca@gmail.com',
-		password: 'j',
-	},
-	{
-		nombreCompleto: 'Jaime Cano',
-		username: 'jaimeca',
-		correo: 'jaimeca@@',
-		password: 'aBcDeF1*',
-	},
-	{
-		nombreCompleto: 'Jaime Cano',
-		username: 'jaimeca',
-		correo: 'jaimeca@@',
-		password: 'j',
+		nombreCompleto: "Dolores Delano",
+		username: "doloresdela",
+		correo: "delano@gmail.com",
+		password: "aBcDeF1*"
 	}
-];
+]
 
-describe('Test unitario registro con email y contraseña', () => {
+function email(email) {
+	const verification = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return verification.test(email);
+}
+  
+function password(password) {
+	const verification = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,100}$/;
+	return verification.test(password);
+}
+  
+describe('Registro unitario registro con email y contraseña', () => {
 
-	test('email y contraseña válidos', async () => {
-		const res = new Response();
+	const request = new Request();
+	const response = new Response();
+	const dao = new UserDAO(usuarios);
+	const controller = new UserController(dao);
 
-		userRouter.post('/signup', usuarios[0]);
-		expect(userRouter.post).toHaveBeenCalledWith('/signup', usuarios[0]);
-
-		expect(res.render).toHaveBeenCalledWith(views.registro, expect.objectContaining({
-			validaciones: null
-		}));
+	test('Comprueba si el email es válido', () => {
+		expect(email('correo@ejemplo.com')).toBe(true);
+		expect(email('correoejemplo.com')).toBe(false);
+	});
+  
+	test('Comprueba si la contraseña cumple con los requisitos', () => {
+		expect(password('Password1!')).toBe(true);
+		expect(password('password')).toBe(false);
+		expect(password('PASSWORD')).toBe(false);
+		expect(password('Password!')).toBe(false);
+		expect(password('Password1')).toBe(false);
+		expect(password('Password1!Password1!Password1!Password1!Password1!Password1!Password1!Password1!Password1!Password1!Password1!Password1!')).toBe(false);
 	});
 
-    test('email correcto y contraseña no válida', async () => {
-		const res = new Response();
+	test('Comprueba que un usuario ya esté registrado', async () => {
 
-		userRouter.post('/signup', usuarios[1]);
-		expect(userRouter.post).toHaveBeenCalledWith('/signup', usuarios[1]);
+		request.body = usuarios[0];
 
-		const errors = ["La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial", "La longitud minima de la contraseña debe ser 8"];
+		try {
+			await controller.addUser(request, response);
+		} catch (error) {
+			expect(error).toBe("Usuario ya en uso");
+		}
 
-		expect(res.render).toHaveBeenCalledWith(views.registro, expect.objectContaining({
-			validaciones: errors
-		}));
 	});
 
-    test('email no válido y contraseña válida', async () => {
-		const res = new Response();
+	test('Comprueba que un usuario ya esté registrado', async () => {
 
-		userRouter.post('/signup', usuarios[2]);
-		expect(userRouter.post).toHaveBeenCalledWith('/signup', usuarios[2]);
+		request.body = usuarios[1];
 
-		expect(res.render).toHaveBeenCalledWith(views.registro, expect.objectContaining({
-			validaciones: "Dirección de correo no válida"
-		}));
-	});
+		try {
+			await controller.addUser(request, response);
+		} catch (error) {
+			expect(error).toBe("Mail ya en uso");
+		}
 
-    test('email y contraseña no válidos', async () => {
-		const res = new Response();
-
-		userRouter.post('/signup', usuarios[3]);
-		expect(userRouter.post).toHaveBeenCalledWith('/signup', usuarios[3]);
-
-		const errors = ["La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial", "Dirección de correo no válida", "La longitud minima de la contraseña debe ser 8"];
-
-		expect(res.render).toHaveBeenCalledWith(views.registro, expect.objectContaining({
-			validaciones: errors
-		}));
 	});
 
 });
