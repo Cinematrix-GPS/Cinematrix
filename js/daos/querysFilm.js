@@ -1,8 +1,4 @@
 'use strict'
-/*
-En este archivo vamos a guardar los normbres de las vistas, de esta manera cambiamos de forma global
-todas las vistas y nos ahorramos muchos fallos innecesarios
-*/
 
 module.exports = {
     listFilm:   `SELECT DISTINCT p.nombre, p.img, p.id, p.puntuacion
@@ -47,7 +43,6 @@ module.exports = {
     //                 LEFT JOIN actores a ON ap.id_actor=a.id
     //                 WHERE p.id=?`
 
-    // conseguir los comentarios
     getCommentaries: `SELECT c.id, c.id_usuario, c.id_pelicula, c.texto, c.fecha, u.username
                         FROM comentarios c 
                         LEFT JOIN usuarios u ON c.id_usuario=u.id

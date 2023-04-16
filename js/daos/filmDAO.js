@@ -32,7 +32,6 @@ class FilmDAO extends BaseDAO {
         return await this.query(qFilms.qGetFilmById, [id]);
     }
 
-    // Deberia estar aqui?
     async getFilmCommentaries(id) {
         return this.query(qFilms.getCommentaries, [id]);
     }

@@ -1,8 +1,10 @@
 'use strict';
+
 class BaseDAO {
+
 	pool;
 
-	constructor(pool){
+	constructor(pool) {
         // Para tener la pool de conexiones a la base de datos
 		this.pool = pool;
     }
@@ -35,7 +37,6 @@ class BaseDAO {
 		});
 	}
 
-	
 }
 
 module.exports = BaseDAO;

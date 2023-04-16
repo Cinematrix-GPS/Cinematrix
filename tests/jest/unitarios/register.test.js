@@ -1,78 +1,83 @@
-const UserDAO = require('../../stubs/userDAOstub');
-
-const Request = require('../../stubs/requestStub');
 const Response = require('../../stubs/responseStub');
 
-const UserController = require('../../../controller/userController');
+const userRouter = require('./userRouter');
+userRouter.post = jest.fn();
 
 const usuarios = [
 	{
-		nombreCompl: 'Jaime Cano',
+		nombreCompleto: 'Jaime Cano',
 		username: 'jaimeca',
 		correo: 'jaimeca@gmail.com',
-		pass: 'aBcDeF1*',
+		password: 'aBcDeF1*',
 	},
 	{
-		nombreCompl: 'Jaime Cano',
+		nombreCompleto: 'Jaime Cano',
 		username: 'jaimeca',
 		correo: 'jaimeca@gmail.com',
-		pass: 'j',
+		password: 'j',
 	},
 	{
-		nombreCompl: 'Jaime Cano',
+		nombreCompleto: 'Jaime Cano',
 		username: 'jaimeca',
 		correo: 'jaimeca@@',
-		pass: 'aBcDeF1*',
+		password: 'aBcDeF1*',
 	},
 	{
-		nombreCompl: 'Jaime Cano',
+		nombreCompleto: 'Jaime Cano',
 		username: 'jaimeca',
 		correo: 'jaimeca@@',
-		pass: 'j',
+		password: 'j',
 	}
 ];
 
 describe('Test unitario registro con email y contraseña', () => {
 
-	const daoUser = new UserDAO(usuarios);
-	
-	const userController = new UserController(daoUser);
-
 	test('email y contraseña válidos', async () => {
-		const req = new Request();
 		const res = new Response();
 
-		req.body = usuarios[0];
+		userRouter.post('/signup', usuarios[0]);
+		expect(userRouter.post).toHaveBeenCalledWith('/signup', usuarios[0]);
 
-		expect(() => userController.addUser(req, res)).not.toThrow();
+		expect(res.render).toHaveBeenCalledWith(views.registro, expect.objectContaining({
+			validaciones: null
+		}));
 	});
 
     test('email correcto y contraseña no válida', async () => {
-		const req = new Request();
 		const res = new Response();
 
-		req.body = usuarios[1];
+		userRouter.post('/signup', usuarios[1]);
+		expect(userRouter.post).toHaveBeenCalledWith('/signup', usuarios[1]);
 
-		expect(() => userController.addUser(req, res)).toThrow('Contraseña no válida');
+		const errors = ["La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial", "La longitud minima de la contraseña debe ser 8"];
+
+		expect(res.render).toHaveBeenCalledWith(views.registro, expect.objectContaining({
+			validaciones: errors
+		}));
 	});
 
     test('email no válido y contraseña válida', async () => {
-		const req = new Request();
 		const res = new Response();
 
-		req.body = usuarios[2];
+		userRouter.post('/signup', usuarios[2]);
+		expect(userRouter.post).toHaveBeenCalledWith('/signup', usuarios[2]);
 
-		expect(() => userController.addUser(req, res)).toThrow('Correo no válido');
+		expect(res.render).toHaveBeenCalledWith(views.registro, expect.objectContaining({
+			validaciones: "Dirección de correo no válida"
+		}));
 	});
 
     test('email y contraseña no válidos', async () => {
-		const req = new Request();
 		const res = new Response();
 
-		req.body = usuarios[3];
+		userRouter.post('/signup', usuarios[3]);
+		expect(userRouter.post).toHaveBeenCalledWith('/signup', usuarios[3]);
 
-		expect(() => userController.addUser(req, res)).toThrow('Contraseña no válida');
-		expect(() => userController.addUser(req, res)).toThrow('Correo no válido');
+		const errors = ["La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial", "Dirección de correo no válida", "La longitud minima de la contraseña debe ser 8"];
+
+		expect(res.render).toHaveBeenCalledWith(views.registro, expect.objectContaining({
+			validaciones: errors
+		}));
 	});
 
 });

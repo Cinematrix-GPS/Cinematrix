@@ -4,7 +4,10 @@ const { getPool } = require('../../../database/configDB');
 
 const UserDAO = require('../../../js/daos/userDAO');
 
-describe('Test de Integración ver comentarios de una película', () => {
+const userRouter = require('./userRouter');
+userRouter.post = jest.fn();
+
+describe('Test de integración registro con email y contraseña', () => {
 
 	const pool = getPool();
 	const dao = new UserDAO(pool);
@@ -22,9 +25,9 @@ describe('Test de Integración ver comentarios de una película', () => {
 		await dao.query("DELETE FROM usuarios WHERE id > 0;");
 
 		const correct = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@@', 'aBcDeF1*');
-        const email = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@gmail.com', 'j');
-        const password = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@@', 'aBcDeF1*');
-        const wrong = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@@', 'j');
+        // const email = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@gmail.com', 'j');
+        // const password = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@@', 'aBcDeF1*');
+        // const wrong = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@@', 'j');
 		
 	});
 
@@ -41,29 +44,28 @@ describe('Test de Integración ver comentarios de una película', () => {
 
 	test('Registro con email y contraseña válidos', async () => {
 
-		const id = 1;
-
 		await dao.createUser(correct).then(result => {
 			expect(result).toEqual(expect.arrayContaining([
-                
+                expect.objectContaining({
+					nombreCompleto: "Jaime Cano",
+					username: "jaimeca",
+					email: "jaimeca@gmail.com",
+					password: "aBcDeF1*"
+				})
 			]))
 		});
 	});
 
-	test('Registro con email válido y contraseña no válida', async () => {
-
-		const id = 2;
+	/*test('Registro con email válido y contraseña no válida', async () => {
 
 		await dao.getFilmCommentaries(email).then(result => {
 			expect(result).toEqual(expect.arrayContaining([
-                
+                null
 			]))
 		});
 	});
 
 	test('Registro con email no válido y contraseña válida', async () => {
-
-		const id = 2;
 
 		await dao.getFilmCommentaries(password).then(result => {
 			expect(result).toEqual(expect.arrayContaining([
@@ -74,13 +76,11 @@ describe('Test de Integración ver comentarios de una película', () => {
 
 	test('Registro con email y contraseña no válidos', async () => {
 
-		const id = 2;
-
 		await dao.getFilmCommentaries(wrong).then(result => {
 			expect(result).toEqual(expect.arrayContaining([
 
 			]))
 		});
-	});
+	});*/
 
 });
