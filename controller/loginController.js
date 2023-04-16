@@ -1,10 +1,14 @@
 const bcrypt = require('bcrypt');
 const views = require('../js/configView');
 
+const DAOFactory = require('../js/daos/DAOFactory');
+
 class LoginController{
 
-	constructor(dao){
-		this.dao = dao;
+	constructor(){
+		const factoria = new DAOFactory();
+		
+		this.userDAO = factoria.getUserDAO();
 	}
 
 	getLogin = async (req, res) => {
@@ -19,7 +23,7 @@ class LoginController{
 		// Nos ha llegado una request con información de inicio de sesión
 		const mail = req.body.mail;
 
-		const usuario = await this.dao.getUser(mail);
+		const usuario = await this.userDAO.getUser(mail);
 
 		console.log(`usuario: ${JSON.stringify(usuario)}`);
 

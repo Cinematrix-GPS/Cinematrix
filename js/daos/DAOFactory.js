@@ -21,7 +21,7 @@ class DAOFactory{
 			return new FilmDAO(getPool());
 	}
 
-	getUSerDAO(){
+	getUserDAO(){
 		if (process.env.NODE_ENV === 'testing')
 			return new UserDAOStub();
 		else

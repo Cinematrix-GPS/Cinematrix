@@ -1,11 +1,11 @@
-const FilmDAO = require('../stubs/filmDAOstub');
-const UserDAO = require('../stubs/userDAOstub');
-const RateDAO = require('../stubs/rateDAOstub');
+process.env.NODE_ENV = 'testing';
 
 const Request = require('../stubs/requestStub');
 const Response = require('../stubs/responseStub');
 
 const FilmController = require('../../controller/filmController');
+
+const DAOFactory = require('../../js/daos/DAOFactory');
 
 const views = require('../../js/configView');
 
@@ -40,12 +40,14 @@ const usuarios = [
 
 describe('Test Controlador Puntuacion: Puntuacion de una pelicula', () => {
 
-	const dao = new FilmDAO(puntuacion);
-	const daoUser = new UserDAO(usuarios);
-	const rateDAO = new RateDAO(puntuacion);
-	const userDAO = null;
+	const factoria = new DAOFactory();
+	
+	const filmDAO = factoria.getFilmDAO(); filmDAO.setDAOData(puntuacion);
+	const userDAO = factoria.getUserDAO(); userDAO.setDAOData(usuarios);
+	const rateDAO = factoria.getRateDAO(); rateDAO.setDAOData(puntuacion);
+	
 
-	const filmController = new FilmController(dao, daoUser, rateDAO, null);
+	const filmController = new FilmController();
 
 	test('Puntuacion de una pelicula', async () => {
 		const req = new Request();

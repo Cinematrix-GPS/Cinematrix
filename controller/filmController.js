@@ -1,6 +1,7 @@
 "use strict";
 
 const views = require("../js/configView");
+const DAOFactory = require('../js/daos/DAOFactory');
 
 class filmController {
 
@@ -9,11 +10,12 @@ class filmController {
 	#comments;
 
 //const filmController = new FilmController(fDAO, uDAO, rDAO, cDAO);
-	constructor (...params) {
-		this.filmDAO = params[0];
-		this.userDAO = params[1];
-		this.rateDAO = params[2];
-		this.commentDAO = params[3];
+	constructor () {
+		const factoria = new DAOFactory();
+		this.filmDAO = factoria.getFilmDAO();
+		this.userDAO = factoria.getUserDAO();
+		this.rateDAO = factoria.getRateDAO();
+		this.commentDAO = factoria.getCommentDAO();
 	}
 
 	postListByKeyWord = async (request, response) => {

@@ -5,10 +5,14 @@ const views = require("../js/configView");
 const { check, validationResult } = require("express-validator");
 const bcrypt = require('bcrypt');//Para encriptar passw
 
+const DAOFactory = require('../js/daos/DAOFactory');
+
 class userController {
 
-	constructor (dao){
-		this.userDAO = dao;
+	constructor (){
+		const factoria = new DAOFactory();
+
+		this.userDAO = factoria.getUserDAO();
 	}
 
 	addUser = async (request, response) => {

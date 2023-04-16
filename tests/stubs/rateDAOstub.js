@@ -1,14 +1,21 @@
-class RateDAO {
+class RateDAOStub {
 
-	#puntuaciones;
+	#puntuaciones = []
 
+	constructor(){
+		if (typeof RateDAOStub.instance === 'object')
+			return RateDAOStub.instance;
+		
+		RateDAOStub.instance = this;
+	}
+	
 	/**
-	 * El constructor recibe un array con puntuaciones. Para futuros tests: Si hace falta incluir otros objetos en el constructor
+	 * La función recibe un array con puntuaciones. Para futuros tests: Si hace falta incluir otros objetos en la función
 	 * hazlo. Por favor no intentes hacer todo a través de un objeto si luego va a hacer todo más sucio.
-	 * @param {[{mail, id, punctuation}]} puntuaciones 
+	 * @param {[{mail, id, punctuation}]} data 
 	 */
-	constructor(puntuaciones){
-		this.#puntuaciones = puntuaciones;
+	setDAOData(data){
+		this.#puntuaciones = data;
 	}
 
 	async getUserRate(usuario, pelicula) {
@@ -28,4 +35,4 @@ class RateDAO {
     }
 }
 
-module.exports = RateDAO;
+module.exports = RateDAOStub;

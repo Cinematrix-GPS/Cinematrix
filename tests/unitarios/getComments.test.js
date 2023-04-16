@@ -1,12 +1,12 @@
-const FilmDAO = require('../stubs/filmDAOstub');
-const CommentDAO = require('../stubs/commentDAOstub');
-const RateDAO = require('../stubs/rateDAOstub');
+process.env.NODE_ENV = 'testing';
 
 const Request = require('../stubs/requestStub');
 const Response = require('../stubs/responseStub');
 
 const FilmController = require('../../controller/filmController');
 const views = require('../../js/configView');
+
+const DAOFactory = require('../../js/daos/DAOFactory');
 
 const comentarios = [
 	{	id: 1,
@@ -34,11 +34,12 @@ const puntuaciones = [{
 
 describe('Test ver comentarios', () => {
 
-	const filmDAO = new FilmDAO(comentarios);
-	const commentDAO = new CommentDAO(comentarios);
-	const rateDAO = new RateDAO(puntuaciones);
+	const factoria = new DAOFactory();
 
-	const filmController = new FilmController(filmDAO, null, rateDAO, commentDAO);
+	const commentDAO = factoria.getCommentDAO(); commentDAO.setDAOData(comentarios);
+	const rateDAO = factoria.getRateDAO(); rateDAO.setDAOData(puntuaciones);
+
+	const filmController = new FilmController();
 	
 	test('Ver comentarios cuando el comentario existe', async () => {
 		const req = new Request();

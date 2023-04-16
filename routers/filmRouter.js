@@ -7,19 +7,7 @@ const multerFactory = multer({ storage: multer.memoryStorage() });
 const views = require("../js/configView");
 const {requiresLogin} = require("../middleware/auth");
 
-const {getPool} = require('../database/configDB');
-const FilmDAO = require('../js/daos/filmDAO');
-
-const userDao = require('../js/daos/userDAO');
-const RateDAO = require('../js/daos/rateDAO');
-const CommentDAO = require('../js/daos/commentDAO');
-
-const uDAO = new userDao(getPool());
-const fDAO = new FilmDAO(getPool());
-const rDAO = new RateDAO(getPool());
-const cDAO = new CommentDAO(getPool());
-
-const filmController = new FilmController(fDAO, uDAO, rDAO, cDAO);
+const filmController = new FilmController();
 
 
 filmRouter.get('/search', async (req, res) => {

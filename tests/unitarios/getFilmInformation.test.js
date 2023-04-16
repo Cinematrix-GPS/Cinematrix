@@ -1,12 +1,12 @@
-const FilmDAO = require('../stubs/filmDAOstub');
-const RateDAO = require('../stubs/rateDAOstub');
-const CommentDAO = require('../stubs/commentDAOstub');
+process.env.NODE_ENV = 'testing';
 
 const Request = require('../stubs/requestStub');
 const Response = require('../stubs/responseStub');
 
 const FilmController = require('../../controller/filmController');
 const views = require('../../js/configView');
+
+const DAOFactory = require('../../js/daos/DAOFactory');
 
 const infoBasic=[{
 	id: 2,
@@ -73,11 +73,14 @@ let puntuaciones = [{
 
   describe('Test de mostrar datos básicos', () => {
 
-	const filmDAO = new FilmDAO(infoBasic);
-	const commentDAO = new CommentDAO(infoBasic);
-	const rateDAO = new RateDAO(puntuaciones);
+	const factoria = new DAOFactory();
 
-	const filmController = new FilmController(filmDAO, null, rateDAO, commentDAO);
+	// Inicializamos los DAOs de mentira con la información que queremos de prueba
+	const filmDAO = factoria.getFilmDAO(); filmDAO.setDAOData(infoBasic);
+	const commentDAO = factoria.getCommentDAO(); commentDAO.setDAOData(infoBasic);
+	const rateDAO = factoria.getRateDAO(); rateDAO.setDAOData(puntuaciones);
+
+	const filmController = new FilmController();
 
 	test('Busqueda de informacion con id existente', async()=>{
 		const req = new Request();
