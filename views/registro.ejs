@@ -56,6 +56,12 @@
                 </div>
                 <% }) %>
             <% } %>
+            <% if (typeof iguales != 'undefined') { %>    
+                <div style="color: crimson;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%=iguales %></strong>
+                
+                </div>
+            <% } %>    
             <button type="submit" class="btn btn-primary botonContinuar">Continuar</button>
         </form>
     </div>
