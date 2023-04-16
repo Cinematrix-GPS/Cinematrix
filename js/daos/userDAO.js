@@ -5,7 +5,7 @@ const BaseDAO = require('./baseDAO');
 
 const qUser = require('./queries/userQueries');
 
-class userDAO extends BaseDAO {
+class UserDAO extends BaseDAO {
 	
 	async createUser(usuario){
 
@@ -30,4 +30,4 @@ class userDAO extends BaseDAO {
 	
 }
 
-module.exports = userDAO;
+module.exports = UserDAO;
