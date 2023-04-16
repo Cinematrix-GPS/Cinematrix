@@ -21,8 +21,8 @@ userRouter.post("/signup", multerFactory.none(),
 
     check("password","La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&'*+-/=.?^_{|}@(),:;<>@[])/),
     check("correo","Dirección de correo no válida").isEmail(),
-    check("password", "La longitud minima debe ser 8").isLength({ min: 8}),
-    check("password", "La longitud máxima es de 100 carácteres").isLength({ max: 100}),
+    check("password", "La longitud minima de la contraseña debe ser 8").isLength({ min: 8}),
+    check("password", "La longitud máxima de la contraseña es de 100 carácteres").isLength({ max: 100}),
     check("password2")
     .custom((value, { req }) => {
         if (value !== req.body.password) {

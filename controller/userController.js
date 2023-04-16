@@ -75,20 +75,22 @@ class userController{
 				pass: await bcrypt.hash(request.body.password, 10)
 			};
 			
-			// Username no debe existir en bdd
+			// Udsername no debe existir en bd
 			//Correo no debe existir en bdd
+			var iguales;
+
 			this.userDAO.isUsername(usuario.username)
 			.then(value => {
 				if(value.length == 0)	return this.userDAO.existsMail(usuario.correo);
 				else{
-					console.log("Usuario ya en uso");
+					iguales = "Ya existe un usuario con ese username";
 					throw "Usuario ya en uso";
 				} 
 			})
 			.then(value => {
 				if(value.length == 0)	return this.userDAO.createUser(usuario);
 				else{
-					console.log("Mail ya en uso");
+					iguales = "Ese E-Mail ya está en uso";
 					throw "Mail ya en uso";
 				} 
 			})
@@ -101,8 +103,18 @@ class userController{
 	
 			})
 			.catch(error =>{
-				response.redirect("/films/start");
-	
+				
+					
+					response.render(views.registro, {
+						title: "Registro con errores",
+						films:0,
+						msg:null,
+						iguales: iguales,
+						valores:valores,
+						username: request.session.username?request.session.username:0
+						});
+						//response.redirect("/films/start/users/signup");
+						
 			})
 
 		}
