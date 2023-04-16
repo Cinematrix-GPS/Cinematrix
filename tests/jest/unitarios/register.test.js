@@ -1,6 +1,9 @@
-const Response = require('../../stubs/responseStub');
+"use strict"
 
-const userRouter = require('./userRouter');
+const Response = require('../../stubs/responseStub');
+const views = require('../../../js/configView');
+const userRouter = require('../../../routers/userRouter');
+
 userRouter.post = jest.fn();
 
 const usuarios = [

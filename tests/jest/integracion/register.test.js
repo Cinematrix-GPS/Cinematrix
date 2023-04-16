@@ -1,11 +1,10 @@
+"use strict"
+
 require('dotenv').config();
 
 const { getPool } = require('../../../database/configDB');
 
 const UserDAO = require('../../../js/daos/userDAO');
-
-const userRouter = require('./userRouter');
-userRouter.post = jest.fn();
 
 describe('Test de integración registro con email y contraseña', () => {
 
@@ -23,36 +22,26 @@ describe('Test de integración registro con email y contraseña', () => {
 						)`);
 
 		await dao.query("DELETE FROM usuarios WHERE id > 0;");
-
-		const correct = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@@', 'aBcDeF1*');
-        // const email = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@gmail.com', 'j');
-        // const password = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@@', 'aBcDeF1*');
-        // const wrong = await dao.createUser('Jaime Cano', 'jaimeca', 'jaimeca@@', 'j');
 		
 	});
 
 	afterAll(async () => {
 		await dao.query("DELETE FROM usuarios WHERE id > 0;");
-
-		await dao.query("DROP TABLE peliculas;");
         await dao.query("DROP TABLE usuarios;");
-        await dao.query("DROP TABLE comentarios;");
-		await dao.query("DROP TABLE actores_peliculas;");
-		await dao.query("DROP TABLE actores;");
 		await pool.end();
 	});
 
 	test('Registro con email y contraseña válidos', async () => {
 
+		const correct = {
+			nombreCompl: 'Jaime Cano',
+			username: 'jaimeca',
+			correo: 'jaimeca@gmail.com',
+			pass: 'aBcDeF1*',
+		}
+
 		await dao.createUser(correct).then(result => {
-			expect(result).toEqual(expect.arrayContaining([
-                expect.objectContaining({
-					nombreCompleto: "Jaime Cano",
-					username: "jaimeca",
-					email: "jaimeca@gmail.com",
-					password: "aBcDeF1*"
-				})
-			]))
+			expect(result).toEqual(expect.objectContaining({ affectedRows: 1 }));
 		});
 	});
 
