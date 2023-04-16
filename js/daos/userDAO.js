@@ -8,8 +8,11 @@ const qUser = require('./queries/userQueries');
 class UserDAO extends BaseDAO {
 	
 	async createUser(usuario){
-
 		return this.query(qUser.createUser, [usuario.nombreCompl, usuario.username, usuario.correo, usuario.pass]);
+	}
+
+	async createUser(nombreCompleto, username, mail, pass){
+		return this.query(qUser.createUser, [nombreCompleto, username, mail, pass]);
 	}
 
 	// Comprobamos si existe username

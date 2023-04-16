@@ -2,5 +2,5 @@
 # De hecho, es un problema porque depende del sistema operativo en el que se ejecute el entorno de node.
 /node_modules
 /.vscode
-/.env
+/*.env
 /coverage
