@@ -1,6 +1,7 @@
 "use strict";
 
 const views = require("../js/configView");
+const DAOFactory = require('../js/daos/DAOFactory');
 
 class filmController {
 
@@ -8,9 +9,13 @@ class filmController {
 	#actores;
 	#comments;
 
-	constructor (...params) {
-		this.filmDAO = params[0];
-		this.userDAO = params[1];
+//const filmController = new FilmController(fDAO, uDAO, rDAO, cDAO);
+	constructor () {
+		const factoria = new DAOFactory();
+		this.filmDAO = factoria.getFilmDAO();
+		this.userDAO = factoria.getUserDAO();
+		this.rateDAO = factoria.getRateDAO();
+		this.commentDAO = factoria.getCommentDAO();
 	}
 
 	postListByKeyWord = async (request, response) => {
@@ -66,8 +71,8 @@ class filmController {
 
 	getFilmByIdCtrl = async (request, response) => {
 		console.log("ID --> " + request.params.id);
-		this.#comments = await this.filmDAO.getFilmCommentaries(request.params.id)
-		let media = (await this.filmDAO.averageRate(request.params.id))[0].puntuacion;
+		this.#comments = await this.commentDAO.getFilmCommentaries(request.params.id)
+		let media = (await this.rateDAO.averageRate(request.params.id))[0].puntuacion;
 		if (!media) media = '-';
 		else {
 			media = Number(media.toFixed(2));
@@ -115,7 +120,7 @@ class filmController {
 	};
 
 	getUserRateForFilm = async (request, response) => {
-		await this.filmDAO.getUserRate(request.session.mail, request.params.id)
+		await this.rateDAO.getUserRate(request.session.mail, request.params.id)
 		.then(result => {
 			if (result.length == 0) this.rateFilm(request, response);
 			else this.updateFilmScore(request, response);
@@ -124,13 +129,13 @@ class filmController {
 	};
 
 	rateFilm = async (request, response) => {
-		await this.filmDAO.rate(request.session.mail, request.params.id, request.body.punctuation);
+		await this.rateDAO.rate(request.session.mail, request.params.id, request.body.punctuation);
 	};
 
 	updateFilmScore = async (request, response) => {
 		const idUsuario = (await this.userDAO.getUser(request.session.mail)).id;
 
-		await this.filmDAO.updateScore(request.body.punctuation, idUsuario, request.params.id);
+		await this.rateDAO.updateScore(request.body.punctuation, idUsuario, request.params.id);
 	};
 
 }

@@ -1,8 +1,16 @@
-const FilmDAO = require('../../stubs/filmDAOstub');
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+process.env.NODE_ENV = 'testing';
 
+<<<<<<< HEAD:tests/jest/unitarios/getComments.test.js
 const FilmController = require('../../../controller/filmController');
+=======
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
+
+const FilmController = require('../../controller/filmController');
+const views = require('../../js/configView');
+
+const DAOFactory = require('../../js/daos/DAOFactory');
+>>>>>>> feature-CM-88:tests/unitarios/getComments.test.js
 
 const comentarios = [
 	{	id: 1,
@@ -22,10 +30,20 @@ const comentarios = [
 		fecha: '10-10-1000'	}
 ];
 
+const puntuaciones = [{
+	id: 1,
+	mail: 'angel@gps.es',
+	punctuation: 10
+}]
+
 describe('Test ver comentarios', () => {
 
-	const dao = new FilmDAO(comentarios);
-	const filmController = new FilmController(dao);
+	const factoria = new DAOFactory();
+
+	factoria.getCommentDAO().setDAOData(comentarios);
+	factoria.getRateDAO().setDAOData(puntuaciones);
+
+	const filmController = new FilmController();
 	
 	test('Ver comentarios cuando el comentario existe', async () => {
 		const req = new Request();
@@ -37,6 +55,7 @@ describe('Test ver comentarios', () => {
 		
 		const captura = res.render.mock.calls[0][1].comentariosV;
 
+	
 		// Esperamos que se haya llamado a la función res.render y que se le haya pasado por parámetro lo siguiente
 		expect(captura).toContain(comentarios[0]);
 		expect(captura).toContain(comentarios[1]);
@@ -47,7 +66,7 @@ describe('Test ver comentarios', () => {
 		const req = new Request();
 		const res = new Response();
 
-		req.params.id = 3;
+		req.params.id = -1;
 
 		await filmController.getFilmByIdCtrl(req, res);
 		

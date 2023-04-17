@@ -1,10 +1,16 @@
 const bcrypt = require('bcrypt');
 const views = require('../js/configView');
 const { check, validationResult } = require("express-validator");
-class userController{
 
-	constructor(userDAO){
-		this.userDAO = userDAO;
+
+const DAOFactory = require('../js/daos/DAOFactory');
+
+class userController {
+
+	constructor (){
+		const factoria = new DAOFactory();
+
+		this.userDAO = factoria.getUserDAO();
 	}
 
 	getLogin = async (req, res) => {
