@@ -16,14 +16,11 @@ class filmController {
 	postListByKeyWord = async (request, response) => {
 		console.log("CONTRROLLER!!!");
 		
-		console.log( request.getParameter("1"));
-		var res = request.input("busqueda");
-
-		console.log(request.body.valor);
-		if(request.body.titulo){
+		console.log(request.body.busqueda);
+		if(request.body.busqueda == 1){
 			console.log("Buscar Titulo");
-			console.log(request.body.titulo);
-			await this.filmDAO.listFilmsByTitle(request.body.titulo)
+			console.log(request.body.nombreBuscar);
+			await this.filmDAO.listFilmsByTitle(request.body.nombreBuscar)
 			.then( filmListByTitle => {
 					response.render(views.index,{
 						title: "Listar peliculas por titulo",
@@ -34,7 +31,7 @@ class filmController {
 				}
 			)
 		}
-		else if (request.body.nombreBuscar) {
+		else if (request.body.busqueda == 0) {
 			console.log("Buscar keyword");
 			console.log(request.body.nombreBuscar);
 			await this.filmDAO.listFilms(request.body.nombreBuscar)
