@@ -23,9 +23,8 @@ const peliculas = [{
 
 describe('Test Controlador Películas: Buscar por KeyWord', () => {
 
-	const factoria = new DAOFactory();
-
-	const filmDAO = factoria.getFilmDAO(); filmDAO.setDAOData(peliculas);
+	new DAOFactory().getFilmDAO().setDAOData(peliculas);
+	
 	const filmController = new FilmController();
 
 	test('Búsqueda de películas por keyWord cuando la peli existe', async () => {

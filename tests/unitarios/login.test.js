@@ -34,9 +34,8 @@ const usuarios = [
 
 
 describe('Tests de inicio de sesión cuando no hay sesión iniciada.', () => {
-	const factoria = new DAOFactory();
+	new DAOFactory().getUserDAO().setDAOData(usuarios);
 	
-	const userDAO = factoria.getUserDAO(); userDAO.setDAOData(usuarios);
 	const userController = new UserController();
 
 	test('Inicio de sesión cuando el usuario y contraseña son correctos', async () => {

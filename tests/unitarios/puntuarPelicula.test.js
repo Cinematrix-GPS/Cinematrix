@@ -42,9 +42,9 @@ describe('Test Controlador Puntuacion: Puntuacion de una pelicula', () => {
 
 	const factoria = new DAOFactory();
 	
-	const filmDAO = factoria.getFilmDAO(); filmDAO.setDAOData(puntuacion);
-	const userDAO = factoria.getUserDAO(); userDAO.setDAOData(usuarios);
-	const rateDAO = factoria.getRateDAO(); rateDAO.setDAOData(puntuacion);
+	factoria.getFilmDAO().setDAOData(puntuacion);
+	factoria.getUserDAO().setDAOData(usuarios);
+	factoria.getRateDAO().setDAOData(puntuacion);
 	
 
 	const filmController = new FilmController();

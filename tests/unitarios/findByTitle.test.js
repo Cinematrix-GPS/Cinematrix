@@ -23,8 +23,7 @@ const peliculas = [{
 
 describe('Tests Controlador Películas: Buscar por Título', () => {
 
-	const factoria = new DAOFactory();
-	const filmDAO = factoria.getFilmDAO(); filmDAO.setDAOData(peliculas);
+	new DAOFactory().getFilmDAO().setDAOData(peliculas);
 	
 	const filmController = new FilmController();
 

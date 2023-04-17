@@ -36,8 +36,8 @@ describe('Test ver comentarios', () => {
 
 	const factoria = new DAOFactory();
 
-	const commentDAO = factoria.getCommentDAO(); commentDAO.setDAOData(comentarios);
-	const rateDAO = factoria.getRateDAO(); rateDAO.setDAOData(puntuaciones);
+	factoria.getCommentDAO().setDAOData(comentarios);
+	factoria.getRateDAO().setDAOData(puntuaciones);
 
 	const filmController = new FilmController();
 	

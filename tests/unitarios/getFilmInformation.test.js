@@ -76,9 +76,9 @@ let puntuaciones = [{
 	const factoria = new DAOFactory();
 
 	// Inicializamos los DAOs de mentira con la información que queremos de prueba
-	const filmDAO = factoria.getFilmDAO(); filmDAO.setDAOData(infoBasic);
-	const commentDAO = factoria.getCommentDAO(); commentDAO.setDAOData(infoBasic);
-	const rateDAO = factoria.getRateDAO(); rateDAO.setDAOData(puntuaciones);
+	factoria.getFilmDAO().setDAOData(infoBasic);
+	factoria.getCommentDAO().setDAOData(infoBasic);
+	factoria.getRateDAO().setDAOData(puntuaciones);
 
 	const filmController = new FilmController();
 
