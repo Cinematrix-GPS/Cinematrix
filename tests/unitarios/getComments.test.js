@@ -1,8 +1,6 @@
 process.env.NODE_ENV = 'testing';
 
-<<<<<<< HEAD:tests/jest/unitarios/getComments.test.js
-const FilmController = require('../../../controller/filmController');
-=======
+
 const Request = require('../stubs/requestStub');
 const Response = require('../stubs/responseStub');
 
@@ -10,7 +8,6 @@ const FilmController = require('../../controller/filmController');
 const views = require('../../js/configView');
 
 const DAOFactory = require('../../js/daos/DAOFactory');
->>>>>>> feature-CM-88:tests/unitarios/getComments.test.js
 
 const comentarios = [
 	{	id: 1,

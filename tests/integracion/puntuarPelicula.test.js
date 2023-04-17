@@ -51,8 +51,19 @@ describe('Test de integración de puntuar pelicula', () => {
 
         await filmDAO.createFilm('Alien: el octavo pasajero', 1, 115, 9, '1979-05-25', 'La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.', 'Terror');
         await filmDAO.createFilm('Terminator', 2, 200, 8, '1979-05-25', 'La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.', 'Acción');
-		await userDAO.createUser('Alvaro David', 'alvd07', 'alvarod@gmail.com', 'hola');
-        await userDAO.createUser('Alejadro Manuel', 'aalexis', 'alalexmanu@gmail.com', 'adios');
+		await userDAO.createUser({
+			nombreCompl: 'Alvaro David',
+			username: 'alvd07',
+			correo: 'alvarod@gmail.com',
+			pass: 'hola'
+		});
+        await userDAO.createUser({
+			nombreCompl: 'Alejandro Manuel',
+			username: 'aalexis',
+			correo: 'alalexmanu@gmail.com',
+			pass: 'adios'
+		});
+
         await rateDAO.rate('alvarod@gmail.com', 1, 6);
         await rateDAO.rate('alalexmanu@gmail.com', 2, 5);
         

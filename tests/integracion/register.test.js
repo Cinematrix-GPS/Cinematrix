@@ -2,9 +2,11 @@
 
 require('dotenv').config();
 
-const { getPool } = require('../../../database/configDB');
+process.env.DB_SCHEMA = 'TestingCinematrix';
 
-const UserDAO = require('../../../js/daos/userDAO');
+const { getPool } = require('../../database/configDB');
+
+const UserDAO = require('../../js/daos/userDAO');
 
 describe('Test de integración registro con email y contraseña', () => {
 
@@ -21,7 +23,11 @@ describe('Test de integración registro con email y contraseña', () => {
 							password varchar(250) NOT NULL
 						)`);
 
-		await dao.query("DELETE FROM usuarios WHERE id > 0;");
+		await dao.query(`ALTER TABLE usuarios
+							ADD PRIMARY KEY (id)`);
+
+		await dao.query(`ALTER TABLE usuarios
+							MODIFY id int(11) NOT NULL AUTO_INCREMENT`);
 		
 	});
 

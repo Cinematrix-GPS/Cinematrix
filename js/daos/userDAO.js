@@ -11,10 +11,6 @@ class UserDAO extends BaseDAO {
 		return this.query(qUser.createUser, [usuario.nombreCompl, usuario.username, usuario.correo, usuario.pass]);
 	}
 
-	async createUser(nombreCompleto, username, mail, pass){
-		return this.query(qUser.createUser, [nombreCompleto, username, mail, pass]);
-	}
-
 	// Comprobamos si existe username
 	async isUsername(username) {
 		return this.query(qUser.existeUsername, [username]);

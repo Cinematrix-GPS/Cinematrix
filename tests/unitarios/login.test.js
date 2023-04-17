@@ -4,7 +4,7 @@ process.env.NODE_ENV = 'testing';
 const Request = require('../stubs/requestStub');
 const Response = require('../stubs/responseStub');
 
-const UserController = require('../../controller/loginController');
+const UserController = require('../../controller/userController');
 const views = require('../../js/configView');
 
 const DAOFactory = require('../../js/daos/DAOFactory');

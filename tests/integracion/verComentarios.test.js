@@ -70,7 +70,12 @@ describe('Test de Integración ver comentarios de una película', () => {
 
 		await filmDAO.createFilm('Alien: el octavo pasajero', 1, 115, 9, '1979-05-25', 'La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.', 'Terror');
 		await filmDAO.createFilm('Terminator', 2, 200, 8, '1979-05-25', 'La tripulación del remolcador espacial Nostromo atiende una señal de socorro y, sin saberlo, sube a bordo una letal forma de vida extraterrestre.', 'Acción');
-		await userDAO.createUser('Eustalegio','eusta', 'eustagelio@kgmail.com', 'aBcDe1');
+		await userDAO.createUser({
+			nombreCompl: 'Eustalegio',
+			username: 'eusta',
+			correo:'eustalegio@kgmail.com',
+			pass: 'aBcDe1'
+		});
 		await commentDAO.createComment(1, 1, 1, 'Amo a mi mamá', '1975-05-25');
 		await commentDAO.createComment(2, 1, 2, '', '1979-05-25');
 	

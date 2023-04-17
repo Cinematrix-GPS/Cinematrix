@@ -27,15 +27,6 @@ const MySQLStore = require('express-mysql-session')(session);
 const pool = require('./database/configDB').connectionInfo; // Para obtener los datos de conexión a la BBDD
 const sessionStore = new MySQLStore(pool);
 
-// Middleware para la creación de las sesiones. Una vez leida la sesión, podemos pasarle cosas al router de auth
-// app.use(session({
-// 	key: 'login_cookie',
-// 	secret: '7587631bc33f9454e32112c1eaeb21be',
-// 	store: sessionStore,
-// 	resave: true,
-// 	saveUninitialized: true
-// }), require('./routers/authRouter'));
-
 app.use(session({
 	key: 'login_cookie',
 	secret: '7587631bc33f9454e32112c1eaeb21be',
@@ -50,8 +41,6 @@ app.use(function(request, response, next) {
 })
 
 // Enrutamiento
-
-
 
 const filmRoutes = require("./routers/filmRouter");
 app.use("/films", filmRoutes);

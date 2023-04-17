@@ -7,6 +7,8 @@ const multerFactory = multer({ storage: multer.memoryStorage() });
 
 const { check,validationResult } = require('express-validator');
 
+const views = require('../js/configView');
+
 const useRCrtl = new userController();
 //Inicio de sesion
 const {requiresLogout} = require('../middleware/auth');

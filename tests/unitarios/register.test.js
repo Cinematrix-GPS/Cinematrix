@@ -1,12 +1,15 @@
 "use strict"
 
-const UserDAO = require('../../stubs/userDAOstub');
-const UserController = require('../../../controller/userController');
+process.env.NODE_ENV = 'testing';
 
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+const UserController = require('../../controller/userController');
 
-const views = require('../../../js/configView');
+const FactoriaDAO = require('../../js/daos/DAOFactory');
+
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
+
+const views = require('../../js/configView');
 
 let usuarios = [
 	{
@@ -37,8 +40,10 @@ describe('Registro unitario registro con email y contraseña', () => {
 
 	const request = new Request();
 	const response = new Response();
-	const dao = new UserDAO(usuarios);
-	const controller = new UserController(dao);
+
+	new FactoriaDAO().getUserDAO().setDAOData(usuarios);
+
+	const controller = new UserController();
 
 	test('Comprueba si el email es válido', () => {
 		expect(email('correo@ejemplo.com')).toBe(true);
