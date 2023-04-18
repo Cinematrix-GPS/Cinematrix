@@ -29,12 +29,10 @@
         <div class="containerGridCard">
           
           <article class="information">
-            <a class="titleCard" href="#"><%= pelicula.nombre.toUpperCase() %></a>
+            <a class="titleCard"><%= pelicula.nombre.toUpperCase() %></a>
             <div class="imgCard">
-              <a href="#">
-            <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded-start imgCard" alt="...">
-              </a>
-              </div>
+              <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded-start imgCard" alt="...">
+            </div>
 
           </article>
           
