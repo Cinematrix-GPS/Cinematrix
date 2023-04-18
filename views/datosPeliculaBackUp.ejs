@@ -18,13 +18,7 @@
 
 
 <div class="contenido row justify-content-center align-items-center">
-  <%if(errorMsg !== 0) {%>
-    
-    
-    <div class="alert alert-danger" role="alert">
-      <%=errorMsg%>
-    </div>
-  <% } %>
+  
   <div class="card col-auto" style="max-width: 1080px;">
     <!-- <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">
         Puntuacion: <%=pelicula.puntuacion%>
@@ -67,10 +61,21 @@
             <% }); %>
           </ul>
         </div>
+        <%
+          let msg = "";
+          if(favorito){
+            msg = "Favorito";
+          }
+          else {
+            msg = "No favorito";
+          }
+        %>
 
-        <form method="post" action="/films/favFilm/<%= pelicula.id %>">
+
+        <form method="post" action="/films/favFilm/<%= pelicula.id %>/<%= favorito %>">
           <input type="submit" class="btn-check" id="btn-check" autocomplete="off">
           <label class="btn btn-warning" for="btn-check"><i class="bi bi-star"></i></label>
+          <%=msg%>
         <!-- <i class="bi bi-star-fill"></i> -->
         </form>
       </div>

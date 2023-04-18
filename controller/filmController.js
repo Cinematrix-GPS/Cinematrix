@@ -8,6 +8,7 @@ class filmController {
 	#pelicula;
 	#actores;
 	#comments;
+	#fav;
 
 //const filmController = new FilmController(fDAO, uDAO, rDAO, cDAO);
 	constructor () {
@@ -71,13 +72,18 @@ class filmController {
 	};
 
 	getFilmByIdCtrl = async (request, response) => {
-		console.log("ID --> " + request.params.id);
-		this.#comments = await this.commentDAO.getFilmCommentaries(request.params.id)
+		console.log("ID pelicula--> " + request.params.id);
+		this.#comments = await this.commentDAO.getFilmCommentaries(request.params.id);
 		let media = (await this.rateDAO.averageRate(request.params.id))[0].puntuacion;
 		if (!media) media = '-';
 		else {
 			media = Number(media.toFixed(2));
 		}
+
+		this.#fav = (await this.favDAO.getFav(request.session.idUser, request.params.id))[0].favFilm;
+		// 1 Pelicula favorita, 0 No favorita
+		
+
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
@@ -107,7 +113,7 @@ class filmController {
 				actoresV: this.#actores,
 				comentariosV: this.#comments,
 				username: request.session.username?request.session.username:0,
-				errorMsg: 0
+				favorito: this.#fav
 			});
 		})
 	};
@@ -132,25 +138,21 @@ class filmController {
 	};
 
 	favByUser = async (request, response) => {
-		console.log("Controller fav "+request.session.username);
-				
-		await this.favDAO.addFavByUser(request.session.idUser, request.params.idFilm)
-		.then(result => {
-			if(result.affectedRows) console.log("Favorito añadido");
+		console.log("Controller fav "+request.params.idFilm + " " + request.params.fav);
+		
+		if(request.params.fav == 0){//No es favorita se inserta
+			await this.favDAO.addFavByUser(request.session.idUser, request.params.idFilm);
+			console.log("No es favorita se inserta ");
 			
-		})
-		.catch(error => {
-			// No se añade puesto que ya exsite
-			console.log("favorito ya añadido");
-			response.render(views.vistaPelicula, {
-				pelicula: this.#pelicula[0],
-				actoresV: this.#actores,
-				comentariosV: this.#comments,
-				username: request.session.username?request.session.username:0,
-				errorMsg: "Favorito ya añadido"
-			});
-		})
-		// response.redirect(`/films/getFilmById/${ request.params.idFilm }`);
+		}
+		else if(request.params.fav == 1){//NO IMPLEMENTADO SE HARIA EL BORRADO
+			console.log("Favorita se borra ");
+		}  
+		//Pase lo que pase se redirige, estaria bien mostrar un mensaje de retroalimentacion en la vista "Añadida", "Eliminada de favoritos"...
+		response.redirect(`/films/getFilmById/${ request.params.idFilm }`);
+		
+		// response.status(500);
+			
 	};
 
 }
