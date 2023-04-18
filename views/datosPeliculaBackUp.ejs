@@ -18,11 +18,19 @@
 
 
 <div class="contenido row justify-content-center align-items-center">
+  <%if(errorMsg !== 0) {%>
+    
+    
+    <div class="alert alert-danger" role="alert">
+      <%=errorMsg%>
+    </div>
+  <% } %>
   <div class="card col-auto" style="max-width: 1080px;">
     <!-- <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">
         Puntuacion: <%=pelicula.puntuacion%>
         <span class="visually-hidden">Puntuacion</span>
       </span> -->
+      
       <h3> <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">Puntuación: <%=pelicula.puntuacion%></span></h3>
      
     <div class="row g-0">

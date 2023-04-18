@@ -16,6 +16,7 @@ class filmController {
 		this.userDAO = factoria.getUserDAO();
 		this.rateDAO = factoria.getRateDAO();
 		this.commentDAO = factoria.getCommentDAO();
+		this.favDAO = factoria.getfavDAO();
 	}
 
 	postListByKeyWord = async (request, response) => {
@@ -93,28 +94,20 @@ class filmController {
 					genero: p.genero}
 			}).slice(0, 1);
 			
-			console.log(this.#pelicula);
+			// console.log(this.#pelicula);
 			
 			this.#actores = listadopeliculas.map(a => {
 				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
-			console.log(this.#actores);
+			// console.log(this.#actores);
 			
-			// response.render(views.vistaPelicula, {
-			// 	titleV: pelicula[0].nombre,
-			// 	idV: pelicula[0].id,
-			// 	sinopsisV: pelicula[0].sinopsis,
-			// 	generoV: pelicula[0].genero,
-			// 	actoresV: actores,
-			// 	fechaEstrenoV: pelicula[0].fechaEstreno,
-			// 	duracionV: pelicula[0].duracion
-
-			// });
+			
 			response.render(views.vistaPelicula, {
 				pelicula: this.#pelicula[0],
 				actoresV: this.#actores,
 				comentariosV: this.#comments,
-				username: request.session.username?request.session.username:0
+				username: request.session.username?request.session.username:0,
+				errorMsg: 0
 			});
 		})
 	};
@@ -139,7 +132,25 @@ class filmController {
 	};
 
 	favByUser = async (request, response) => {
-		console.log("Controller fav "+req.session.username);
+		console.log("Controller fav "+request.session.username);
+				
+		await this.favDAO.addFavByUser(request.session.idUser, request.params.idFilm)
+		.then(result => {
+			if(result.affectedRows) console.log("Favorito añadido");
+			
+		})
+		.catch(error => {
+			// No se añade puesto que ya exsite
+			console.log("favorito ya añadido");
+			response.render(views.vistaPelicula, {
+				pelicula: this.#pelicula[0],
+				actoresV: this.#actores,
+				comentariosV: this.#comments,
+				username: request.session.username?request.session.username:0,
+				errorMsg: "Favorito ya añadido"
+			});
+		})
+		// response.redirect(`/films/getFilmById/${ request.params.idFilm }`);
 	};
 
 }
