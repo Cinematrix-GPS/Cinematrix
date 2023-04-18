@@ -1,12 +1,13 @@
-const FilmDAO = require('../../stubs/filmDAOstub');
-const UserDAO = require('../../stubs/userDAOstub');
+process.env.NODE_ENV = 'testing';
 
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
 
-const FilmController = require('../../../controller/filmController');
+const FilmController = require('../../controller/filmController');
 
-const views = require('../../../js/configView');
+const DAOFactory = require('../../js/daos/DAOFactory');
+
+const views = require('../../js/configView');
 
 const puntuacion = [{
 	mail: "alvarod@gmail.com",
@@ -39,10 +40,14 @@ const usuarios = [
 
 describe('Test Controlador Puntuacion: Puntuacion de una pelicula', () => {
 
-	const dao = new FilmDAO(puntuacion);
-	const daoUser = new UserDAO(usuarios);
+	const factoria = new DAOFactory();
 	
-	const filmController = new FilmController(dao, daoUser);
+	factoria.getFilmDAO().setDAOData(puntuacion);
+	factoria.getUserDAO().setDAOData(usuarios);
+	factoria.getRateDAO().setDAOData(puntuacion);
+	
+
+	const filmController = new FilmController();
 
 	test('Puntuacion de una pelicula', async () => {
 		const req = new Request();

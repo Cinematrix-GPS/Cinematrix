@@ -1,9 +1,11 @@
-const FilmDAO = require('../../stubs/filmDAOstub');
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+process.env.NODE_ENV = 'testing';
 
-const FilmController = require('../../../controller/filmController');
-const views = require('../../../js/configView');
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
+
+const FilmController = require('../../controller/filmController');
+const views = require('../../js/configView');
+const DAOFactory = require('../../js/daos/DAOFactory');
 
 const peliculas = [{
 	nombre: "Alien",
@@ -21,8 +23,9 @@ const peliculas = [{
 
 describe('Tests Controlador Películas: Buscar por Título', () => {
 
-	const dao = new FilmDAO(peliculas);
-	const filmController = new FilmController(dao);
+	new DAOFactory().getFilmDAO().setDAOData(peliculas);
+	
+	const filmController = new FilmController();
 
 	test('Búsqueda por título cuando la película existe', async () => {
 		const req = new Request();
