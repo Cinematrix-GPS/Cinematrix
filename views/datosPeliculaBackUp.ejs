@@ -16,6 +16,7 @@
 <!-- FIN MENU -->
 <%- include("menu2") %>
 
+
 <div class="contenido row justify-content-center align-items-center">
   <div class="card col-auto" style="max-width: 1080px;">
     <!-- <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">
@@ -40,6 +41,7 @@
           
         </div>
        </div>
+       
       <div class="col-md-8">
         <div class="card-body">
             
@@ -57,7 +59,15 @@
             <% }); %>
           </ul>
         </div>
+
+        <form method="post" action="/films/favFilm/<%= pelicula.id %>">
+          <input type="submit" class="btn-check" id="btn-check" autocomplete="off">
+          <label class="btn btn-warning" for="btn-check"><i class="bi bi-star"></i></label>
+        <!-- <i class="bi bi-star-fill"></i> -->
+        </form>
       </div>
+
+      
       
     </div>
   </div>

@@ -138,6 +138,12 @@ class filmController {
 		await this.rateDAO.updateScore(request.body.punctuation, idUsuario, request.params.id);
 	};
 
+	favByUser = async (request, response) => {
+		console.log("Controller fav "+req.session.username);
+	};
+
 }
+
+	
 
 module.exports = filmController;
