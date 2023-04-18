@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <form method="POST" action="favorites">
+            <form method="POST" action="/favFilm/:<%= pelicula.id %>">
               <h5 class="card-title"><%=pelicula.nombre%></h5>
               <% if (favorite) { %>
                 <i class="bi bi-check" type="submit" name="delete"></i>
