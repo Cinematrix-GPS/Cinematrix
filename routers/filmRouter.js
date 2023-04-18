@@ -7,18 +7,7 @@ const multerFactory = multer({ storage: multer.memoryStorage() });
 const views = require("../js/configView");
 const {requiresLogin} = require("../middleware/auth");
 
-const {getPool} = require('../database/configDB');
-const FilmDAO = require('../js/daos/filmDAO');
-
-const userDao = require('../js/daos/userDAO');
-
-const uDAO = new userDao(getPool());
-
-
-const fDAO = new FilmDAO(getPool());
-
-
-const filmController = new FilmController(fDAO, uDAO);
+const filmController = new FilmController();
 
 
 filmRouter.get('/search', async (req, res) => {
@@ -55,5 +44,12 @@ filmRouter.post("/getFilmById/:id",
     multerFactory.none(),
     filmController.getUserRateForFilm
 );
+
+filmRouter.post("/favFilm/:idFilm",
+    requiresLogin,
+    multerFactory.none(),
+    filmController.favByUser
+);
+
 
 module.exports = filmRouter;

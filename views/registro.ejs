@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        label {
+            font-weight: bold;
+        }
+        .botonContinuar {
+            display: block;
+            margin: 0 auto;
+        }
+        .error-msg {
+            color: grey;
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 style="margin-bottom: 40px;">Registro de Usuario</h1>
+        <form id="registroForm" action="/users/signup" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombreCompleto">Nombre Completo</label>
+                <input type="text" class="form-control" id="recipient-name" placeholder="Nombre completo" name="nombreCompleto"  value = "<% if(typeof valores != 'undefined') { %><%= valores.nombreCompleto %><%}%>" required>
+            </div>
+            <div class="form-group">
+                <label for="nombreUsuario">Nombre de Usuario</label>
+                <input type="text" class="form-control" id="recipient-name" placeholder="Nombre de usuario" name="username" value = "<% if(typeof valores != 'undefined') { %><%= valores.username %><%}%>" required>
+            </div>
+            <div class="form-group">
+                <label for="correoElectronico">Correo Electrónico</label>
+                <input type="email" class="form-control" id="recipient-name" placeholder="Correo electrónico" name="correo" value = "<% if(typeof valores != 'undefined') { %><%= valores.correo %><%}%>" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" class="form-control"  placeholder="Contraseña" name="password"  required>
+                <div><small id="contrasenaError" class="error-msg">La contraseña debe tener 8 caracteres como mínimo.</small></div>
+                <small id="contrasenaError" class="error-msg">La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial</small>
+                
+            </div>
+            <div class="form-group">
+                <label for="repetirContrasena">Repetir Contraseña</label>
+                <input type="password" class="form-control"  placeholder="Repita Contraseña" name="password2" required>
+            </div>
+            <% if (typeof validaciones != 'undefined') { %>
+                <% validaciones.forEach((validacion)=> { %>
+                <div style="color: crimson;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%=validacion.msg %></strong>
+                
+                </div>
+                <% }) %>
+            <% } %>
+            <% if (typeof iguales != 'undefined') { %>    
+                <div style="color: crimson;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%=iguales %></strong>
+                
+                </div>
+            <% } %>    
+            <button type="submit" class="btn btn-primary botonContinuar">Continuar</button>
+        </form>
+    </div>
+
+
+
+
+</body>
+</html>

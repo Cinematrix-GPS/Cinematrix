@@ -43,18 +43,19 @@
             <ul class="nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <!-- <%=username%> -->
-                    <% if (username === 0) { %>
-                        <i class="bi bi-person-circle"></i>
-                    <% } else { %>
-                        <%=username%>
-                    <%} %>
+                        <% if (username === 0) { %>
+                            <i class="bi bi-person-circle"></i>
+                        <% } else { %>
+                            <%=username%>
+                        <%} %>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/users/loginForm">Login</a></li>
                         <!-- <li><a class="dropdown-item" href="#">Usuario</a></li>-->
                         <li><hr class="dropdown-divider"></li> 
-                        <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li>
+                        <!-- <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li> -->
+                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button> -->
+                        <li><a class="dropdown-item" href="/users/signup">Registro</a></li>
                     </ul>
                 </li>
             </ul>
@@ -89,40 +90,5 @@
     </header>
 </div>
 <body>
-<div class="popup" id="popup">
-    <div class="popup-content">
-        <form action="/users/signup" method="POST" enctype="multipart/form-data">
-        <span class="buttonClose" onclick="cerrarRegistro()">+</span>
 
-        <h2>Registro</h2>
-        <hr class="solid"> 
-        <input type="text" placeholder="Nombre completo" name="nombreCompleto" required>
-        <input type="text" placeholder="Nombre de usuario" name="username" required>
-        <input type="text" placeholder="Correo electrónico" name="correo" required>
-        <input type="text" style="-webkit-text-security: disc;" placeholder="Contraseña" name="password" required>
-        <input type="text" style="-webkit-text-security: disc;" placeholder="Repita Contraseña" name="password2" required>
-        <div class="alert alert-secondary" role="alert">
-            A simple secondary alert—check it out!
-          </div>
-          
-        <button  type="submit" class="btn btn-primary w-100" onclick="mostrarErrores()">Registrar</button> <!--Añadir implementacion al boton-->
-        </form>
-    </div>
-</div>
 </body>
-
-<script>
-
-    function mostrarRegistro() {
-        document.getElementById("popup").style.display = "flex";
-    }
-
-    function mostrarErrores() {
-        document.getElementById("errorRegistro").style.display = "block";
-    }
-
-    function cerrarRegistro() {
-        document.getElementById("popup").style.display = "none";
-    }
-
-</script>

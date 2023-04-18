@@ -1,7 +1,7 @@
 'use strict';
 
 const BaseDAO = require('./baseDAO');
-const qFilms = require('./querysFilm');
+const qFilms = require('./queries/filmQueries');
 
 class FilmDAO extends BaseDAO {
 	
@@ -32,35 +32,9 @@ class FilmDAO extends BaseDAO {
         return await this.query(qFilms.qGetFilmById, [id]);
     }
 
-    // Deberia estar aqui?
-    async getFilmCommentaries(id) {
-        return this.query(qFilms.getCommentaries, [id]);
-    }
-
-    async averageRate(id) {
-        return await this.query(qFilms.getAverageRate, [id]);
-    }
-
     async createUser(id, nombreCompleto, username, email, password) {
         return this.query(qFilms.createUser, [id, nombreCompleto, username, email, password]);
-    }
-
-    async createComment(id, id_usuario, id_pelicula, texto, fecha) {
-        return this.query(qFilms.createComment, [id, id_usuario, id_pelicula, texto, fecha]);
-    }
-
-    async getUserRate(usuario, pelicula) {
-        return this.query(qFilms.getUserRateForFilm, [usuario, pelicula]);
-    }
-
-    async rate(usuario, pelicula, puntuacion) {
-        return this.query(qFilms.rateFilm, [usuario, pelicula, puntuacion]);
-    }
-
-    async updateScore(puntuacion, usuario, pelicula) {
-        return this.query(qFilms.updateFilmScore, [puntuacion, usuario, pelicula]);
-    }
-    
+    }    
 }
 
 module.exports = FilmDAO;

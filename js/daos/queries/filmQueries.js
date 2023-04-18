@@ -27,10 +27,6 @@ module.exports = {
                         FROM peliculas p
                         WHERE p.nombre like ?`,
 
-    // qGetFilmById: ` SELECT id, nombre, img, duracion, puntuacion, fechaEstreno, sinopsis, genero 
-    //                 FROM peliculas
-    //                 WHERE id=?`,
-
     qGetFilmById: `SELECT p.id, p.nombre, p.img, p.duracion, p.fechaEstreno, p.sinopsis,
                                                               p.genero, a.nombreAct, a.apellidosAct 
                    FROM peliculas p
@@ -38,40 +34,10 @@ module.exports = {
                    LEFT JOIN actores a ON ap.id_actor=a.id
                    WHERE p.id = ?`,
 
-    getAverageRate: `SELECT AVG(puntuacion) puntuacion
-                     FROM puntuaciones WHERE pelicula = ?`,
-
-    // qGetActorsById: `SELECT a.*
-    //                 FROM peliculas p
-    //                 LEFT JOIN actores_peliculas ap ON p.id=ap.id_pelicula
-    //                 LEFT JOIN actores a ON ap.id_actor=a.id
-    //                 WHERE p.id=?`
-
-    // conseguir los comentarios
-    getCommentaries: `SELECT c.id, c.id_usuario, c.id_pelicula, c.texto, c.fecha, u.username
-                        FROM comentarios c 
-                        LEFT JOIN usuarios u ON c.id_usuario=u.id
-                        WHERE id_pelicula= ?
-                        ORDER BY fecha DESC`,
-
     createUser: `INSERT INTO usuarios(id, nombreCompleto, username, email, password)
                  VALUES (?, ?, ?, ?, ?)`,
 
-    createComment: `INSERT INTO comentarios(id, id_usuario, id_pelicula, texto, fecha)
-                    VALUES(?, ?, ?, ?, ?)`,
 
-    getUserRateForFilm: `SELECT puntuacion
-                         FROM puntuaciones JOIN usuarios ON puntuaciones.usuario = usuarios.id
-                         WHERE usuarios.email = ? AND puntuaciones.pelicula = ?`,
-
-    rateFilm: `INSERT INTO puntuaciones(usuario, pelicula, puntuacion)
-               VALUES((SELECT DISTINCT usuarios.id
-                       FROM usuarios
-                       WHERE usuarios.email = ?), ?, ?)`,
-
-    updateFilmScore: `UPDATE puntuaciones SET puntuacion = ?
-                      WHERE usuario = ? AND pelicula = ?`,
-    
 };
 
 // Para paginacion SELECT p.id, p.nombre, p.img FROM peliculas p LIMIT 8, 4; Donde LIMIT [Desplazamiento][numero que aparecen]
