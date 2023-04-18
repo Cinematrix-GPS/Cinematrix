@@ -46,7 +46,9 @@ userRouter.get('/loginForm',
     async (req, res) => {
         res.render(views.login, {  
             title: "Prototipo Cinematrix",
-            errorMessage: null});
+            errorMessage: null,
+            username: req.session.username?req.session.username:0
+        });
 });
 
 userRouter.post('/login', 
