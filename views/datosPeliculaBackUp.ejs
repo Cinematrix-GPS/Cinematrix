@@ -57,8 +57,21 @@
             <% }); %>
           </ul>
         </div>
+          <!-- Vista de los botones de puntuar-->
+        <form method="post" action="/films/getFilmById/<%= pelicula.id %>" class="row align-items-center mb-5">
+          <div class="col col-4">
+            <div class="btn-group">
+            <!-- <div class="btn-group" role="group" aria-label="Basic example"> -->
+            <% for (let i = 0; i < 11; i++) { %>
+              <input type="submit" class="btn btn-primary" name="punctuation" value="<%= i %>">
+              <!-- <button type="submit" class="btn btn-primary" name="punctuation" value="<%= i %>"><%= i %></button> -->
+            <% } %>
+            </div>
+            <!-- </div> -->
+          </div>
+        </form>
+
       </div>
-      
     </div>
   </div>
 </div>
