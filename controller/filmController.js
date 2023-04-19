@@ -82,7 +82,7 @@ class filmController {
 		if(typeof(request.session.idUser) !== "undefined")
 			this.#fav = (await this.favDAO.getFav(request.session.idUser, request.params.id))[0].favFilm;
 			// 1 Pelicula favorita, 0 No favorita
-		else this.#fav = undefined;
+		else this.#fav = 0;
 		
 
 		await this.filmDAO.getFilmById(request.params.id)
