@@ -79,9 +79,10 @@ class filmController {
 		else {
 			media = Number(media.toFixed(2));
 		}
-
-		this.#fav = (await this.favDAO.getFav(request.session.idUser, request.params.id))[0].favFilm;
-		// 1 Pelicula favorita, 0 No favorita
+		if(typeof(request.session.idUser) !== "undefined")
+			this.#fav = (await this.favDAO.getFav(request.session.idUser, request.params.id))[0].favFilm;
+			// 1 Pelicula favorita, 0 No favorita
+		else this.#fav = undefined;
 		
 
 		await this.filmDAO.getFilmById(request.params.id)
@@ -133,7 +134,7 @@ class filmController {
 
 	updateFilmScore = async (request, response) => {
 		const idUsuario = (await this.userDAO.getUser(request.session.mail)).id;
-
+		//NO NECESARIO OBTENER AL INICIAR SESION TENEMOS EL ID CON--> request.session.idUser
 		await this.rateDAO.updateScore(request.body.punctuation, idUsuario, request.params.id);
 	};
 
