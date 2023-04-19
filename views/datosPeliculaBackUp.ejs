@@ -32,14 +32,16 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <form method="POST" action="/favFilm/:<%= pelicula.id %>">
-              <h5 class="card-title"><%=pelicula.nombre%></h5>
-              <% if (favorite) { %>
-                <i class="bi bi-check" type="submit" name="delete"></i>
-              <% } else { %>
-                <i class="bi bi-plus" type="submit" name="add"></i>
-              <% } %>
-              </form>
+            <form method="POST" class="row" action="/films/favFilm/<%= pelicula.id %>/<%= favorite %>">
+              <h5 class="card-title col col-11"><%=pelicula.nombre%></h5>
+              <div class="col col-1">
+                <% if (favorite) { %>
+                  <button class="bi bi-check icon" type="submit" name="delete"></button>
+                <% } else { %>
+                  <button class="bi bi-plus icon" type="submit" name="add"></button>
+                <% } %>
+              </div>
+            </form>
             <p class="card-text"><%=pelicula.sinopsis%></p>
             <!-- getFullYear() -->
             <p class="card-text"><small class="text-muted">Año de estreno: <%=pelicula.fechaEstreno.getFullYear()%> | <%=pelicula.duracion%> minutos | <%=pelicula.genero%></small></p>
