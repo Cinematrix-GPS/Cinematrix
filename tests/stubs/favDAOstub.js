@@ -2,10 +2,10 @@ class FavoritosDAOstub{
     #favoritos=[]
 
     constructor(){
-        if(typeof FavoritosDAOStub.instance==='object')
-            return FavoritosDAOStub.instance;
+        if(typeof FavoritosDAOstub.instance==='object')
+            return FavoritosDAOstub.instance;
         
-        FavDAOStub.instance=this;
+        FavoritosDAOstub.instance=this;
     }
 
     setDAOData(data){
@@ -13,7 +13,7 @@ class FavoritosDAOstub{
     }
 
     async addFavByUser(user,peli){
-        return this.#favoritos.filter(f=>f.id_usuario==user && f.id_pelicula==peli);
+        return this.#favoritos.some(f=>f.id_usuario===user && f.id_pelicula===peli);
     }
 
 

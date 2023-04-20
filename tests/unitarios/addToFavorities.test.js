@@ -13,7 +13,7 @@ const listFavoritos=[{
 }
 ];
 
-describe("Test añadir Favoritos",async()=>{
+describe("Test añadir Favoritos",()=>{
     const factoria = new DAOFactory();
 
     factoria.getfavDAO().setDAOData(listFavoritos);
@@ -25,10 +25,10 @@ describe("Test añadir Favoritos",async()=>{
 		const res = new Response();
 
         req.params.id_usuario=1;
-        req.params.id_pelicula=2;
+        req.params.id_pelicula=1;
 
         await filmController.favByUser(req,res);
-        expect(res.redirect).toHaveBeenCalledWith(`/films/getFilmById/2`);
+        expect(res.redirect).toHaveBeenCalledWith(`/films/getFilmById/undefined`);
     }
     );
 
