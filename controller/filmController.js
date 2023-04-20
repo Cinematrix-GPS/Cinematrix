@@ -151,6 +151,21 @@ class filmController {
 		// response.status(500);
 	};
 
+	listFavByUser = async (request, response) => {
+
+		await this.favDAO.listFavByUser(request.session.idUser)
+		.then( favfilms => {
+				
+				response.render(views.index, {
+					title: "Listado completo",
+					films: favfilms?favfilms:0,
+					msg: "",
+					username: request.session.username?request.session.username:0
+				});
+		})
+
+	};
+
 }
 
 module.exports = filmController;

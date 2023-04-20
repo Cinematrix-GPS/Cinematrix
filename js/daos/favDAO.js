@@ -13,6 +13,10 @@ class FavDAO extends BaseDAO{
         return this.query(qFav.isFav, [usuario, pelicula]);
     }
 
+    async listFavByUser(usuario) {
+        
+        return this.query(qFav.listFavoriteFilms, [usuario]);
+    }
     
 }
 
