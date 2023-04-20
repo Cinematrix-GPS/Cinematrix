@@ -63,21 +63,36 @@
      </ul> -->
          <ul class="nav col col-1 offset-2">
              <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 <!-- <%=username%> -->
+                  <!-- <%=username%> -->
+                 <!-- Si esta conectado -->
                  <% if (username === 0) { %>
+                    <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
                      <i class="bi bi-person-circle"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/login">Login</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">Usuario</a></li>-->
+                        <li><hr class="dropdown-divider"></li> 
+                        <!-- <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li> -->
+                        <li><a class="dropdown-item" href="/users/signup">Registro</a></li>
+                    </ul>
                  <% } else { %>
-                     <%=username%>
+                    <!-- Si no esta conectado -->
+                    <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
+                        <%=username%>
+                       </a>
+                       <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Mis Favoritos</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item bg-danger" href="#">Cerrar Sesion</a></li>
+                        
+                    </ul>
                  <%} %>
-                 </a>
-                 <ul class="dropdown-menu">
-                     <li><a class="dropdown-item" href="/login">Login</a></li>
-                     <!-- <li><a class="dropdown-item" href="#">Usuario</a></li>-->
-                     <li><hr class="dropdown-divider"></li> 
-                     <!-- <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li> -->
-                     <li><a class="dropdown-item" href="/users/signup">Registro</a></li>
-                 </ul>
+                 
+                 
+                 
              </li>
          </ul>                 
 </div>
