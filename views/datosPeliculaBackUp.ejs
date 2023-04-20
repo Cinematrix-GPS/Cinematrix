@@ -12,21 +12,17 @@
 
   <!-- FIN MENU -->
   <%- include("menu2") %>
-  <div class="contenido  m-0 vh-100 row justify-content-center align-items-center">
+  <div class="contenido row justify-content-center align-items-center">
     <div class="card col-auto" style="max-width: 1080px;">
         <h3> <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">Puntuacion: <%=pelicula.puntuacion%></span></h3>
       <div class="row g-0">
         <div class="col-md-4">
           <div class="containerGridCard">
-            <article class="imgCardContainer">
-              <a class="titleCard" href="#">
+            <article class="information">
+              <a class="titleCard">
                 <%= pelicula.nombre.toUpperCase() %>
               </a>
-              <div class="imgCard">
-                <a href="#">
-                  <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded-start imgCard" alt="...">
-                </a>
-              </div>
+              <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded" alt="...">
             </article>
           </div>
         </div>
@@ -58,9 +54,7 @@
       </div>
     </div>
   </div>
-
-  
-  <h1 class="text-center text-dark mt-2">Comentarios:</h1>
+  <h1 class="strong text-center text-dark mt-2">Comentarios:</h1>
   <div class="row">
     <div class="col col-4 offset-4">
       <% if (comentariosV.length === 0) { %>
