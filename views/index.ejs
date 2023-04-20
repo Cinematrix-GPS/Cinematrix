@@ -31,7 +31,7 @@
         <% } else { %>
           <% if (typeof(films) !== "undefined") { %>
             <div>
-              <h2>Resultados: <%= films.length %></h2>
+              <h2><span class="badge rounded-pill bg-dark"><%= films.length %></span> Resultados: </h2>
 
               <div class="containerGridCard">
               <% films.forEach(function(p) { %>

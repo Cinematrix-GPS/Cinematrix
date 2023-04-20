@@ -32,7 +32,7 @@ class filmController {
 					response.render(views.index,{
 						title: "Listar peliculas por titulo",
 						films: filmListByTitle?filmListByTitle:0,
-						msg: "Busqueda por Título",
+						msg: `Busqueda por Título: [${request.body.nombreBuscar}]`,
 						username: request.session.username?request.session.username:0
 					});
 				}
@@ -46,7 +46,7 @@ class filmController {
 					response.render(views.index, {
 						title: "Listar peliculas por palabra clave",
 						films: filmListByKeyWord?filmListByKeyWord:0,
-						msg: "Busqueda por palabra clave",
+						msg: `Busqueda por palabra clave: [${request.body.nombreBuscar}]`,
 						username: request.session.username?request.session.username:0
 					});
 				}
