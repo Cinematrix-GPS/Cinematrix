@@ -9,7 +9,7 @@ const DAOFactory = require('../../js/daos/DAOFactory');
 
 const listFavoritos=[{
     id_usuario:1,
-    id_pelicula:2
+    id_pelicula:1
 }
 ];
 
@@ -24,7 +24,7 @@ describe("Test añadir Favoritos",()=>{
 		const req = new Request();
 		const res = new Response();
 
-        req.params.id_usuario=1;
+        req.session.id_usuario=1;
         req.params.id_pelicula=1;
 
         await filmController.favByUser(req,res);

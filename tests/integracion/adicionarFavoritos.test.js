@@ -13,6 +13,8 @@ describe('Test de integracion de adicionar favoritos',()=>{
 
     beforeAll(async()=>{
 
+       
+
         await dao.query(`CREATE TABLE peliculas (
             id int(11) NOT NULL,
             nombre varchar(30) NOT NULL,
@@ -41,20 +43,6 @@ describe('Test de integracion de adicionar favoritos',()=>{
                         MODIFY id int(11) NOT NULL AUTO_INCREMENT`);
 
         await dao.query(`INSERT INTO peliculas(id,nombre,img,duracion,puntuacion,fechaEstreno,sinopsis,genero) values(1,'Terminator',1,108,10,'1984-10-26','blablabla','Ciencia ficción')`);
-
-        await dao.query(`CREATE TABLE usuarios (
-            id int(11) NOT NULL,
-            nombreCompleto varchar(45) NOT NULL,
-            username varchar(30) NOT NULL,
-            email varchar(255) NOT NULL,
-            password varchar(250) NOT NULL
-        )`);
-
-        await dao.query(`ALTER TABLE usuarios
-                        ADD PRIMARY KEY (id)`);
-
-        await dao.query(`ALTER TABLE usuarios
-                        MODIFY id int(11) NOT NULL AUTO_INCREMENT`);
         
         await dao.query(`INSERT INTO usuarios(id,nombreCompleto,username,email,password) values(1,'Juan','Juanito','Juantio@jjj.es','1235')`);
 
@@ -73,7 +61,9 @@ describe('Test de integracion de adicionar favoritos',()=>{
 
 		await dao.query("DELETE FROM peliculas WHERE id>0;");
 		await dao.query("DELETE FROM usuarios WHERE id > 0;");
-        //await dao.query("DROP TABLE usuarios;");
+        await dao.query("DROP TABLE favoritos;");
+        await dao.query("DROP TABLE usuarios;");
+        await dao.query("DROP TABLE peliculas;");
 		await pool.end();
 	});
 
@@ -81,7 +71,7 @@ describe('Test de integracion de adicionar favoritos',()=>{
         const id_pelicula=1;
         const id_usuario=1;
 
-        await dao.favDAO(id_usuario,id_pelicula).then(result=>{
+        await dao.addFavByUser(id_usuario,id_pelicula).then(result=>{
             expect(result).toEqual(expect.objectContaining({ affectedRows: 1 }));
         })
 
