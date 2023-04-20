@@ -27,7 +27,6 @@ h2 {
   grid-gap: 1em;
 }
 
-
 /* hover styles */
 .imgCardContainer {
   position: relative;
@@ -38,9 +37,6 @@ h2 {
 
 .information {
   position: relative;
-  /* Sombreado */
-  /* box-shadow: 0px 5px 15px rgb(0, 0, 0 ,0.25); */
-  /* background-color:  #ffffff; */
 }
 
 .imgCard {
@@ -103,10 +99,10 @@ h2 {
   opacity: 1;
 }
 
-
 .imgCardContainer:hover .imgCard img {
   filter: blur(2px);
-  -webkit-transform:scale(1.0);transform:scale(1.3);/*Para contraer imagenes*/
+  -webkit-transform:scale(1.0);
+  transform:scale(1.3);/*Para contraer imagenes*/
 }
 
 .imgCardContainer:hover .puntCard {

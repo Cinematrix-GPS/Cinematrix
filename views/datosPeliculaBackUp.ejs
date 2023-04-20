@@ -19,15 +19,11 @@
     <div class="row g-0">
       <div class="col-md-4">
         <div class="containerGridCard">
-          <article class="imgCardContainer">
-            <a class="titleCard" href="#">
+          <article class="information">
+            <a class="titleCard">
               <%= pelicula.nombre.toUpperCase() %>
             </a>
-            <div class="imgCard">
-              <a href="#">
-                <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded-start imgCard" alt="...">
-              </a>
-            </div>
+            <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded" alt="...">
           </article>
         </div>
       </div>
@@ -60,19 +56,17 @@
   </div>
 </div>
 
-  <h1 class="strong text-center text-dark mt-2">Comentarios:</h1>
+  <h1 class="text-center text-dark mt-2">Comentarios:</h1>
   <div class="row">
     <div class="col col-4 offset-4">
       <% if (comentariosV.length === 0) { %>
         <h2 class="text-center">Sin comentarios</h2>
       <% } else { %> 
-        <div class="accordion accordion-flush" id="accordionFlushExample">
           <% comentariosV.forEach(function(comentariosV) { %>
             <span><strong><%=comentariosV.username%></strong></span>
             <span class="date"><%=comentariosV.fecha.toLocaleDateString()%></span><br>
             <%=comentariosV.texto%><br><br>
-          <% }); %> 
-        </div>
+          <% }); %>
       <% } %>
     </div>
   </div>
