@@ -26,6 +26,7 @@ describe("Test añadir Favoritos",()=>{
 
         req.session.id_usuario=1;
         req.params.id_pelicula=1;
+        req.params.fav=0;
 
         await filmController.favByUser(req,res);
         expect(res.redirect).toHaveBeenCalledWith(`/films/getFilmById/undefined`);
