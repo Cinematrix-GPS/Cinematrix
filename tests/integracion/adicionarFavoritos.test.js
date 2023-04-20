@@ -40,7 +40,7 @@ describe('Test de integracion de adicionar favoritos',()=>{
         await dao.query(`ALTER TABLE usuarios
                         MODIFY id int(11) NOT NULL AUTO_INCREMENT`);
 
-        await dao.query(`INSERT INTO peliculas(id,nombre,img,duracion,puntuacion,fechaEstreno,sinopsis,genero) values(1,'Terminator',1,108,10,'1984-10-26','blablabla','Ciencia ficción'))`);
+        await dao.query(`INSERT INTO peliculas(id,nombre,img,duracion,puntuacion,fechaEstreno,sinopsis,genero) values(1,'Terminator',1,108,10,'1984-10-26','blablabla','Ciencia ficción')`);
 
         await dao.query(`CREATE TABLE usuarios (
             id int(11) NOT NULL,
@@ -73,7 +73,7 @@ describe('Test de integracion de adicionar favoritos',()=>{
 
 		await dao.query("DELETE FROM peliculas WHERE id>0;");
 		await dao.query("DELETE FROM usuarios WHERE id > 0;");
-        await dao.query("DROP TABLE usuarios;");
+        //await dao.query("DROP TABLE usuarios;");
 		await pool.end();
 	});
 
