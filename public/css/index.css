@@ -166,7 +166,13 @@ h2 {
   margin-bottom: 10px;
 }
 
-
+.icon {
+  font-size: 2em;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+}
 
 .texto-comentario {
   margin-top: 10px;
@@ -257,4 +263,10 @@ h2 {
 .date {
   opacity: 0.65;
   font-size: 0.85em;
+}
+
+.card-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
