@@ -79,9 +79,9 @@ class filmController {
 		else {
 			media = Number(media.toFixed(2));
 		}
-		const idUsuario = (await this.userDAO.getUser(request.session.mail)).id;
-		if (typeof(idUsuario) !== "undefined")
-			this.#fav = (await this.favDAO.getFav(idUsuario, request.params.id))[0].favFilm;
+		if (typeof(request.session.idUser) !== "undefined")
+			this.#fav = (await this.favDAO.getFav(request.session.idUser, request.params.id))[0].favFilm;
+			// 1 Pelicula favorita, 0 No favorita
 			// 1 Pelicula favorita, 0 No favorita
 		else this.#fav = 0; // por defecto
 
@@ -137,15 +137,13 @@ class filmController {
 
 	favByUser = async (request, response) => {
 		console.log("Controller fav "+request.params.idFilm + " " + request.params.fav);
-		const idUsuario = (await this.userDAO.getUser(request.session.mail)).id;
-		if(request.params.fav == 0){//No es favorita se inserta
-			await this.favDAO.addFavByUser(idUsuario, request.params.idFilm);
+		if (request.params.fav == 0){//No es favorita se inserta
+			await this.favDAO.addFavByUser(request.session.idUser, request.params.idFilm);
+			console.log("No es favorita se inserta");
 			this.#fav = 1;
-			console.log("No es favorita se inserta ");
-			
 		}
 		else if(request.params.fav == 1){//NO IMPLEMENTADO SE HARIA EL BORRADO
-			console.log("Favorita se borra ");
+			console.log("Favorita se borra");
 		}  
 		//Pase lo que pase se redirige, estaria bien mostrar un mensaje de retroalimentacion en la vista "Añadida", "Eliminada de favoritos"...
 		response.redirect(`/films/getFilmById/${ request.params.idFilm }`);
