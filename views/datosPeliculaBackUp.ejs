@@ -23,14 +23,13 @@
         <div class="col-md-4">
           <div class="containerGridCard">
             <article class="information">
-              <a class="titleCard">
-                <%= pelicula.nombre.toUpperCase() %>
-              </a>
               <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded" alt="...">
             </article>
           </div>
         </div>
+        
         <div class="col-md-8">
+          
           <div class="card-body">
             <form method="POST" class="row" action="/films/favFilm/<%= pelicula.id %>/<%= favorite %>">
               <h5 class="card-title col col-11"><%=pelicula.nombre%></h5>

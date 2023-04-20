@@ -21,12 +21,16 @@
       border: none;
       cursor: pointer;
     }
+    /* el logo va en otro lado no dentro del listado! */
 </style>
 
 <div class="menu fixed-top ">
  <nav class="py-2 border-bottom row" style="background-color:  #1B4571;">
      <ul class="nav me-auto col col-2 offset-1">
-         <li class="Logo"><a href="/" class="nav-link link-light px-2 active" aria-current="page"><i class="bi bi-house-door-fill"></i> Inicio</a></li>
+         <li class=""><a href="/" class="nav-link link-light px-2 " aria-current="page"><i class="bi bi-house-door-fill"></i> Inicio</a></li>
+         <% if (username !== 0) { %>
+        <li ><a href="#" class="nav-link link-light " aria-current="page"><i class="bi bi-star-fill"></i> Mis Favoritos</a></li>
+        <%} %>
          <!--<li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
           <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
          <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
@@ -34,7 +38,7 @@
      </ul>
 
 
-     <form action="/films/list" method="POST" class="col col-5 offset-1" role="search">
+     <form action="/films/list" method="POST" class="col col-4 offset-1" role="search">
         <ul class="nav">
             <li class="nav-item">
                 <select class="busquedaGlobal" name="busqueda" id="busqueda" aria-haspopup="true" aria-expanded="false">
@@ -43,7 +47,7 @@
                 </select>
             </li>
             <li class="nav-item">
-                <input id="busquedaGlobal" type="search" class="form-control keyword" placeholder="Search..." aria-label="Search" name="nombreBuscar" required>
+                <input id="busquedaGlobal" type="search" class="form-control keyword" placeholder="Busqueda..." aria-label="Search" name="nombreBuscar" required>
             </li>
             <li class="nav-item">
                 <button id="botonBusqueda" type="submit" class="btn btn-success keyword"><i class="bi bi-search"></i></button>
