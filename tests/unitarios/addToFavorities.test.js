@@ -24,14 +24,11 @@ describe("Test añadir Favoritos",async()=>{
 		const req = new Request();
 		const res = new Response();
 
-        req.session.id_usuario=1;
+        req.params.id_usuario=1;
         req.params.id_pelicula=2;
 
-
         await filmController.favByUser(req,res);
-
-        expect(res.affectedRows).to
-
+        expect(res.redirect).toHaveBeenCalledWith(`/films/getFilmById/2`);
     }
     );
 
