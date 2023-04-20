@@ -12,6 +12,9 @@ const RateDAOStub = require('../../tests/stubs/rateDAOstub');
 const CommentDAO = require('./commentDAO');
 const CommentDAOStub = require('../../tests/stubs/commentDAOstub');
 
+const FavDAO = require('./favDAO');
+
+
 class DAOFactory{
 
 	getFilmDAO(){
@@ -40,6 +43,13 @@ class DAOFactory{
 			return new CommentDAOStub();
 		else
 			return new CommentDAO(getPool());
+	}
+
+	getfavDAO(){
+		// if (process.env.NODE_ENV === 'testing')
+		// 	return new CommentDAOStub();
+		// else
+		return new FavDAO(getPool());
 	}
 }
 

@@ -39,6 +39,8 @@ class userController {
 
 		// Llegados a este punto, el usuario está registrado y ha introducido su contraseña
 		// Guardamos en la sesión el email del usuario para poder identificarlo
+		
+		req.session.idUser = usuario.id;
 		req.session.mail = req.body.mail;
 		req.session.username = usuario.username;
 

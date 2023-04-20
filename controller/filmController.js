@@ -8,6 +8,7 @@ class filmController {
 	#pelicula;
 	#actores;
 	#comments;
+	#fav;
 
 //const filmController = new FilmController(fDAO, uDAO, rDAO, cDAO);
 	constructor () {
@@ -16,6 +17,7 @@ class filmController {
 		this.userDAO = factoria.getUserDAO();
 		this.rateDAO = factoria.getRateDAO();
 		this.commentDAO = factoria.getCommentDAO();
+		this.favDAO = factoria.getfavDAO();
 	}
 
 	postListByKeyWord = async (request, response) => {
@@ -69,13 +71,19 @@ class filmController {
 	};
 
 	getFilmByIdCtrl = async (request, response) => {
-		console.log("ID --> " + request.params.id);
-		this.#comments = await this.commentDAO.getFilmCommentaries(request.params.id)
+		console.log("ID pelicula--> " + request.params.id);
+		this.#comments = await this.commentDAO.getFilmCommentaries(request.params.id);
 		let media = (await this.rateDAO.averageRate(request.params.id))[0].puntuacion;
 		if (!media) media = '-';
 		else {
 			media = Number(media.toFixed(2));
 		}
+		if (typeof(request.session.idUser) !== "undefined")
+			this.#fav = (await this.favDAO.getFav(request.session.idUser, request.params.id))[0].favFilm;
+			// 1 Pelicula favorita, 0 No favorita
+			// 1 Pelicula favorita, 0 No favorita
+		else this.#fav = 0; // por defecto
+
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
@@ -92,28 +100,17 @@ class filmController {
 					genero: p.genero}
 			}).slice(0, 1);
 			
-			console.log(this.#pelicula);
-			
 			this.#actores = listadopeliculas.map(a => {
 				return {nombreAct: a.nombreAct, apellidosAct: a.apellidosAct}
 			});
-			console.log(this.#actores);
 			
-			// response.render(views.vistaPelicula, {
-			// 	titleV: pelicula[0].nombre,
-			// 	idV: pelicula[0].id,
-			// 	sinopsisV: pelicula[0].sinopsis,
-			// 	generoV: pelicula[0].genero,
-			// 	actoresV: actores,
-			// 	fechaEstrenoV: pelicula[0].fechaEstreno,
-			// 	duracionV: pelicula[0].duracion
-
-			// });
+			
 			response.render(views.vistaPelicula, {
 				pelicula: this.#pelicula[0],
 				actoresV: this.#actores,
 				comentariosV: this.#comments,
-				username: request.session.username?request.session.username:0
+				username: request.session.username?request.session.username:0,
+				favorite: this.#fav
 			});
 		})
 	};
@@ -133,8 +130,24 @@ class filmController {
 
 	updateFilmScore = async (request, response) => {
 		const idUsuario = (await this.userDAO.getUser(request.session.mail)).id;
-
+		//NO NECESARIO OBTENER AL INICIAR SESION TENEMOS EL ID CON--> request.session.idUser
 		await this.rateDAO.updateScore(request.body.punctuation, idUsuario, request.params.id);
+	};
+
+	favByUser = async (request, response) => {
+		console.log("Controller fav "+request.params.idFilm + " " + request.params.fav);
+		if (request.params.fav == 0){//No es favorita se inserta
+			await this.favDAO.addFavByUser(request.session.idUser, request.params.idFilm);
+			console.log("No es favorita se inserta");
+			this.#fav = 1;
+		}
+		else if(request.params.fav == 1){//NO IMPLEMENTADO SE HARIA EL BORRADO
+			console.log("Favorita se borra");
+		}  
+		//Pase lo que pase se redirige, estaria bien mostrar un mensaje de retroalimentacion en la vista "Añadida", "Eliminada de favoritos"...
+		response.redirect(`/films/getFilmById/${ request.params.idFilm }`);
+		
+		// response.status(500);
 	};
 
 }
