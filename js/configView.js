@@ -9,7 +9,9 @@ module.exports ={
     vistaPelicula: "datosPeliculaBackUp",
     comentario: "comentariosPelicula",
     registro: "registro",
-    login: "login"
+    login: "login",
+    mostrarListaFavoritos: "mostrarFav"
+    
 };
 
  

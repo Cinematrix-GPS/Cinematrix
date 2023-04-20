@@ -155,8 +155,8 @@ class filmController {
 
 		await this.favDAO.listFavByUser(request.session.idUser)
 		.then( favfilms => {
-				
-				response.render(views.index, {
+			console.log("film controller fav "+ request.params.idUser);
+				response.render(views.mostrarListaFavoritos, {
 					title: "Listado completo",
 					films: favfilms?favfilms:0,
 					msg: "",

@@ -50,6 +50,12 @@ filmRouter.post("/favFilm/:idFilm/:fav",
     multerFactory.none(),
     filmController.favByUser
 );
+filmRouter.get("/listFavFilms/:idUser",
+    requiresLogin,
+    multerFactory.none(),
+    filmController.listFavByUser
+);
+
 
 
 module.exports = filmRouter;
