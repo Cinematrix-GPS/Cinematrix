@@ -20,12 +20,12 @@ describe("Test añadir Favoritos",()=>{
 
     const filmController = new FilmController();
 
-    test('poder añadir un id de usuario y de pelicula existente',async()=>{
+    test('poder añadir un id de usuario y de pelicula inexistente',async()=>{
 		const req = new Request();
 		const res = new Response();
 
-        req.session.id_usuario=1;
-        req.params.id_pelicula=1;
+        req.session.id_usuario=10000;
+        req.params.id_pelicula=10000;
         req.params.fav=0;
 
         await filmController.favByUser(req,res);
