@@ -15,70 +15,56 @@
 
 <div class="contenido row justify-content-center align-items-center">
   <div class="card col-auto" style="max-width: 1080px;">
-    <!-- <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">
-        Puntuacion: <%=pelicula.puntuacion%>
-        <span class="visually-hidden">Puntuacion</span>
-      </span> -->
-      <h3> <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">Puntuación: <%=pelicula.puntuacion%></span></h3>
-     
+      <h3> <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-success">Puntuacion: <%=pelicula.puntuacion%></span></h3>
     <div class="row g-0">
       <div class="col-md-4">
         <div class="containerGridCard">
-          
-          <article class="information">
-            <a class="titleCard"><%= pelicula.nombre.toUpperCase() %></a>
+          <article class="imgCardContainer">
+            <a class="titleCard" href="#">
+              <%= pelicula.nombre.toUpperCase() %>
+            </a>
             <div class="imgCard">
-              <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded-start imgCard" alt="...">
+              <a href="#">
+                <img src="data:image/jpeg; base64, <%= ((new Buffer(pelicula.img)).toString('base64')) %>" class="img-fluid rounded-start imgCard" alt="...">
+              </a>
             </div>
-
           </article>
-          
         </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <form method="POST" class="row" action="/films/favFilm/<%= pelicula.id %>/<%= favorite %>">
-              <h5 class="card-title col col-11"><%=pelicula.nombre%></h5>
-              <div class="col col-1">
-                <% if (favorite) { %>
-                  <button class="bi bi-check icon" type="submit" name="delete"></button>
-                <% } else { %>
-                  <button class="bi bi-plus icon" type="submit" name="add"></button>
-                <% } %>
-              </div>
-            </form>
-            <p class="card-text"><%=pelicula.sinopsis%></p>
-            <!-- getFullYear() -->
-            <p class="card-text"><small class="text-muted">Año de estreno: <%=pelicula.fechaEstreno.getFullYear()%> | <%=pelicula.duracion%> minutos | <%=pelicula.genero%></small></p>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Actores</h5>
-            <ul class="list-group list-group-flush">
-              <% actoresV.forEach(function(actor) { %>
-              <li class="list-group-item"><%=actor.nombreAct%> <%=actor.apellidosAct%></li>
-              <% }); %>
-            </ul>
-          </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <form method="POST" class="row" action="/films/favFilm/<%= pelicula.id %>/<%= favorite %>">
+            <h5 class="card-title col col-11"><%=pelicula.nombre%></h5>
+            <div class="col col-1">
+              <% if (favorite) { %>
+                <button class="bi bi-check icon" type="submit" name="delete"></button>
+              <% } else { %>
+                <button class="bi bi-plus icon" type="submit" name="add"></button>
+              <% } %>
+            </div>
+          </form>
+          <p class="card-text"><%=pelicula.sinopsis%></p>
+          <!-- getFullYear() -->
+          <p class="card-text"><small class="text-muted">Año de estreno: <%=pelicula.fechaEstreno.getFullYear()%> | <%=pelicula.duracion%> minutos | <%=pelicula.genero%></small></p>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Actores</h5>
+          <ul class="list-group list-group-flush">
+            <% actoresV.forEach(function(actor) { %>
+            <li class="list-group-item"><%=actor.nombreAct%> <%=actor.apellidosAct%></li>
+            <% }); %>
+          </ul>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <form method="post" action="/films/getFilmById/<%= pelicula.id %>" class="row align-items-center mb-5">
-    <div class="col col-2 offset-3 text-center"><strong>Valorar película:</strong></div>
-    <div class="col col-4">
-      <!-- <div class="btn-group" role="group" aria-label="Basic example"> -->
-      <% for (let i = 0; i < 11; i++) { %>
-        <input type="submit" class="btn btn-primary" name="punctuation" value="<%= i %>">
-        <!-- <button type="submit" class="btn btn-primary" name="punctuation" value="<%= i %>"><%= i %></button> -->
-      <% } %>
-      <!-- </div> -->
-    </div>
-  </form>
-  <h1 class="strong text-center text-dark mt-3">Comentarios:</h1>
+  <h1 class="strong text-center text-dark mt-2">Comentarios:</h1>
   <div class="row">
     <div class="col col-4 offset-4">
       <% if (comentariosV.length === 0) { %>
-        <h2>Sin comentarios</h2>
+        <h2 class="text-center">Sin comentarios</h2>
       <% } else { %> 
         <div class="accordion accordion-flush" id="accordionFlushExample">
           <% comentariosV.forEach(function(comentariosV) { %>
@@ -90,6 +76,5 @@
       <% } %>
     </div>
   </div>
-      </div>
   </body>
 </html>
