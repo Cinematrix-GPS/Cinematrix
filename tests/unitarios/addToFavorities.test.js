@@ -29,7 +29,8 @@ describe("Test añadir Favoritos",async()=>{
 
 
         await filmController.favByUser(req,res);
-        
+
+        expect(res.affectedRows).to
 
     }
     );
