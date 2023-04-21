@@ -27,19 +27,22 @@
         </div>
         
         <div class="col-md-8">
-          
           <div class="card-body">
             <form method="POST" class="row" action="/films/favFilm/<%= pelicula.id %>/<%= favorite %>">
-              <h5 class="card-title col col-11"><%=pelicula.nombre%></h5>
+              <h5 class="card-title col col-10"><%=pelicula.nombre%></h5>
               <div class="col col-1">
                 <% if (favorite) { %>
-                  <button class="bi bi-check icon" type="submit" name="delete"></button>
+                  <button class="btn btn-primary rounded-circle" type="submit">
+                    <i class="bi bi-check icon"></i>
+                  </button>
                 <% } else { %>
-                  <button class="bi bi-plus icon" type="submit" name="add"></button>
+                  <button class="btn btn-primary rounded-circle" type="submit">
+                    <i class="bi bi-plus icon"></i>
+                  </button>
                 <% } %>
               </div>
             </form>
-            <p class="card-text"><%=pelicula.sinopsis%></p>
+            <p class="card-text mt-3"><%=pelicula.sinopsis%></p>
             <!-- getFullYear() -->
             <p class="card-text"><small class="text-muted">Año de estreno: <%=pelicula.fechaEstreno.getFullYear()%> | <%=pelicula.duracion%> minutos | <%=pelicula.genero%></small></p>
           </div>
@@ -60,8 +63,16 @@
     <div class="col col-4 offset-4">
       <% if (comentariosV.length === 0) { %>
         <h1 class="text-center">Sin comentarios</h1>
-      <% } else { %> 
-        
+      <% } else if (comentariosV.length === 1) { %>
+        <h1 class="strong text-center text-dark mt-2"><span class="badge rounded-pill bg-dark"><%=comentariosV.length%></span>
+          Comentario:
+        </h1>
+          <% comentariosV.forEach(function(comentariosV) { %>
+            <span><strong><%=comentariosV.username%></strong></span>
+            <span class="date"><%=comentariosV.fecha.toLocaleDateString()%></span><br>
+            <%=comentariosV.texto%><br><br>
+          <% }); %>
+      <% } else { %>
         <h1 class="strong text-center text-dark mt-2"><span class="badge rounded-pill bg-dark"><%=comentariosV.length%></span>
           Comentarios:
         </h1>
