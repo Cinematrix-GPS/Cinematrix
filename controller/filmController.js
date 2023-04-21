@@ -135,19 +135,19 @@ class filmController {
 	};
 
 	favByUser = async (request, response) => {
-		console.log("Controller fav "+request.params.idFilm + " " + request.params.fav);
-		if (request.params.fav == 0){//No es favorita se inserta
+		console.log("Controller fav "+ request.params.idFilm + " " + request.params.fav);
+		if (request.params.fav == 0) {//No es favorita se inserta
 			await this.favDAO.addFavByUser(request.session.idUser, request.params.idFilm);
 			console.log("No es favorita se inserta");
 			this.#fav = 1;
 		}
-		else if(request.params.fav == 1){//NO IMPLEMENTADO SE HARIA EL BORRADO
+		else if (request.params.fav == 1) {
+			await this.favDAO.deleteFavByUser(request.session.idUser, request.params.idFilm);
 			console.log("Favorita se borra");
+			this.#fav = 0;
 		}  
 		//Pase lo que pase se redirige, estaria bien mostrar un mensaje de retroalimentacion en la vista "Añadida", "Eliminada de favoritos"...
 		response.redirect(`/films/getFilmById/${ request.params.idFilm }`);
-		
-		// response.status(500);
 	};
 
 }
