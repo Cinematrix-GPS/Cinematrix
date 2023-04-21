@@ -265,3 +265,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
 }
+
+.rim {
+  border: 2px solid green;
+}

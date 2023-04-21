@@ -1,7 +1,4 @@
 
-<!-- ñññññññññññññññññññññ -->
-
-
 <style>
     .busquedaGlobal {
       font-size: 18px;
@@ -25,51 +22,45 @@
 </style>
 
 <div class="menu fixed-top ">
- <nav class="py-2 border-bottom row" style="background-color:  #1B4571;">
-     <ul class="nav me-auto col col-2 offset-1">
-         <li class=""><a href="/" class="nav-link link-light px-2 " aria-current="page"><i class="bi bi-house-door-fill"></i> Inicio</a></li>
-        <!-- <% if (username !== 0) { %> -->
-        <!-- <li ><a href="#" class="nav-link link-light " aria-current="page"><i class="bi bi-star-fill"></i> Mis Favoritos</a></li> -->
-        <!-- <%} %> -->
-         <!--<li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
-          <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
-         <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
-         <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li> -->
-     </ul>
+    <nav class="py-2 border-bottom row" style="background-color:  #1B4571;">
+        <ul class="nav me-auto col col-2 offset-1">
+            <li class=""><a href="/" class="nav-link link-light px-2 " aria-current="page"><i class="bi bi-house-door-fill"></i> Inicio</a></li>
+            <!-- <% if (username !== 0) { %> -->
+            <!-- <li ><a href="#" class="nav-link link-light " aria-current="page"><i class="bi bi-star-fill"></i> Mis Favoritos</a></li> -->
+            <!-- <%} %> -->
+            <!--<li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li>
+            <li class="nav-item"><a href="#" class="nav-link link-light px-2">SIN FUNCION</a></li> -->
+        </ul>
 
-
-     <form action="/films/list" method="POST" class="col col-4 offset-1" role="search">
-        <ul class="nav">
-            <li class="nav-item">
-                <select class="busquedaGlobal" name="busqueda" id="busqueda" aria-haspopup="true" aria-expanded="false">
-                    <option value="0">KeyWord</option>
-                    <option value="1">Titulo</option>
-                </select>
-            </li>
-            <li class="nav-item">
-                <input id="busquedaGlobal" type="search" class="form-control keyword" placeholder="Busqueda..." aria-label="Search" name="nombreBuscar" required>
-            </li>
-            <li class="nav-item">
-                <button id="botonBusqueda" type="submit" class="btn btn-success keyword"><i class="bi bi-search"></i></button>
-            </li>
-            
-            <!-- <li class="nav-item"><label for="type">Título</label></li> -->
-            <!--  -->
-            
-            <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>               -->
-        </ul>                
-    </form>
-     <!-- <ul class="nav">
-         
-         <li class="nav-item"><a href="#" class="btn btn-success px-2">Login</a></li>
-         <li class="nav-item"><a href="#" class="btn px-2">Sign up</a></li>
-     </ul> -->
-         <ul class="nav col col-1 offset-2">
-             <li class="nav-item dropdown">
+        <form action="/films/list" method="POST" class="col col-4 offset-1" role="search">
+            <ul class="nav">
+                <li class="nav-item">
+                    <select class="busquedaGlobal" name="busqueda" id="busqueda" aria-haspopup="true" aria-expanded="false">
+                        <option value="0">KeyWord</option>
+                        <option value="1">Titulo</option>
+                    </select>
+                </li>
+                <li class="nav-item">
+                    <input id="busquedaGlobal" type="search" class="form-control keyword" placeholder="Busqueda..." aria-label="Search" name="nombreBuscar" required>
+                </li>
+                <li class="nav-item">
+                    <button id="botonBusqueda" type="submit" class="btn btn-success keyword"><i class="bi bi-search"></i></button>
+                </li>
+                
+                <!-- <li class="nav-item"><label for="type">Título</label></li> -->
+                <!--  -->
+                
+                <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br>               -->
+            </ul>                
+        </form>
+        <ul class="nav col col-1 offset-2">
+            <li class="nav-item dropdown">
                   <!-- <%=username%> -->
                  <!-- Si esta conectado -->
-                 <% if (username === 0) { %>
+                <% if (username === 0) { %>
                     <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 
                      <i class="bi bi-person-circle"></i>
@@ -81,27 +72,18 @@
                         <!-- <li><a class="dropdown-item" href="#" onclick="mostrarRegistro()">Registro</a></li> -->
                         <li><a class="dropdown-item align-items-center" href="/users/signup">Registro</a></li>
                     </ul>
-                 <% } else { %>
+                <% } else { %>
                     <!-- Si no esta conectado -->
                     <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                
                         <%=username%>
-                       </a>
-                       <ul class="dropdown-menu">
+                    </a>
+                    <ul class="dropdown-menu">
                         <li><a class="dropdown-item align-items-center" href="#"><i class="bi bi-star-fill"></i> Mis Favoritos</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item bg-danger align-items-center" href="#"><i class="bi bi-x-circle-fill"></i> Cerrar Sesion</a></li>
-                        
+                        <li><a class="dropdown-item text-danger align-items-center" href="/users/signout"><i class="bi bi-x-circle-fill"></i> Cerrar Sesion</a></li>
                     </ul>
-                 <%} %>
-                 
-                 
-                 
-             </li>
-         </ul>                 
+                <%} %>
+            </li>
+        </ul>
+    </nav>
 </div>
-
- </nav>
-</div>
-
-
