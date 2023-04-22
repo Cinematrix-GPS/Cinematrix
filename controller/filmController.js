@@ -34,7 +34,8 @@ class filmController {
 						title: "Listar peliculas por titulo",
 						films: filmListByTitle?filmListByTitle:0,
 						msg: "Busqueda por Título",
-						username: request.session.username?request.session.username:0
+						username: request.session.username?request.session.username:0,
+						idUser: request.session.idUser?request.session.idUser:0
 					});
 				}
 			)
@@ -48,7 +49,8 @@ class filmController {
 						title: "Listar peliculas por palabra clave",
 						films: filmListByKeyWord?filmListByKeyWord:0,
 						msg: "Busqueda por palabra clave",
-						username: request.session.username?request.session.username:0
+						username: request.session.username?request.session.username:0,
+						idUser: request.session.idUser?request.session.idUser:0
 					});
 				}
 			)
@@ -66,7 +68,8 @@ class filmController {
 					title: "Listado completo",
 					films: filmsStart?filmsStart:0,
 					msg: "",
-					username: request.session.username?request.session.username:0
+					username: request.session.username?request.session.username:0,
+					idUser: request.session.idUser?request.session.idUser:0
 				});
 		})
 	};
@@ -111,7 +114,8 @@ class filmController {
 				actoresV: this.#actores,
 				comentariosV: this.#comments,
 				username: request.session.username?request.session.username:0,
-				favorite: this.#fav
+				favorite: this.#fav,
+				idUser: request.session.idUser?request.session.idUser:0
 			});
 		})
 	};
@@ -160,7 +164,8 @@ class filmController {
 					title: "Listado completo",
 					films: favfilms?favfilms:0,
 					msg: "",
-					username: request.session.username?request.session.username:0
+					username: request.session.username?request.session.username:0,
+					idUser: request.session.idUser?request.session.idUser:0
 				});
 		})
 
