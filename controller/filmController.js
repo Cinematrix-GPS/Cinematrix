@@ -9,6 +9,7 @@ class filmController {
 	#actores;
 	#comments;
 	#fav;
+	#miNota;
 
 //const filmController = new FilmController(fDAO, uDAO, rDAO, cDAO);
 	constructor () {
@@ -83,7 +84,13 @@ class filmController {
 			// 1 Pelicula favorita, 0 No favorita
 			// 1 Pelicula favorita, 0 No favorita
 		else this.#fav = 0; // por defecto
-
+		let nota=-1;
+		if (typeof(request.session.idUser) !== "undefined"){
+			this.#miNota = (await this.rateDAO.getUserRate(request.session.mail, request.params.id))[0];
+			console.log(this.#miNota);
+			if(typeof(this.#miNota)!=="undefined") nota=this.#miNota.valorar;
+		}
+		console.log("Mi nota es "+this.#miNota);
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
@@ -110,7 +117,8 @@ class filmController {
 				actoresV: this.#actores,
 				comentariosV: this.#comments,
 				username: request.session.username?request.session.username:0,
-				favorite: this.#fav
+				favorite: this.#fav,
+				puntoV: nota
 			});
 		})
 	};

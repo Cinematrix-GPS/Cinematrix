@@ -54,6 +54,23 @@
               <% }); %>
             </ul>
           </div>
+
+
+          <form method="post" action="/films/getFilmById/<%= pelicula.id %>" class="row align-items-center mb-5">
+            <div class="col col-4">
+              <div class="btn-group ml-auto"> <!-- Utilice la clase de Bootstrap "ml-auto" aquí -->
+                <% for (let i = 0; i < 11; i++) { %>
+                  <% if ( i === puntoV) { %>
+                    <input type="submit" class="btn btn-primary" name="punctuation" value="<%= i %>">
+                  <% } else { %>
+                    <input type="submit" class="btn btn-outline-primary" name="punctuation" value="<%= i %>">
+                  <% } %>
+                <% } %>
+              </div>
+            </div>
+          </form>
+
+
         </div>
       </div>
     </div>
