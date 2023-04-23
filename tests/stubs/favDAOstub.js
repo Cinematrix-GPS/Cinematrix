@@ -24,15 +24,11 @@ class FavDAOStub {
 
 	// Son DAOs de mentira, no tienen que hacer cambios de verdad, sólo queremos los daos
 	// para ver que los controllers procesan las cosas como queremos
-    async rate(usuario, pelicula, puntuacion){}
-    async updateScore(puntuacion, usuario, pelicula){}
-
-	async averageRate(id) {
-		let suma = 0;
-        this.#puntuaciones.forEach(p => suma += p.punctuation);
-		return [{puntuacion: suma / this.#puntuaciones.length}]
-		//return this.#puntuaciones.filter(p => p.id == id);
-    }
+    async addFav(usuario, pelicula){}
+    
+	async getFav(usuario, pelicula){
+		
+	}
 }
 
-module.exports = RateDAOStub;
+module.exports = FavDAOStub;
