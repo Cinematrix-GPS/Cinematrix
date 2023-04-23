@@ -36,7 +36,7 @@ app.use(session({
 }));
 
 app.use(function(request, response, next) {
-    console.log("Usuario logeado: " + request.session.mail+" "+ request.session.username);
+    console.log("Usuario logeado: " + request.session.mail+" "+ request.session.username+" id: "+request.session.idUser);
     next();
 })
 
@@ -59,6 +59,15 @@ app.get("/registro", (request, response) => {
 		title: "REGISTRO inicio",
 		fallo: "" 
 		
+	});
+	
+});
+
+app.get("/login", (request, response) => {
+	response.render("login", {  
+		title: "Login",
+		fallo: "",
+		username: 0
 	});
 	
 });

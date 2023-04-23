@@ -45,4 +45,17 @@ filmRouter.post("/getFilmById/:id",
     filmController.getUserRateForFilm
 );
 
+filmRouter.post("/favFilm/:idFilm/:fav",
+    requiresLogin,
+    multerFactory.none(),
+    filmController.favByUser
+);
+filmRouter.get("/listFavFilms/:idUser",
+    requiresLogin,
+    multerFactory.none(),
+    filmController.listFavByUser
+);
+
+
+
 module.exports = filmRouter;
