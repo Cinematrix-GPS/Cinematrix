@@ -17,7 +17,7 @@ class filmController {
 		this.userDAO = factoria.getUserDAO();
 		this.rateDAO = factoria.getRateDAO();
 		this.commentDAO = factoria.getCommentDAO();
-		this.favDAO = factoria.getfavDAO();
+		this.favDAO = factoria.getFavDAO();
 	}
 
 	postListByKeyWord = async (request, response) => {

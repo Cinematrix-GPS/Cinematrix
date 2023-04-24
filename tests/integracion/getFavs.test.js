@@ -75,10 +75,9 @@ describe('Test de Integración búsqueda de película por keyword', () => {
 			pass: 'pass'
 		});
 
-		await favDAO.query(`INSERT INTO favoritos VALUES(1, 1)`);
-		await favDAO.query(`INSERT INTO favoritos VALUES(2, 1)`);
-		await favDAO.query(`INSERT INTO favoritos VALUES(2, 2)`);
-
+		await favDAO.addFavByUser(1, 1);
+		await favDAO.addFavByUser(2, 1);
+		await favDAO.addFavByUser(2, 2);
 	});
 
 	afterAll(async () => {

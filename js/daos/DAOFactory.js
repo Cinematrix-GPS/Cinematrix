@@ -13,6 +13,7 @@ const CommentDAO = require('./commentDAO');
 const CommentDAOStub = require('../../tests/stubs/commentDAOstub');
 
 const FavDAO = require('./favDAO');
+const FavDAOStub = require('../../tests/stubs/favDAOstub');
 
 
 class DAOFactory{
@@ -45,11 +46,11 @@ class DAOFactory{
 			return new CommentDAO(getPool());
 	}
 
-	getfavDAO(){
-		// if (process.env.NODE_ENV === 'testing')
-		// 	return new CommentDAOStub();
-		// else
-		return new FavDAO(getPool());
+	getFavDAO(){
+		if (process.env.NODE_ENV === 'testing')
+		 	return new FavDAOStub();
+		else
+			return new FavDAO(getPool());
 	}
 }
 
