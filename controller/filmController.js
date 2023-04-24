@@ -150,6 +150,16 @@ class filmController {
 		response.redirect(`/films/getFilmById/${ request.params.idFilm }`);
 	};
 
+	addComment = async(request, response)=>{
+		console.log("verificar si pasa los id:"+request.session.idUser+" "+request.params.idFilm);
+		this.#comments= await this.commentDAO.getFilmCommentaries(request.params.idFilm,request.session.idUser);
+		if(this.#comments.length()==0){
+
+		}
+
+
+	};
+
 }
 
 module.exports = filmController;

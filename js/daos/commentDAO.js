@@ -11,6 +11,10 @@ class CommentDAO extends BaseDAO {
 	async getFilmCommentaries(idFilm) {
         return this.query(qComment.getCommentaries, [idFilm]);
     }
+
+    async getFilmCommentaries2(idFilm,idUser){
+        return this.query(qComment.getComentariesByUsuario,[idFilm, idUser]);
+    }
 }
 
 module.exports = CommentDAO;
