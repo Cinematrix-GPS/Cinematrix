@@ -20,7 +20,6 @@ class FavDAOStub {
 		this.#favoritos = favoritos;
 		this.#peliculas = peliculas;
 		this.#usuarios = usuarios;
-
 	}
 
 	async listFavByUser(idUsuario) {
