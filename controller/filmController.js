@@ -34,7 +34,8 @@ class filmController {
 						title: "Listar peliculas por titulo",
 						films: filmListByTitle?filmListByTitle:0,
 						msg: `Busqueda por Título: [${request.body.nombreBuscar}]`,
-						username: request.session.username?request.session.username:0
+						username: request.session.username?request.session.username:0,
+						idUser: request.session.idUser?request.session.idUser:0
 					});
 				}
 			)
@@ -48,7 +49,9 @@ class filmController {
 						title: "Listar peliculas por palabra clave",
 						films: filmListByKeyWord?filmListByKeyWord:0,
 						msg: `Busqueda por palabra clave: [${request.body.nombreBuscar}]`,
-						username: request.session.username?request.session.username:0
+						username: request.session.username?request.session.username:0,
+						idUser: request.session.idUser?request.session.idUser:0
+						
 					});
 				}
 			)
@@ -66,7 +69,8 @@ class filmController {
 					title: "Listado completo",
 					films: filmsStart?filmsStart:0,
 					msg: "",
-					username: request.session.username?request.session.username:0
+					username: request.session.username?request.session.username:0,
+					idUser: request.session.idUser?request.session.idUser:0
 				});
 		})
 	};
@@ -116,7 +120,8 @@ class filmController {
 				comentariosV: this.#comments,
 				username: request.session.username?request.session.username:0,
 				favorite: this.#fav,
-				puntoV: nota
+				puntoV: nota,
+				idUser: request.session.idUser?request.session.idUser:0
 			});
 		})
 	};
@@ -154,6 +159,22 @@ class filmController {
 		}  
 		//Pase lo que pase se redirige, estaria bien mostrar un mensaje de retroalimentacion en la vista "Añadida", "Eliminada de favoritos"...
 		response.redirect(`/films/getFilmById/${ request.params.idFilm }`);
+	};
+
+	listFavByUser = async (request, response) => {
+
+		await this.favDAO.listFavByUser(request.session.idUser)
+		.then( favfilms => {
+			console.log("film controller fav "+ request.params.idUser);
+				response.render(views.mostrarListaFavoritos, {
+					title: "Listado completo",
+					films: favfilms?favfilms:0,
+					msg: "",
+					username: request.session.username?request.session.username:0,
+					idUser: request.session.idUser?request.session.idUser:0
+				});
+		})
+
 	};
 
 }
