@@ -9,6 +9,7 @@ class filmController {
 	#actores;
 	#comments;
 	#fav;
+	#miNota;
 
 //const filmController = new FilmController(fDAO, uDAO, rDAO, cDAO);
 	constructor () {
@@ -78,12 +79,16 @@ class filmController {
 		else {
 			media = Number(media.toFixed(2));
 		}
-		if (typeof(request.session.idUser) !== "undefined")
+		let nota=-1; //nota por defecto
+		if (typeof(request.session.idUser) !== "undefined"){
 			this.#fav = (await this.favDAO.getFav(request.session.idUser, request.params.id))[0].favFilm;
+			this.#miNota = (await this.rateDAO.getUserRate(request.session.mail, request.params.id))[0];
+			if(typeof(this.#miNota)!=="undefined") nota=this.#miNota.valorar;
 			// 1 Pelicula favorita, 0 No favorita
 			// 1 Pelicula favorita, 0 No favorita
+		}
 		else this.#fav = 0; // por defecto
-
+	
 		await this.filmDAO.getFilmById(request.params.id)
 		.then(listadopeliculas =>{
 			//Sale con los datos de los actores
@@ -110,7 +115,8 @@ class filmController {
 				actoresV: this.#actores,
 				comentariosV: this.#comments,
 				username: request.session.username?request.session.username:0,
-				favorite: this.#fav
+				favorite: this.#fav,
+				puntoV: nota
 			});
 		})
 	};
