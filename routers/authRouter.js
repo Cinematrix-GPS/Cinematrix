@@ -3,12 +3,7 @@ const LoginController = require("../controller/loginController");
 
 const views = require('../js/configView');
 
-const {getPool} = require('../database/configDB');
-
-const UserDAO = require('../js/daos/userDAO');
-
-const userDAO = new UserDAO(getPool());
-const loginController = new LoginController(userDAO);
+const loginController = new LoginController();
 
 const {requiresLogout} = require('../middleware/auth')
 

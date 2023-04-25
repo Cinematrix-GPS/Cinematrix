@@ -156,16 +156,36 @@ CREATE TABLE `comentarios` (
 
 INSERT INTO `comentarios` (`id`, `id_usuario`, `id_pelicula`, `texto`, `fecha`) VALUES
 (1, 1, 8, 'Sherk es vida, Shrek es amor', '2023-03-23 16:05:57'),
-(2, 1, 1, 'Sabiais que para la version alemana de no dejaron a Arnold doblarse a si mismo porque su voz no era lo suficientemente grave', '2023-03-23 16:05:57'),
+(2, 1, 1, 'Sabiais que para la version alemana no dejaron a Arnold doblarse a si mismo porque su voz no era lo suficientemente grave', '2023-03-23 16:05:57'),
 (3, 1, 8, 'Mi hermano el pesado me recuerda mucho a Asno', '2023-03-23 16:05:57'),
-(4, 2, 1, 'El robot es muy pesao, nunca muere hay como 6 peliculas sobre él. Cambiando si es bueno o malo o ambas. Esta es la mejor de la saga', '2023-03-23 16:05:57'),
+(4, 2, 1, 'Esta es la mejor de la saga', '2023-03-23 16:05:57'),
 (5, 2, 8, 'Pelicula divertida y emotiva por ser la primera pelicula que vio mi hijo mayor en el cine', '2023-03-23 16:05:58'),
-(6, 2, 12, 'La primera pelicula que vi en el cine con mis padres en Madrid', '2023-03-23 16:05:58'),
+(6, 6, 12, 'La primera pelicula que vi en el cine con mis padres en Madrid', '2023-03-23 16:05:58'),
 (7, 3, 10, 'Hasta un robot que no habla liga más que yo', '2023-03-23 16:05:58'),
 (8, 3, 7, 'Esta peli es Pocahontas pero con tios azules', '2023-03-23 16:05:58'),
 (9, 3, 2, 'Vivimos en una sociedad', '2023-03-23 16:05:58'),
 (10, 3, 9, 'No la veais en versión original, no os enterais de nada', '2023-03-23 16:05:58'),
-(11, 4, 9, 'Yo tampoco me entere de nada y eso que la vi en español', '2023-03-23 16:05:58');
+(11, 4, 9, 'Yo tampoco me entere de nada y eso que la vi en español', '2023-03-23 16:05:58'),
+(12, 1, 16, 'Goku le gana', '2023-03-28 16:05:57'),
+(13, 1, 15, 'Es literalemente la primera de las originales pero cambiando los protas ', '2023-03-28 16:05:57'),
+(14, 7, 3, 'Sayonara baby', '2023-03-28 16:05:57'),
+(15, 2, 4, 'Que momentazo cuando sale el alien del pecho', '2023-03-28 16:05:57'),
+(16, 5, 10, 'WallE era capaz de repararse pero decidio no reparar a sus hermanos, me parece que no es tan bueno como aparenta', '2023-03-28 16:05:58'),
+(17, 2, 12, 'La primera pelicula que vi en el cine con mis padres en Madrid', '2023-03-28 16:05:58'),
+(18, 3, 16, 'ONDA VITAL, en fin españoles y su doblaje', '2023-03-28 16:05:58'),
+(19, 6, 2, 'Yo después de llevar 3 años en la uni', '2023-03-28 16:05:58'),
+(20, 5, 5, 'La primera es mejor, esta es más una pelicula de acción que de miedo', '2023-03-28 16:05:58'),
+(21, 7, 9, 'Los campos de maiz del final se cultivaron para ser atropellados, pobre maiz', '2023-03-28 16:05:58'),
+(22, 4, 8, 'No entiendo porque la gente odia tanto la tercera, tampoco es tan mala', '2023-03-28 16:05:58'),
+(23, 4, 2, 'Una decepción yo queria ver a Batman dar una paliza al payaso ese', '2023-03-28 16:05:58'),
+(24, 3, 16, 'Anda como si el doblaje latino no tuviese fallos, mi pobre angelito', '2023-03-29 16:05:58'),
+(25, 7, 13, 'Siempre recordare a mi viejo diciendo el imperio contra paca,que chiste más malo', '2023-03-29 16:05:58'),
+(26, 4, 14, 'Asi que Anakin regresa al lado luminoso por el amor a sus hijos, que bonito', '2023-03-29 16:05:58'),
+(27, 7, 1, 'Si lo piensas bien esta peli es una paradoja ya que si la matan no tendria sentido ir al pasado a matarla y por lo tanto nunca la matarian', '2023-03-29 16:05:58'),
+(28, 2, 6, 'El libro es mejor', '2023-03-29 16:05:58'),
+(29, 3, 7, 'Que bien hacen las peliculas, estan tan bien hechas que parecen reales', '2023-03-29 16:05:58'),
+(30, 6, 12, 'Dato curioso hay un movimiento en Australia en el que la gente dice que cree en los jedis', '2023-03-29 16:05:58');
+
 
 -- --------------------------------------------------------
 
@@ -261,9 +281,12 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombreCompleto`, `username`, `email`, `password`) VALUES
 (1, 'Juan', 'Juantio', 'Juantio@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
-(2, 'popo', 'popo', 'popo@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
-(3, 'erer', 'erer', 'erer@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
-(4, 'pepe', 'pepegot', 'probando@gmail.com', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW');
+(2, 'Antonio Navarro', 'SrNavarro', 'antonioN@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
+(3, 'Paco', 'ElPaquito', 'paquitos@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
+(4, 'Ivan', 'ivanyVienen', 'probando@gmail.com', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
+(5, 'Laura', 'Laurimpi', 'laura@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
+(6, 'Sara', 'Sarita', 'sara@jjj.es', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW'),
+(7, 'Maria', 'LaMery', 'maria@gmail.com', '$2b$10$cc4Gy9zQ4Zzn2UUfIhs7D.URXfwIZ7ztiIToHMhTFlShmahX66tVW');
 
 --
 -- Índices para tablas volcadas
@@ -366,3 +389,14 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE `favoritos` (
+   `id_usuario` int NOT NULL,
+  `id_pelicula` int NOT NULL,
+  PRIMARY KEY (`id_usuario`, `id_pelicula`),
+  FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+

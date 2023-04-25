@@ -1,9 +1,11 @@
-const FilmDAO = require('../../stubs/filmDAOstub');
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+process.env.NODE_ENV = 'testing';
 
-const FilmController = require('../../../controller/filmController');
-const views = require('../../../js/configView');
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
+
+const FilmController = require('../../controller/filmController');
+const views = require('../../js/configView');
+const DAOFactory = require('../../js/daos/DAOFactory');
 
 const peliculas = [{
 	nombre: "Alien",
@@ -21,15 +23,16 @@ const peliculas = [{
 
 describe('Test Controlador Películas: Buscar por KeyWord', () => {
 
-	const dao = new FilmDAO(peliculas);
-	const filmController = new FilmController(dao);
+	new DAOFactory().getFilmDAO().setDAOData(peliculas);
+	
+	const filmController = new FilmController();
 
 	test('Búsqueda de películas por keyWord cuando la peli existe', async () => {
 		const req = new Request();
 		const res = new Response();
 
 		req.body.nombreBuscar = "Alien";
-
+		req.body.busqueda=0;
 		await filmController.postListByKeyWord(req, res);
 
 		// Esperamos que se haya llamado a la función res.render y que se le haya pasado por parámetro lo siguiente
@@ -45,6 +48,7 @@ describe('Test Controlador Películas: Buscar por KeyWord', () => {
 		const res = new Response();
 
 		req.body.nombreBuscar = "peli que no existe";
+		req.body.busqueda=0;
 
 		await filmController.postListByKeyWord(req, res);
 
