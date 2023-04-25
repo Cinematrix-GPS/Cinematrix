@@ -32,7 +32,7 @@ describe('Test Controlador Películas: Buscar por KeyWord', () => {
 		const res = new Response();
 
 		req.body.nombreBuscar = "Alien";
-
+		req.body.busqueda=0;
 		await filmController.postListByKeyWord(req, res);
 
 		// Esperamos que se haya llamado a la función res.render y que se le haya pasado por parámetro lo siguiente
@@ -48,6 +48,7 @@ describe('Test Controlador Películas: Buscar por KeyWord', () => {
 		const res = new Response();
 
 		req.body.nombreBuscar = "peli que no existe";
+		req.body.busqueda=0;
 
 		await filmController.postListByKeyWord(req, res);
 

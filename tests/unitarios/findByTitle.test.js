@@ -8,17 +8,17 @@ const views = require('../../js/configView');
 const DAOFactory = require('../../js/daos/DAOFactory');
 
 const peliculas = [{
-	nombre: "Alien",
-	img: 1
+	films: "Alien",
+
 }, {
-	nombre: "Terminator",
-	img: 1
+	films: "Terminator",
+
 }, {
-	nombre: "Shrek 1",
-	img: 1
+	films: "Shrek 1",
+
 }, {
-	nombre: "Shrek 2",
-	img: 1
+	films: "Shrek 2",
+
 }];
 
 describe('Tests Controlador Películas: Buscar por Título', () => {
@@ -32,7 +32,7 @@ describe('Tests Controlador Películas: Buscar por Título', () => {
 		const res = new Response();
 
 		req.body.titulo = "Shrek";
-
+		req.body.busqueda=1;
 		await filmController.postListByKeyWord(req, res);
 
 		// Esperamos que el controlador haya llamado a la función render con la vista que esperamos y
@@ -52,7 +52,7 @@ describe('Tests Controlador Películas: Buscar por Título', () => {
 
 		// Nombre de una película que no existe
 		req.body.titulo = "Película que no existe";
-
+		req.body.busqueda=1;
 		await filmController.postListByKeyWord(req, res);
 		
 		// Nos fijamos en que la vista a la que redirige es la que debe
