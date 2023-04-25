@@ -87,7 +87,7 @@ describe('Test de integración de puntuar pelicula', () => {
         const emailU = 'alvarod@gmail.com';
 
         await rateDAO.getUserRate(emailU, idP).then(result => {
-            expect(result[0].puntuacion).toEqual(6);
+            expect(result[0].valorar).toEqual(6);
         })
 
     });
@@ -109,7 +109,7 @@ describe('Test de integración de puntuar pelicula', () => {
         const emailU = 'alalexmanu@gmail.com';
 
         await rateDAO.getUserRate(emailU, idP).then(result => {
-            expect(result[0].puntuacion).toEqual(5);
+            expect(result[0].valorar).toEqual(5);
         })
 		
 		const idUsuario = (await userDAO.getUser(emailU)).id;
@@ -117,7 +117,7 @@ describe('Test de integración de puntuar pelicula', () => {
         
 
         await rateDAO.getUserRate(emailU, idP).then(result => {
-			expect(result[0].puntuacion).toEqual(9);
+			expect(result[0].valorar).toEqual(9);
         })
 
     });
