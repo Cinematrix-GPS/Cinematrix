@@ -17,6 +17,11 @@ class FavDAO extends BaseDAO{
         return this.query(qFav.deleteFavFilm, [user, film]);
     }
     
+    async listFavByUser(usuario) {
+        
+     return this.query(qFav.listFavoriteFilms, [usuario]);
+    }
+    
 }
 
 module.exports = FavDAO;

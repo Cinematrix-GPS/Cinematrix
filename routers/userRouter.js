@@ -49,6 +49,8 @@ userRouter.get('/loginForm',
             title: "Prototipo Cinematrix",
             errorMessage: null,
             username: req.session.username?req.session.username:0
+            
+
         });
 });
 

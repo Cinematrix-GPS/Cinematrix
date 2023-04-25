@@ -21,7 +21,7 @@ describe("Test añadir Favoritos",()=>{
     const factoria = new DAOFactory();
     factoria.getFilmDAO().setDAOData(una_pelicula);
     factoria.getUserDAO().setDAOData(un_usuario);
-    factoria.getfavDAO().setDAOData(listFavoritos);
+    factoria.getFavDAO().setDAOData(listFavoritos);
     
     const filmController = new FilmController();
 
@@ -40,11 +40,5 @@ describe("Test añadir Favoritos",()=>{
        
     }
     );
-
-
-
-
-
-
 }
 );
