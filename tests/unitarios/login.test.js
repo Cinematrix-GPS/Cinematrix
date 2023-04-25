@@ -49,6 +49,7 @@ describe('Tests de inicio de sesión cuando no hay sesión iniciada.', () => {
 
 		await userController.postLogin(req, res);
 
+		
 		// El inicio de sesión es correcto y nos debe mandar a la pantalla principal
 		expect(res.redirect).toHaveBeenCalledWith('/');
 	});
