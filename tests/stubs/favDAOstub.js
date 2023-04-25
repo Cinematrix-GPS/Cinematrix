@@ -32,6 +32,8 @@ class FavDAOStub {
 		return pelisFavoritas;
     }
 
+	
+
 
 	// Son DAOs de mentira, no tienen que hacer cambios de verdad, sólo queremos los daos
 	// para ver que los controllers procesan las cosas como queremos
@@ -44,6 +46,10 @@ class FavDAOStub {
 	async addFavByUser(user,peli){
         return this.#favoritos.filter(f => f.userID == user && f.filmID == peli);
     }
+
+	async deleteFavByUser(user,peli){
+		return this.#favoritos.filter(f => f.userID == user && f.filmID == peli);
+	}
 }
 
 module.exports = FavDAOStub;

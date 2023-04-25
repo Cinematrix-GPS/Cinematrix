@@ -17,7 +17,7 @@ const listFavoritos=[{
 
 const un_usuario=[{id:1,mail:'pedro@xyz.es'}];
 
-describe("Test añadir Favoritos",()=>{
+describe("Test para eliminar Favoritos",()=>{
     const factoria = new DAOFactory();
     factoria.getFilmDAO().setDAOData(una_pelicula);
     factoria.getUserDAO().setDAOData(un_usuario);
@@ -25,14 +25,15 @@ describe("Test añadir Favoritos",()=>{
     
     const filmController = new FilmController();
 
-    test('poder añadir un id de usuario y de pelicula existente',async()=>{
+    test('poder eliminar una pelicula de favoritos usando un id de usuario y de pelicula existente',async()=>{
 		const req = new Request();
 		const res = new Response();
 
         req.session.idUser=1;
         req.params.idFilm=1;
-        req.params.fav=0;
+        req.params.fav=1;
         //req.mail=una_pelicula[0].mail;
+
 
         await filmController.favByUser(req,res);
         
