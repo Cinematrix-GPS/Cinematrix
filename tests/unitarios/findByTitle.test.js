@@ -9,16 +9,16 @@ const DAOFactory = require('../../js/daos/DAOFactory');
 
 const peliculas = [{
 	films: "Alien",
-
+	img: 1
 }, {
 	films: "Terminator",
-
+	img: 1
 }, {
 	films: "Shrek 1",
-
+	img: 1
 }, {
 	films: "Shrek 2",
-
+	img: 1
 }];
 
 describe('Tests Controlador Películas: Buscar por Título', () => {
@@ -31,7 +31,7 @@ describe('Tests Controlador Películas: Buscar por Título', () => {
 		const req = new Request();
 		const res = new Response();
 
-		req.body.titulo = "Shrek";
+		req.body.nombreBuscar = "Shrek";
 		req.body.busqueda=1;
 		await filmController.postListByKeyWord(req, res);
 

@@ -22,7 +22,7 @@ class FilmDAOStub {
 	}
 	
 	async listFilmsByTitle(title){
-		return this.#peliculas.filter(p => p.nombre.includes(title));
+		return this.#peliculas.filter(p => p.films.includes(title));
 	}
 }
 
