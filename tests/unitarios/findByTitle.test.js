@@ -1,35 +1,38 @@
-const FilmDAO = require('../../stubs/filmDAOstub');
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
+process.env.NODE_ENV = 'testing';
 
-const FilmController = require('../../../controller/filmController');
-const views = require('../../../js/configView');
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
+
+const FilmController = require('../../controller/filmController');
+const views = require('../../js/configView');
+const DAOFactory = require('../../js/daos/DAOFactory');
 
 const peliculas = [{
-	nombre: "Alien",
+	films: "Alien",
 	img: 1
 }, {
-	nombre: "Terminator",
+	films: "Terminator",
 	img: 1
 }, {
-	nombre: "Shrek 1",
+	films: "Shrek 1",
 	img: 1
 }, {
-	nombre: "Shrek 2",
+	films: "Shrek 2",
 	img: 1
 }];
 
 describe('Tests Controlador Películas: Buscar por Título', () => {
 
-	const dao = new FilmDAO(peliculas);
-	const filmController = new FilmController(dao);
+	new DAOFactory().getFilmDAO().setDAOData(peliculas);
+	
+	const filmController = new FilmController();
 
 	test('Búsqueda por título cuando la película existe', async () => {
 		const req = new Request();
 		const res = new Response();
 
-		req.body.titulo = "Shrek";
-
+		req.body.nombreBuscar = "Shrek";
+		req.body.busqueda=1;
 		await filmController.postListByKeyWord(req, res);
 
 		// Esperamos que el controlador haya llamado a la función render con la vista que esperamos y
@@ -49,7 +52,7 @@ describe('Tests Controlador Películas: Buscar por Título', () => {
 
 		// Nombre de una película que no existe
 		req.body.titulo = "Película que no existe";
-
+		req.body.busqueda=1;
 		await filmController.postListByKeyWord(req, res);
 		
 		// Nos fijamos en que la vista a la que redirige es la que debe

@@ -24,7 +24,7 @@ jobs:
       - run: npm ci
       - name: Build stack
         run: docker compose up --wait
-      - run: cp .env.example .env
+      - run: cp .github/workflows/.env.docker .env
       # - run: 
       # - name: Sleep for 5 seconds
       #   uses: jakejarvis/wait-action@master

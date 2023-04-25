@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+      
+      
+      
+      <link rel="stylesheet" href="/css/index.css" media="screen"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <style>
+        label {
+            font-weight: bold;
+        }
+        .botonContinuar {
+            display: block;
+            margin: 0 auto;
+        }
+        .error-msg {
+            color: grey;
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 style="margin-bottom: 40px;">Registro de Usuario</h1>
+        <form id="registroForm" action="/users/signup" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombreCompleto">Nombre Completo</label>
+                <input type="text" class="form-control" id="recipient-name" placeholder="Nombre completo" name="nombreCompleto"  value = "<% if(typeof valores != 'undefined') { %><%= valores.nombreCompleto %><%}%>" required>
+            </div>
+            <div class="form-group">
+                <label for="nombreUsuario">Nombre de Usuario</label>
+                <input type="text" class="form-control" id="recipient-name" placeholder="Nombre de usuario" name="username" value = "<% if(typeof valores != 'undefined') { %><%= valores.username %><%}%>" required>
+            </div>
+            <div class="form-group">
+                <label for="correoElectronico">Correo Electrónico</label>
+                <input type="email" class="form-control" id="recipient-name" placeholder="Correo electrónico" name="correo" value = "<% if(typeof valores != 'undefined') { %><%= valores.correo %><%}%>" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" class="form-control"  placeholder="Contraseña" name="password"  required>
+                <div><small id="contrasenaError" class="error-msg">La contraseña debe tener 8 caracteres como mínimo.</small></div>
+                <small id="contrasenaError" class="error-msg">La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial</small>
+                
+            </div>
+            <div class="form-group">
+                <label for="repetirContrasena">Repetir Contraseña</label>
+                <input type="password" class="form-control"  placeholder="Repita Contraseña" name="password2" required>
+            </div>
+            <% if (typeof validaciones != 'undefined') { %>
+                <% validaciones.forEach((validacion)=> { %>
+                <div style="color: crimson;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%=validacion.msg %></strong>
+                
+                </div>
+                <% }) %>
+            <% } %>
+            <% if (typeof iguales != 'undefined') { %>    
+                <div style="color: crimson;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%=iguales %></strong>
+                
+                </div>
+            <% } %>    
+            <button type="submit" class="btn btn-primary botonContinuar">Continuar</button>
+        </form>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  
+
+</body>
+</html>

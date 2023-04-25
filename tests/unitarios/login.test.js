@@ -1,9 +1,13 @@
-const UserDAO = require('../../stubs/userDAOstub');
-const Request = require('../../stubs/requestStub');
-const Response = require('../../stubs/responseStub');
 
-const UserController = require('../../../controller/loginController');
-const views = require('../../../js/configView');
+process.env.NODE_ENV = 'testing';
+
+const Request = require('../stubs/requestStub');
+const Response = require('../stubs/responseStub');
+
+const UserController = require('../../controller/userController');
+const views = require('../../js/configView');
+
+const DAOFactory = require('../../js/daos/DAOFactory');
 
 const bcrypt = require('bcrypt');
 
@@ -30,8 +34,9 @@ const usuarios = [
 
 
 describe('Tests de inicio de sesión cuando no hay sesión iniciada.', () => {
-	const dao = new UserDAO(usuarios);
-	const userController = new UserController(dao);
+	new DAOFactory().getUserDAO().setDAOData(usuarios);
+	
+	const userController = new UserController();
 
 	test('Inicio de sesión cuando el usuario y contraseña son correctos', async () => {
 		usuarios[0].password = await bcrypt.hash('hola', 10);
@@ -44,6 +49,7 @@ describe('Tests de inicio de sesión cuando no hay sesión iniciada.', () => {
 
 		await userController.postLogin(req, res);
 
+		
 		// El inicio de sesión es correcto y nos debe mandar a la pantalla principal
 		expect(res.redirect).toHaveBeenCalledWith('/');
 	});
