@@ -26,25 +26,21 @@ class userController {
 		const mail = req.body.mail;
 
 		const usuario = await this.userDAO.getUser(mail);
+		var errorMessageText = '';
 
 		console.log(`usuario: ${JSON.stringify(usuario)}`);
 
 		// Si el usuario no está registrado informamos del error en la vista
-		if (!usuario)
+		if (typeof usuario === 'undefined')
 			return res.render(views.login, { errorMessage: '¡El usuario no está registrado!', title: 'Identifícate' });
-
-		// Si la contraseña es incorrecta
+		
 		if (await bcrypt.compare(req.body.password, usuario.password) == false)
 			return res.render(views.login, { errorMessage: '¡La contraseña es incorrecta!', title: 'Identifícate' });
-
-		// Llegados a este punto, el usuario está registrado y ha introducido su contraseña
-		// Guardamos en la sesión el email del usuario para poder identificarlo
 		
 		req.session.idUser = usuario.id;
 		req.session.mail = req.body.mail;
 		req.session.username = usuario.username;
-
-		// A la página principal con la sesión ya iniciada
+		
 		return res.redirect('/');
 	};
 	getRegistro = async (req, res) => {

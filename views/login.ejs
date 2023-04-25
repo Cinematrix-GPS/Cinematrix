@@ -11,14 +11,28 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+        <style>
+            label {
+                font-weight: bold;
+            }
+            .botonContinuar {
+                display: block;
+                margin: 0 auto;
+            }
+            .error-msg {
+                color: grey;
+                margin-top: 0.25rem;
+                font-size: 0.875rem;
+            }
+        </style>
   </head>
     <body>
-        <%- include("menu2") %>
         <div class="container my-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <h2 class="mb-3">Iniciar sesión</h2>
-                    <form action="/users/login" method="POST" >
+                    <form id="loginForm" action="/users/login" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="mail" class="form-label">Email</label>
                             <input type="mail" class="form-control" id="mail" name="mail" required>
@@ -28,6 +42,11 @@
 
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
+                        <% if (typeof errorMessage != 'undefined') { %>
+                            <div style="color: crimson;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong><%=errorMessage %></strong>
+                            </div>
+                        <% } %>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                     <!-- <div class="col col-5 offset-3 text-danger mt-3"><strong></strong></div> -->

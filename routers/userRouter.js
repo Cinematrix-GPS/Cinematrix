@@ -54,7 +54,7 @@ userRouter.get('/loginForm',
         });
 });
 
-userRouter.post('/login', 
+userRouter.post('/login', multerFactory.none(),
     requiresLogout, 
     useRCrtl.postLogin);
 
